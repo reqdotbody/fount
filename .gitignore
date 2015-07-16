@@ -1,0 +1,9 @@
+bower_components/
+node_modules/
+.DS_Store
+.DS_Store?
+._*
+.spotlight-v100
+.Trashes
+*.log
+*.gz
