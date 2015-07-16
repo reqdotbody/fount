@@ -1,5 +1,9 @@
 # fount
--A venue for publicly sourced resources
+-A venue for publicly sourced learning aids.
+
+-Contributors: Edwin Calte, Esteban Castano, Farhana Maredia, Gregg Moore, Isto Barton
+
+-This app was built with a PostgreSQL database, served with Express & Node, and built in Angular with Jade templating.
 
 Our view path is as follows:
 1. index.html (From which you can access the following views found within the App folder)
