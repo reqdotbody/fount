@@ -1,0 +1,55 @@
+<<<<<<< HEAD
+//AUTH CONTROLLER
+
+angular.module('fount.auth', [])
+
+.controller('AuthController', function($scope, $window, $location, Auth){
+  $scope.user = {};
+  $scope.error = null;
+
+  $scope.signin = function () {
+    //TODO 
+    console.log("logged in controller");
+  };
+
+  $scope.signup = function () {
+    //TODO
+    console.log("signed in controller");
+  };
+});
+=======
+angular.module('font.auth', [])
+
+.controller('AuthController', function($scope, $window, $location){
+  $scope.user = {};
+
+  $scope.signin = function(){
+
+    .catch(function (error) {
+      console.error(error);
+    });
+  }
+
+  $scope.signup = function(){
+
+    .catch(function (error) {
+      console.error(error);
+    });
+  }
+
+  $scope.logout = function(){
+
+    .catch(function (error) {
+      console.error(error);
+    });
+  }
+
+  $scope.vote = function(){
+
+    .catch(function (error) {
+      console.error(error);
+    });
+  }
+
+})
+>>>>>>> Added startup info to readme, Authentication Outline
