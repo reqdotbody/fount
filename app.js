@@ -5,10 +5,18 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var routes = require('./routes/index');
-var users = require('./routes/users');
-
+var routes = require('./server/routes/index');
+var users = require('./server/routes/users');
+// var db = require('./server/models/database.js')
+var config = require('./knexfile.js');
+var knex = require('knex')(config['development']);
 var app = express();
+
+knex.migrate.latest([config]);
+
+// var env = process.env.NODE_ENV || 'development';
+
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
