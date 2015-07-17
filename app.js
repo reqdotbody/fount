@@ -9,7 +9,8 @@ var routes = require('./server/routes/index');
 var users = require('./server/routes/users');
 // var db = require('./server/models/database.js')
 var config = require('./knexfile.js');
-var knex = require('knex')(config['development']);
+var env = process.env.NODE_ENV || 'development';
+var knex = require('knex')(config[env]);
 var app = express();
 
 knex.migrate.latest([config]);
