@@ -1,15 +1,10 @@
-<nav class="navbar navbar-default" ng-controller="NavController">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="/">Fount</a>
-    </div>
-    <div>
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home</a></li>
-        <li><a ng-hide="isAuth()" href="/#/signup">Signup</a></li>
-        <li><a ng-hide="isAuth()" href="/#/signin">Signin</a></li>
-        <li><a ng-show="isAuth()" ng-click="logout()">Logout</a></li>
-      </ul>
-    </div>
-  </div>
+<nav role="navigation" ng-controller="NavController">
+
+  <a class="pull-left" href="/">Fount</a>
+
+  <span class="auth-panel pull-right">
+    <a ng-hide="isAuth()" href="/#/signup">Signup</a>
+    <a ng-hide="isAuth()" href="/#/signin">Signin</a>
+    <a ng-show="isAuth()" ng-click="logout()">Logout</a>
+  </span>
 </nav>

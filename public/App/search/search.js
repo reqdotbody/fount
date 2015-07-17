@@ -1,8 +1,6 @@
 angular.module('fount.search', [])
 
-.controller('SearchController', function($scope, $window){
-
+.controller('SearchController', function($scope){
   $scope.searchForm = "";
-
 
 });

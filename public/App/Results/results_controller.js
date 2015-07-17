@@ -1,5 +1,3 @@
-//RESULTS CONTROLLER
-
 angular.module('fount.results', [])
 
 .controller('ResultsController', function($scope, $window, $location){
