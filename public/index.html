@@ -1,1 +1,40 @@
-//MAIN
+<!-- MAIN VIEW --> 
+<!DOCTYPE html>
+<html ng-app='fount'>
+  <head>
+    <meta charset="utf-8" />
+    <title>Fount</title>
+    <meta name="description" content="Kade prototype">
+    <meta name="author" content="Isto Barton, Edwin Calte, Esteban Castano, Farhana Maredia, Gregg Moore">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/animate.css/3.3.0/animate.min.css">
+    <link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" type="text/css" href="stylesheets/style.css" />
+  </head>
+  <body>
+
+
+    <div ng-include="../search/search.html"></div>
+
+    <!-- the ng-view directive is where our templates will be loaded into when navigated to -->
+    <div ng-view></div>
+
+    <div class="page">
+        <p> 
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quis sollicitudin magna. Praesent pretium auctor leo, a fringilla nisl malesuada vitae. In vel interdum dui. Suspendisse mi orci, luctus vel ultrices sed, consequat in neque. Duis efficitur enim eu risus viverra, in convallis ligula fermentum. Mauris ut bibendum diam, et ultrices orci. Maecenas posuere viverra rutrum. Vivamus scelerisque et risus vel laoreet. Aenean a nunc sem. Integer nec luctus arcu.
+        </p>
+    </div>
+
+    <script src="lib/angular/angular.js"></script>
+    <script src="lib/angular-route/angular-route.js"></script>
+
+    <script src="app/auth/auth_controllers.js"></script>
+    <script src="app/categories/categories_controllers.js"></script>
+    <script src="app/results/results_controller.js"></script>
+    <script src="app/services/services.js"></script>
+    <script src="app/subcategories/subcategories_controllers.js"></script>
+    <script src="app/main.js"></script>
+  </body>
+</html>

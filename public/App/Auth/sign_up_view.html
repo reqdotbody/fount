@@ -1,1 +1,33 @@
 //SIGN UP
+
+<div class="container" id='signup'>
+  <div class="col-md-6 col-md-offset-3" ng-class="error ? 'shake animated' : ''">
+
+    <!-- SIGNUP FORM -->
+    <h1>signup</h1>
+    <form name="signupForm" ng-submit='signup()' novalidate>
+
+      <!-- USERNAME INPUT -->
+      <div class="form-group" ng-class="{'has-error':signupForm.username.$invalid && !signupForm.username.$pristine}">
+        <label id="username">Username</label>
+        <input class="form-control" name="username" type='text' ng-minlength="3" ng-model='user.username'>
+        <p ng-show="signupForm.username.$error.minlength">Username must have more than 3 characters</p>
+      </div>
+
+      <!-- PASSWORD INPUT -->
+      <div class="form-group" ng-class="{'has-error':signupForm.password.$invalid && !signupForm.password.$pristine}">
+        <label id="password">Password</label>
+        <input class="form-control" name="password" type="password" ng-minlength="3" ng-model='user.password'>
+        <p ng-show="signupForm.password.$error.minlength">Password required</p>
+      </div>
+
+      <div ng-if="error" class="alert alert-danger">{{error}}</div>
+
+      <button ng-disabled="signupForm.$invalid" class="btn btn-primary"><span class="glyphicon glyphicon-send"></span> signup</button>
+
+    </form>
+
+    <a href="#/signin">Already have an account? <strong>Signin</strong> ...</a>
+
+  </div>
+</div>
