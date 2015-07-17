@@ -1,5 +1,33 @@
-<!--RESULTS VIEW-->
 <form>
+  <div class="form-group">
+    <input class="form-control" type="text" ng-model="search" placeholder="Search"/>
+  </div>
+</form>
+
+<div id="submissions">
+  <div ng-repeat="resource in results" class="submission">
+    <div class="vote-info midcol">
+      <div class="upvote glyphicon glyphicon-chevron-up"></div>
+      <div class="vote-count">{{resource.votes}}</div>
+      <div class="downvote glyphicon glyphicon-chevron-down"></div>
+    </div>
+    <div class="entry">
+      <p class="title">
+        <span class="title">{{resource.title}}</span>
+        <span class="url">(<a href="{{resource.url}}">{{resource.url}}</a>)</span>
+      </p>
+
+      <p class="tagline">
+        Submitted on {{resource.date}} by {{resource.username}}
+      </p>
+
+    </div>
+
+  </div>
+  
+</div>
+<!--RESULTS VIEW-->
+<!-- <form>
   <div class="form-group">
     <input class="form-control" type="text" ng-model="search" placeholder="Search"/>
   </div>
@@ -24,5 +52,42 @@
       </span>
     </li>
   </ul>
-</div>
+</div> -->
 
+
+
+
+
+<!-- <div class="resource-list">
+
+  <div class="resource fadeInRight animated" ng-repeat="resource in results | orderBy: '-votes' | filter: search" >
+    <div class="votes col-md-1">
+      <span class="glyphicon glyphicon-chevron-up upvote" ng-click="upvote(this)"></span>
+      <div class="row voteCount">{{resource.votes}}</div>
+      <div class="row glyphicon glyphicon-chevron-down" ng-click="downvote(this)"></div>
+    </div>
+    <div class="info col-md-11">
+      <h1>{{ resource.title }}</h1>
+      <br/>
+      <p>{{resource.url}}</p>
+      <p>{{resource.username}}</p>
+      <p>{{resource.date}}</p>
+    </div>
+  </div>
+
+
+</div> -->
+
+
+<!-- <div class="container-fluid">
+  <div class="resource-list">
+    <div class="row-fluid resource fadeInUp animated" ng-repeat="resource in results">
+      <div class="votes col-md-2">
+        <h1> ..</h1>
+      </div>
+      <div class="info col-md-10">
+        <h1>Hello</h1>
+      </div>
+    </div>
+  </div>
+</div> -->

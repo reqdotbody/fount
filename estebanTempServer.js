@@ -9,5 +9,5 @@ app.get('/', function(req,res){
 app.use('/scripts', express.static(__dirname + '/bower_components'));
 app.use(express.static(__dirname + '/public'));
 
-app.listen(3000);
+app.listen(4000);
 console.log('running...');
