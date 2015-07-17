@@ -1,1 +1,49 @@
-//MAIN
+<!-- MAIN VIEW --> 
+<!DOCTYPE html>
+<html ng-app='fount'>
+  <head>
+    <meta charset="utf-8" />
+    <title>Fount</title>
+    <meta name="description" content="Kade prototype">
+    <meta name="author" content="Isto Barton, Edwin Calte, Esteban Castano, Farhana Maredia, Gregg Moore">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/animate.css/3.3.0/animate.min.css">
+    <link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/style.css" />
+
+  </head>
+  <body>
+
+    <!-- the ng-view directive is where our templates will be loaded into when navigated to -->
+    
+    <header>
+        <span ng-include="'app/nav/nav.html'"></span>
+    </header>
+
+    <div class="page">
+        <div ng-include="'app/search/search.html'"></div>
+
+        <div id="contents">
+        <div ng-view></div>
+        </div>
+    </div>
+      
+    </div>
+
+    <script src="scripts/angular/angular.min.js"></script>
+    <script src="scripts/angular-route/angular-route.min.js"></script>
+    <script src="scripts/jquery/dist/jquery.min.js"></script>
+    <script src="scripts/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <script src="app/auth/auth_controllers.js"></script>
+    <script src="app/categories/categories_controllers.js"></script>
+    <script src="app/results/results_controller.js"></script>
+    <script src="app/services/services.js"></script>
+    <script src="app/subcategories/subcategories_controllers.js"></script>
+    <script src="app/search/search.js"></script>
+    <script src="app/nav/nav.js"></script>
+
+    <script src="main.js"></script>
+  </body>
+</html>

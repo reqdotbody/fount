@@ -3,47 +3,52 @@ angular.module('fount', [
   'fount.auth',
   'fount.category',
   'fount.results',
-  'fount.subcategory',  
+  'fount.subcategory', 
+  'fount.search',
+  'fount.nav',
   'ngRoute',
+
   ])
 //add other modules as are created for view
 
-.controller("MainController"), function($scope){
+.controller("MainController", function($scope){
   
-}
+})
 
-.config(function($routeProvider, $httpProvider){
+.config(['$routeProvider', function($routeProvider, $httpProvider, $locationProvider){
   $routeProvider
     //CHANGE URL PATH NAMES
     .when('/signup', {
-      templateUrl: '/App/Auth/sign_up_view.html'
+      templateUrl: '/app/auth/sign_up_view.html',
       controller: 'AuthController'
     })
     .when('/signin', {
-      templateUrl: '/App/Auth/sign_in_view.html'
+      templateUrl: '/app/auth/sign_in_view.html',
       controller: 'AuthController'
     })
     .when('/logout', {
-      templateUrl: '/App/Categories/categories_view.html'
+      templateUrl: '/app/categories/categories_view.html',
       controller: 'CategoryController'
     })
     .when('/categories', {
-      templateUrl: '/App/Categories/categories_view.html'
+      templateUrl: '/app/categories/categories_view.html',
       controller: 'CategoryController'
     })
     .when('/search/{keyword}', {
-      templateUrl: '/App/Subcategories/subcategories_category_view.html'
+      templateUrl: '/app/subcategories/subcategories_category_view.html',
       controller: 'SubcategoryController'
     })
     .when('/{Category}', {
-      templateUrl: '/App/Subcategories/subcategories_searchbar_view.html'
+      templateUrl: '/app/subcategories/subcategories_searchbar_view.html',
       controller: 'SubcategoryController'
     })
     .when('/{Category}/{Subcategory}', {
-      templateUrl: '/App/Subcategories/results_view.html'
+      templateUrl: '/app/subcategories/results_view.html',
       controller: 'FountController'
     })
     .otherwise({
       redirectTo: '/categories'
-    })
-})
+    });
+
+   // $locationProvider.html5Mode(true);
+}]);

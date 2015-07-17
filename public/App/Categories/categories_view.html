@@ -1,1 +1,31 @@
-//QUERY VIEW 2 -- FROM CATEGORY BUTTON ON MAIN
+<!-- QUERY VIEW 2 -- FROM CATEGORY BUTTON ON MAIN -->
+<!-- <div class="container">
+  <div class="row">
+    <div class="col-xs-4" ng-repeat="cat in categories">
+      <a href="#"  class="thumbnail">
+        <h1>{{cat.name}}</h1>
+        <img ng-src='{{cat.img}}'/>
+      </a>
+    </div>
+  </div>
+</div>
+ -->
+<!-- <div class="container category-container">
+  <div class="row-fluid">
+    <div class="span6" no-repeat="cat in categories">
+      <h1>{{cat.name}}</h1>
+      <img ng-src='{{cat.img}}'/>
+    </div>
+  </div>
+</div>
+ -->
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="col-md-6" ng-repeat="cat in categories">
+      <a href="#">
+        <h2>{{cat.name}}</h2>
+        <img class="img-responsive" ng-src='{{cat.img}}' />
+      </a>
+    </div>
+  </div>
+</div>

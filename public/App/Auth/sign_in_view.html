@@ -1,1 +1,29 @@
-//SIGN IN VIEW
+<div class="container" id='signin'>
+  <div class="col-md-6 col-md-offset-3 " ng-class="error ? 'shake animated' : ''">
+    <h1>signin</h1>
+    <form name="signinForm" ng-submit='signin()' novalidate>
+
+      <!-- USERNAME INPUT -->
+      <div class="form-group" ng-class="{'has-error':signinForm.username.$invalid && !signinForm.username.$pristine}">
+        <label id="username">Username</label>
+        <input class="form-control" name="username" type='text' ng-minlength="3" ng-model='user.username'>
+        <p ng-show="signinForm.username.$error.minlength">Valid username required</p>
+      </div>
+
+      <!-- PASSWORD INPUT -->
+      <div class="form-group" ng-class="{'has-error':signinForm.password.$invalid && !signinForm.password.$pristine}">
+        <label id="password">Password</label>
+        <input class="form-control" name="password" type="password" ng-minlength="3" ng-model='user.password'>
+        <p ng-show="signinForm.password.$error.minlength">Password required</p>
+      </div>
+
+      <div ng-if="error" class="alert alert-danger">{{error}}</div>
+
+      <button ng-disabled="signinForm.$invalid" class="btn btn-primary"><span class="glyphicon glyphicon-send"></span> signin</button>
+
+    </form>
+    <a href="#/signin">Don't have an account? <strong>Signup</strong> ...</a>
+  </div>
+</div>
+
+

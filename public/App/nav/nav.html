@@ -1,0 +1,10 @@
+<nav role="navigation" ng-controller="NavController">
+
+  <a class="pull-left" href="/">Fount</a>
+
+  <span class="auth-panel pull-right">
+    <a ng-hide="isAuth()" href="/#/signup">Signup</a>
+    <a ng-hide="isAuth()" href="/#/signin">Signin</a>
+    <a ng-show="isAuth()" ng-click="logout()">Logout</a>
+  </span>
+</nav>
