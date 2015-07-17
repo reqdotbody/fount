@@ -1,5 +1,9 @@
+//Database (The number preceding this file acknowledges a timestamp from the last database update)
+
+//Functionality for starting up all new database schema
 exports.up = function(knex, Promise) {
 
+//Initialize Category Database
     var categories = knex.schema.createTable('categories', function(table) {
         table.increments('id').primary();
         table.string('name');
@@ -7,6 +11,7 @@ exports.up = function(knex, Promise) {
         console.log("Created Catagories Table");
     })
 
+//Initialize Users Database
     var users = knex.schema.createTable('users', function(table) {
         table.increments('id').primary();
         table.string('name');
@@ -14,7 +19,7 @@ exports.up = function(knex, Promise) {
         console.log("Created Users Table");
     })
 
-
+//Initialize Subcategory Database
     var subcategories = knex.schema.createTable('subcategories', function(table) {
         table.increments('id').primary();
         table.string('name');
@@ -22,6 +27,7 @@ exports.up = function(knex, Promise) {
         console.log('Created Subcategories Table');
     })
 
+//Initialize Links Database
     var links = knex.schema.createTable('links', function(table) {
         table.increments('id').primary();
         table.integer('subcat_id').references('id').inTable('subcategories');
@@ -33,6 +39,7 @@ exports.up = function(knex, Promise) {
         console.log("Created Links Table");
     })
 
+//Initialize Votes Database
     var votes = knex.schema.createTable('votes', function(table) {
         table.increments('id').primary();
         table.integer('link_id').references('id').inTable('links');
@@ -46,6 +53,7 @@ exports.up = function(knex, Promise) {
 
 };
 
+//
 exports.down = function(knex, Promise) {
     knex.schema.dropTable('categories').dropTable('users').dropTable('subcategories').dropTable('links').dropTable('votes')
 };
