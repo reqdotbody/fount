@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/reqdotbody/fount.png?label=ready&title=Ready)](https://waffle.io/reqdotbody/fount)
 # fount
 -A venue for publicly sourced learning aids.
 
