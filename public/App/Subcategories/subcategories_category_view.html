@@ -1,1 +1,12 @@
 //QUERY VIEW 2 -- FROM CATEGORY BUTTON ON MAIN
+<div id='container'>
+  //Subcategories in data.subcategories
+  <ul>
+    <li ng-model="data.subcategories" ng-repeat="subcategory in data.subcategories">{{data.subcategories}}<br>{{data.category_id}}<br>
+      <a href="http://localhost:3000/api/categories/#/{{data.subcategories}}">{{data.subcategories}}
+      </a>
+<!--       <a href="http://fount.io/#/categories/{{data.subcategories}}">{{data.subcategories}}
+ -->      </a>
+    </li>
+  </ul>
+</div>

@@ -60,6 +60,7 @@ Which will respond with an array of objects that will look like this:
 
 {
   subcategory: [string of subcategory name]
+  category_id: [integer of category id]
 }
 
 ____________________________________
