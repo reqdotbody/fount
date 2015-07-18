@@ -1,9 +1,3 @@
-<!-- <form>
-  <div class="form-group">
-    <input class="form-control" type="text" ng-model="search" placeholder="Search"/>
-  </div>
-</form> -->
-
 <div id="submissions">
   <div ng-repeat="resource in results | orderBy: '-votes'" class="submission" ng-class-odd="'odd'" ng-class-even="'even'">
     <span class="rank">
@@ -23,77 +17,7 @@
       <p class="tagline">
         Submitted on {{resource.date}} by {{resource.username}}
       </p>
-
     </div>
-
   </div>
-
 </div>
 
-  <!--   <a class="title" ng-class="class" ng-click="changeClass(this)" href="{{resource.url}}" target="_blank">{{resource.title}}</span></a> -->
-
-<!--RESULTS VIEW-->
-<!-- <form>
-  <div class="form-group">
-    <input class="form-control" type="text" ng-model="search" placeholder="Search"/>
-  </div>
-</form>
-<div class="panel panel-default">
-  <ul class="list-group">
-    <li ng-repeat="resource in results | orderBy: '-votes' | filter: search" class="resource fadeInUp animated">
-      <span class="votes col-md-2">
-        <div class="row glyphicon glyphicon-chevron-up upvote" ng-click="upvote(this)"></div>
-        <div class="row voteCount">{{resource.votes}}</div>
-        <div class="row glyphicon glyphicon-chevron-down" ng-click="downvote(this)"></div>
-      </span>
-      <span class="info col-md-10">
-        <div class="row title"></div>
-        <div class="row url">
-          <a target="_blank" ng-href="{{resource.url}}"> {{ resource.url }}</a>
-        </div>
-        <div class="row details">
-          <span class="submittedBy">Submitted by: {{resource.username}}</span>
-          <span class="date">on {{resource.date | date:'medium'}}</span>
-        </div>
-      </span>
-    </li>
-  </ul>
-</div> -->
-
-
-
-
-
-<!-- <div class="resource-list">
-
-  <div class="resource fadeInRight animated" ng-repeat="resource in results | orderBy: '-votes' | filter: search" >
-    <div class="votes col-md-1">
-      <span class="glyphicon glyphicon-chevron-up upvote" ng-click="upvote(this)"></span>
-      <div class="row voteCount">{{resource.votes}}</div>
-      <div class="row glyphicon glyphicon-chevron-down" ng-click="downvote(this)"></div>
-    </div>
-    <div class="info col-md-11">
-      <h1>{{ resource.title }}</h1>
-      <br/>
-      <p>{{resource.url}}</p>
-      <p>{{resource.username}}</p>
-      <p>{{resource.date}}</p>
-    </div>
-  </div>
-
-
-</div> -->
-
-
-<!-- <div class="container-fluid">
-  <div class="resource-list">
-    <div class="row-fluid resource fadeInUp animated" ng-repeat="resource in results">
-      <div class="votes col-md-2">
-        <h1> ..</h1>
-      </div>
-      <div class="info col-md-10">
-        <h1>Hello</h1>
-      </div>
-    </div>
-  </div>
-</div> -->

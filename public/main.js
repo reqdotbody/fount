@@ -6,13 +6,13 @@ angular.module('fount', [
   'fount.subcategory', 
   'fount.search',
   'fount.nav',
-  'ngRoute',
+  'ngRoute'
 
   ])
 //add other modules as are created for view
 
 .controller("MainController", function($scope){
-  
+    $scope.searchForm = "";
 })
 
 .config(['$routeProvider', function($routeProvider, $httpProvider, $locationProvider){

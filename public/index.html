@@ -13,30 +13,65 @@
     <link rel="stylesheet" type="text/css" href="stylesheets/style.css" />
 
   </head>
-  <body>
+  <body >
 
     <!-- the ng-view directive is where our templates will be loaded into when navigated to -->
-    
-    <header>
-        <span ng-include="'app/nav/nav.html'"></span>
-    </header>
+    <div class="wrapper" ng-controller="MainController">
+        <header>
+            <span ng-include="'app/nav/nav.html'"></span>
+        </header>
 
-    <div class="page">
-        <div ng-include="'app/search/search.html'"></div>
-
-        <div id="contents">
-            <div id="sub-contents">
-                <div ng-view></div>
+        <div class="page">
+            
+            <div class="large-search-container">
+              <h1>I want to learn <input class="search" type="text" name="searchInput" placeholder="" ng-model="searchForm" autofocus/> </h1>
             </div>
+
+           <!--  ng-repeat="resource in results | orderBy: '-votes' | filter: searchForm" -->
+            <div class="contents">
+                <div class="original-view sub-contents" ng-show="!searchForm.length" ng-hide="searchForm.length">
+                    <div ng-view></div>
+                </div>
+                <div class="impromptu-search-view sub-contents fadeIn animated" ng-show="searchForm.length" ng-hide="!searchForm.length" ng-controller="ResultsController">
+                    <div id="submissions">
+                        <div ng-repeat="resource in resources = (results | orderBy: '-votes' | filter: searchForm)" class="submission" ng-class-odd="'odd'" ng-class-even="'even'">
+                            <span class="rank">
+                              {{$index + 1}}
+                            </span>
+                            <div class="vote-info">
+                              <div class="upvote glyphicon glyphicon-chevron-up"></div>
+                              <div class="vote-count">{{resource.votes}}</div>
+                              <div class="downvote glyphicon glyphicon-chevron-down"></div>
+                            </div>
+                            <div class="entry">
+                              <p class="title">
+                                <a class="title" href="{{resource.url}}" target="_blank">{{resource.title}}</span></a>
+                                <span class="url">(<a class="url" href="{{resource.url}}">{{resource.url}}</a>)</span>
+                              </p>
+
+                              <p class="tagline">
+                                Submitted on {{resource.date}} by {{resource.username}}
+                              </p>
+                            </div>
+                        </div>
+                        <div ng-if="resources.length === 0">
+                            <h5>Sorry :-/ <br> No resources on {{searchForm}} yet... Add the first one!</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
         </div>
-    </div>
-      
     </div>
 
     <script src="scripts/angular/angular.min.js"></script>
     <script src="scripts/angular-route/angular-route.min.js"></script>
     <script src="scripts/jquery/dist/jquery.min.js"></script>
     <script src="scripts/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src=" https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-animate.min.js"></script>
 
     <script src="app/auth/auth_controllers.js"></script>
     <script src="app/categories/categories_controllers.js"></script>
@@ -45,6 +80,7 @@
     <script src="app/subcategories/subcategories_controllers.js"></script>
     <script src="app/search/search.js"></script>
     <script src="app/nav/nav.js"></script>
+   <!--  // <script src="app/helpers/polygon.js"></script> -->
 
     <script src="main.js"></script>
   </body>
