@@ -83,6 +83,7 @@ This will respond with an array if objects that will look like this.
   username: [string of the user who submited the URL]
   date: [string of the date the url was submitted]
   id: [string of the id for the submited url]
+  hasVoted: [string 'upvote' 'downvote' 'none']
 }
 
 _________________________________________
@@ -104,3 +105,11 @@ method: POST
     subCategory: [string of the subcategory name]
     parentCategory: [string of the parentcategory name]
 }
+
+
+____________________________________________
+
+//TODO Upvote link endpoint
+
+
+//TODO Submit subcategorry
