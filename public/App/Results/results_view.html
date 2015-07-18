@@ -1,20 +1,23 @@
-<form>
+<!-- <form>
   <div class="form-group">
     <input class="form-control" type="text" ng-model="search" placeholder="Search"/>
   </div>
-</form>
+</form> -->
 
 <div id="submissions">
-  <div ng-repeat="resource in results" class="submission">
-    <div class="vote-info midcol">
+  <div ng-repeat="resource in results | orderBy: '-votes'" class="submission" ng-class-odd="'odd'" ng-class-even="'even'">
+    <span class="rank">
+      {{$index + 1}}
+    </span>
+    <div class="vote-info">
       <div class="upvote glyphicon glyphicon-chevron-up"></div>
       <div class="vote-count">{{resource.votes}}</div>
       <div class="downvote glyphicon glyphicon-chevron-down"></div>
     </div>
     <div class="entry">
       <p class="title">
-        <span class="title">{{resource.title}}</span>
-        <span class="url">(<a href="{{resource.url}}">{{resource.url}}</a>)</span>
+        <a class="title" href="{{resource.url}}" target="_blank">{{resource.title}}</span></a>
+        <span class="url">(<a class="url" href="{{resource.url}}">{{resource.url}}</a>)</span>
       </p>
 
       <p class="tagline">
@@ -24,8 +27,11 @@
     </div>
 
   </div>
-  
+
 </div>
+
+  <!--   <a class="title" ng-class="class" ng-click="changeClass(this)" href="{{resource.url}}" target="_blank">{{resource.title}}</span></a> -->
+
 <!--RESULTS VIEW-->
 <!-- <form>
   <div class="form-group">
