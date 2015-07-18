@@ -6,7 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var routes = require('./server/routes/index');
-var users = require('./server/routes/users');
+var api = require('./server/routes/api');
 // var db = require('./server/models/database.js')
 var config = require('./knexfile.js');
 var env = process.env.NODE_ENV || 'development';
@@ -14,8 +14,6 @@ var knex = require('knex')(config[env]);
 var app = express();
 
 knex.migrate.latest([config]);
-
-// var env = process.env.NODE_ENV || 'development';
 
 
 
@@ -32,7 +30,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-app.use('/users', users);
+app.use('/api', api);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
