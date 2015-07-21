@@ -6,13 +6,13 @@ angular.module('fount', [
   'fount.subcategory', 
   'fount.search',
   'fount.nav',
-  'ngRoute',
+  'ngRoute'
 
   ])
 //add other modules as are created for view
 
 .controller("MainController", function($scope){
-  
+    $scope.searchForm = "";
 })
 
 .config(['$routeProvider', function($routeProvider, $httpProvider, $locationProvider){
@@ -42,9 +42,9 @@ angular.module('fount', [
       templateUrl: '/app/subcategories/subcategories_searchbar_view.html',
       controller: 'SubcategoryController'
     })
-    .when('/{Category}/{Subcategory}', {
-      templateUrl: '/app/subcategories/results_view.html',
-      controller: 'FountController'
+    .when('/poop', {
+      templateUrl: '/app/results/results_view.html',
+      controller: 'ResultsController'
     })
     .otherwise({
       redirectTo: '/categories'

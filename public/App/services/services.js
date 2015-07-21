@@ -2,3 +2,7 @@
 
 angular.module('fount.services', [])
 
+.factory('Search', function($scope, $http){
+
+
+})
