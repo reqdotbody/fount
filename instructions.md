@@ -113,3 +113,9 @@ ____________________________________________
 
 
 //TODO Submit subcategorry
+
+{
+  name:[subCateogry Name],
+  parent:[parent category name as string or the id as a number]
+
+}
