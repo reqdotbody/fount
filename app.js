@@ -18,8 +18,12 @@ knex.migrate.latest([config]);
 
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.get('/', function(req,res){
+  res.sendFile(path.join(__dirname, 'public','index.html'));
+});
+
+app.use('/scripts', express.static(__dirname + '/bower_components'));
+app.use(express.static(__dirname + '/public'));
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
