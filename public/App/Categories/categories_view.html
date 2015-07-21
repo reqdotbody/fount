@@ -19,12 +19,12 @@
   </div>
 </div>
  -->
-<div class="container-fluid">
+<div class="categories container-fluid">
   <div class="row-fluid">
-    <div class="col-md-6" ng-repeat="cat in categories">
-      <a href="#">
-        <h2>{{cat.name}}</h2>
-        <img class="img-responsive" ng-src='{{cat.img}}' />
+    <div class="col-md-12" ng-repeat="cat in categories">
+      <a href="#/">
+        {{cat.name}}
+        <!-- <img class="img-responsive" ng-src='{{cat.img}}' /> -->
       </a>
     </div>
   </div>

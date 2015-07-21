@@ -1,28 +1,23 @@
-<!--RESULTS VIEW-->
-<form>
-  <div class="form-group">
-    <input class="form-control" type="text" ng-model="search" placeholder="Search"/>
+<div id="submissions">
+  <div ng-repeat="resource in results | orderBy: '-votes'" class="submission" ng-class-odd="'odd'" ng-class-even="'even'">
+    <span class="rank">
+      {{$index + 1}}
+    </span>
+    <div class="vote-info">
+      <div class="upvote glyphicon glyphicon-chevron-up"></div>
+      <div class="vote-count">{{resource.votes}}</div>
+      <div class="downvote glyphicon glyphicon-chevron-down"></div>
+    </div>
+    <div class="entry">
+      <p class="title">
+        <a class="title" href="{{resource.url}}" target="_blank">{{resource.title}}</span></a>
+        <span class="url">(<a class="url" href="{{resource.url}}">{{resource.url}}</a>)</span>
+      </p>
+
+      <p class="tagline">
+        Submitted on {{resource.date}} by {{resource.username}}
+      </p>
+    </div>
   </div>
-</form>
-<div class="panel panel-default">
-  <ul class="list-group">
-    <li ng-repeat="resource in results | orderBy: '-votes' | filter: search" class="resource fadeInUp animated">
-      <span class="votes col-md-2">
-        <div class="row glyphicon glyphicon-chevron-up upvote" ng-click="upvote(this)"></div>
-        <div class="row voteCount">{{resource.votes}}</div>
-        <div class="row glyphicon glyphicon-chevron-down" ng-click="downvote(this)"></div>
-      </span>
-      <span class="info col-md-10">
-        <div class="row title"></div>
-        <div class="row url">
-          <a target="_blank" ng-href="{{resource.url}}"> {{ resource.url }}</a>
-        </div>
-        <div class="row details">
-          <span class="submittedBy">Submitted by: {{resource.username}}</span>
-          <span class="date">on {{resource.date | date:'medium'}}</span>
-        </div>
-      </span>
-    </li>
-  </ul>
 </div>
 
