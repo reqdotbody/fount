@@ -1,0 +1,57 @@
+//REQUIRE DATABASE USER MODEL
+
+//ESTEBAN -- WE HAVE ACCESS TO FLASH MESSAGES SHOULD WE WANT THEM
+module.exports = function(app, passport){
+
+  app.get('/', function(req, res){
+    res.render("index.html");
+  });
+
+  app.get('/login', function(req, res){
+    res.render('sign_in_view.html', {message: req.flash('loginMessage')});
+  })
+
+  app.post('/login', passport.authenticate('local-login', {
+    successRedirect: '/categories',
+    failureRedirect: '/login',
+    failureFlash: true
+  }))
+
+  app.get('/signup', function(req, res){
+    res.render('sign_up_view.html', { message: req.flash('signupMessage') });
+  });
+
+  app.post('/signup', passport.authenticate('local-signup', {
+    successRedirect: '/categories',
+    failureRedirect: '/signup',
+    failureFlash: true
+  }))
+
+  app.get('/logout', function(req, res){
+    //Passport adds logout to express
+    req.logout();
+    res.redirect('/');
+  })
+
+  // app.get('/:username/:password', function(req, res){
+  //   var newUser = new User();
+  //   newUser.local.username = req.body.username;
+  //   newUser.local.password = req.body.password;
+  //   console.log(newUser.local.username + " " + newUser.local.password);
+  //   newUser.save(function(err){
+  //     if(err)
+  //       throw err;
+  //   });
+  //   res.send('Success!')
+  // });
+
+};
+
+function isLoggedIn(req, res, next){
+  if(req.isAuthenticated()){
+    return next();
+  }
+  res.redirect('/login')
+}
+
+
