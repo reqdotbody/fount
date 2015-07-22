@@ -2,12 +2,10 @@ angular.module('fount', [
   'fount.services',
   'fount.auth',
   'fount.category',
-  'fount.results',
   'fount.subcategory', 
   'fount.search',
   'fount.nav',
   'ngRoute'
-
   ])
 //add other modules as are created for view
 
@@ -42,10 +40,10 @@ angular.module('fount', [
       templateUrl: '/app/subcategories/subcategories_searchbar_view.html',
       controller: 'SubcategoryController'
     })
-    .when('/poop', {
-      templateUrl: '/app/results/results_view.html',
-      controller: 'ResultsController'
-    })
+    // .when('/poop', {
+    //   templateUrl: '/app/results/results_view.html',
+    //   controller: 'ResultsController'
+    // })
     .otherwise({
       redirectTo: '/categories'
     });

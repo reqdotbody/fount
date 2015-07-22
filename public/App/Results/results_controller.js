@@ -12,38 +12,31 @@ angular.module('fount.results', [])
     date: "Dec 27, 1990",
     id: "test"
     },
-
      {
     title: "Awesome JS tutorial",
-<<<<<<< HEAD
     url: "www.google.com",
-=======
     url: "http://www.google.com",
->>>>>>> master
     votes: 7,
     username: "estebanCastano",
     date: "Dec 27, 1990",
     id: "test",
     },
-
     {
       title: "Neat JS tutorial",
-<<<<<<< HEAD
       url: "www.apple.com",
       votes: 2,
       username: "isto",
       date: "Dec 27, 1990",
       id: "test",
-    }
-=======
+    },
+    {
+      title: "Applez lmao"
       url: "http://www.apple.com",
       votes: 2,
       username: "isto",
       date: "Dec 27, 1990",
       id: "test"
     },
->>>>>>> master
-
     {
       title: "Neat JS tutorial",
       url: "http://www.apple.com",
@@ -52,7 +45,6 @@ angular.module('fount.results', [])
       date: "Dec 27, 1990",
       id: "test"
     },
-
     {
       title: "Neat JS tutorial",
       url: "http://www.apple.com",
