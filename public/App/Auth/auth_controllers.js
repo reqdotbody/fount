@@ -2,7 +2,7 @@
 
 angular.module('fount.auth', [])
 
-.controller('AuthController', function($scope, $window, $location, Auth){
+.controller('AuthController', function($scope, $window, $location){
   $scope.user = {};
   $scope.error = null;
 
