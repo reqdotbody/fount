@@ -42,7 +42,9 @@ It'll return to the front-end (client folder) an array of objects which look lik
 
 {
   parentCategory: [string of parent category name]
+  parentCategory_id: [number of Category id]
   subcategory: [string of subcategory name]
+  subcategory_id: [number of subcategory id]
 }
 
 ________________________________
@@ -59,11 +61,16 @@ method: GET
 Which will respond with an array of objects that will look like this:
 
 {
-  subcategory: [string of subcategory name]
+  subcategory: [string of subcategory name],
+  subcategory_id: [number of the subcategory id]
   category_id: [integer of category id]
+  parentCategory: [string of parent category name]
 }
 
+
 ____________________________________
+
+TODO
 
 #FOUNT VIEW
 
@@ -101,9 +108,8 @@ method: POST
 {
     title: [string of the url title]
     url: [string with a URL]
-    username: [string -- username]
-    subCategory: [string of the subcategory name]
-    parentCategory: [string of the parentcategory name]
+    user_id: [number user_id]
+    subcat_id: [string of the subcategory name or number of the sbucateogry id]
 }
 
 
@@ -112,10 +118,28 @@ ____________________________________________
 //TODO Upvote link endpoint
 
 
-//TODO Submit subcategorry
+
+_____________________________________________
+Create a Sub Category
+
+This endpoint is used to create new sub categories
+
+endpoint:/api/v1/submit/subcategory
+method:post
 
 {
-  name:[subCateogry Name],
-  parent:[parent category name as string or the id as a number]
+  name:[Sub-Category Name in string],
+  cat_id:[Parent Category as number]
+}
+_____________________________________________
+Create a Category
 
+This endpoint is used so admins can create new Categories
+
+endpoint:/v1/submit/category
+method:POST
+
+{
+  name:[Category Name in string],
+  img:[link to image in string format]
 }
