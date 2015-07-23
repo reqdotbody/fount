@@ -2,10 +2,11 @@ angular.module('fount', [
   'fount.services',
   'fount.auth',
   'fount.category',
+  'fount.results',
   'fount.subcategory', 
   'fount.search',
   'fount.nav',
-  'ngRoute'
+  'ui.router'
   ])
 //add other modules as are created for view
 
@@ -13,40 +14,48 @@ angular.module('fount', [
     $scope.searchForm = "";
 })
 
-.config(['$routeProvider', function($routeProvider, $httpProvider, $locationProvider){
-  $routeProvider
+.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider){
+  
+  $urlRouterProvider.otherwise('/categories');
+
+  $stateProvider
     //CHANGE URL PATH NAMES
-    .when('/signup', {
+    .state('signup', {
+      url: '/signup',
       templateUrl: '/app/auth/sign_up_view.html',
       controller: 'AuthController'
     })
-    .when('/signin', {
+    .state('signin', {
+      url: '/signin',
       templateUrl: '/app/auth/sign_in_view.html',
       controller: 'AuthController'
     })
-    .when('/logout', {
+    .state('logout', {
+      url: '/logout',
       templateUrl: '/app/categories/categories_view.html',
       controller: 'CategoryController'
     })
-    .when('/categories', {
+    .state('categories', {
+      url: '/{Category}',
       templateUrl: '/app/categories/categories_view.html',
       controller: 'CategoryController'
     })
-    .when('/search/{keyword}', {
+    .state('search', {
+      url: '/search/{keyword}',
+      templateUrl: '/app/search/search.html',
+      controller: 'SearchController'
+    })
+    .state('categories.subcategories', {
+      url: '/{Category}/{Subcategory}',
       templateUrl: '/app/subcategories/subcategories_category_view.html',
-      controller: 'SubcategoryController'
+      controller: 'SubcategoryController',
     })
-    .when('/{Category}', {
-      templateUrl: '/app/subcategories/subcategories_searchbar_view.html',
-      controller: 'SubcategoryController'
-    })
-    // .when('/poop', {
-    //   templateUrl: '/app/results/results_view.html',
-    //   controller: 'ResultsController'
-    // })
-    .otherwise({
-      redirectTo: '/categories'
+    .state('results', {
+      url: '/results',
+      templateUrl: '/app/results/results_view.html',
+      controller: 'ResultsController'
     });
+    
 
    // $locationProvider.html5Mode(true);
 }]);
