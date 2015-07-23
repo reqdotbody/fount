@@ -7,8 +7,20 @@ angular.module('fount.nav', [])
   };
 
   $scope.logout = function(){
-    // TODO -- sign the user out
-  }
+    $http({
+      method: 'POST',
+      //wildcard?
+      url: url + '/logout',
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+    })
+  .success(function(data) {
+    console.log(data);
+    $scope.message = data.message;
+  })
+  .error(function(err){
+    throw err;
+  })
+  };
 
 
 
