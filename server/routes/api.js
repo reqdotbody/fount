@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+var bcrypt = require('bcrypt-nodejs');
+var session = require('express-session');
 var config = require('../../knexfile.js');
 var env = process.env.NODE_ENV || 'development';
 var knex = require('knex')(config[env]);
@@ -28,12 +30,11 @@ router.post('/v1/subcategories', function(req, res, next) {
 //{id:[number of the Category ID],name:[string of the name of the category]}
 
 router.get('/v1/categories', function(req, res, next) {
-    knex.select('id', 'name', 'img')
+        knex.select('id', 'name', 'img')
         .from('categories')
         .then(function(items) {
             res.json(items)
         })
-
 });
 
 /* GET all links within a subcategory. */
@@ -145,5 +146,58 @@ router.get('/v1/*', function(req, res, next) {
 
 });
 
+router.post('/v1/signup', function(req, res, next) {
+  var username = req.body.username
+  var password = req.body.password
+
+  bcrypt.hash(password,"FOUNT",null,function(err,hash){
+
+    knex('users')
+    .where({name: username})
+    .select('name')
+    .then(function(err,rows){
+      if(err){
+        knex('users')
+        .insert({name:username,password:hash})
+        .then(function() {
+                res.json({"status":"Success","message":"User Created Successfully"})
+            })
+            .catch(function(err) {
+                console.error(err);
+                res.writeHead(401)
+                res.json(err)
+            })
+      }else{
+        res.writeHead(401)
+        res.json({"message":"user already exists"})
+      }})
+
+
+  })
+
+});
+
+router.post('/v1/signin', function(req, res, next) {
+  var username = req.body.username
+  var password = req.body.password
+  var hash = "";
+  knex('users').where({name:username}).select('id','password').then(function(err,rows){
+    hash = rows[0].password
+      bcrypt.compare(password,hash,null,function(err,hash){
+        if(!err){
+          //TODO SAVE req.sessionID and userid to the session table.
+          //TODO? Implement persistant session with connect-pg-simple
+
+          res.json({"message":"Login Successfull"})
+        }
+      })
+  })
+  .catch(function(err) {
+            res.writeHead(401)
+            res.json({"message":"Invalid username/password"})
+        })
+
+
+});
 
 module.exports = router;
