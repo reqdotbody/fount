@@ -2,7 +2,7 @@
 <div id='container'>
   <ul>
     <li ng-model="data.subcategories" ng-repeat="subcategory in data.subcategories">{{subcategories.name}}<br>{{subcategories.cat_id}}<br>
-      <a href="http://localhost:3000/api/categories/#/{{subcategories.name}}">{{subcategories.name}}
+      <a ui-sref="categories.subcategories">{{subcategories.name}}
       </a>
 <!--       <a href="http://fount.io/#/categories/{{data.subcategories}}">{{data.subcategories}}
  -->      </a>

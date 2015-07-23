@@ -15,7 +15,7 @@
   </head>
   <body >
 
-    <!-- the ng-view directive is where our templates will be loaded into when navigated to -->
+    <!-- the ui-view directive is where our templates will be loaded into when navigated to -->
     <div class="wrapper" ng-controller="MainController">
         <header>
             <span ng-include="'app/nav/nav.html'"></span>
@@ -30,7 +30,7 @@
            <!--  ng-repeat="resource in results | orderBy: '-votes' | filter: searchForm" -->
             <div class="contents">
                 <div class="original-view sub-contents" ng-show="!searchForm.length" ng-hide="searchForm.length">
-                    <div ng-view></div>
+                    <div ui-view></div>
                 </div>
                 <!--Removed ngController="ResultsController to resolve View Conflicts"-->
                 <div class="impromptu-search-view sub-contents fadeIn animated" ng-show="searchForm.length" ng-hide="!searchForm.length" >
@@ -73,6 +73,7 @@
     <script src="scripts/jquery/dist/jquery.min.js"></script>
     <script src="scripts/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src=" https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-animate.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>
 
     <script src="app/auth/auth_controllers.js"></script>
     <script src="app/categories/categories_controllers.js"></script>

@@ -1,7 +1,7 @@
 //QUERY CONTROLLERS
 angular.module('fount.subcategory', [])
 
-.controller('SubcategoryController', function($scope, $window, $location, $http){
+.controller('SubcategoryController', function($scope, $http){
   $scope.subcategories = [
     { name: "Angular", cat_id: 1 },
     { name: "Javascript", cat_id: 1 },
