@@ -1,11 +1,11 @@
-//SIGN UP
-
 <div class="container" id='signup'>
   <div class="col-md-6 col-md-offset-3" ng-class="error ? 'shake animated' : ''">
 
     <!-- SIGNUP FORM -->
     <h1>signup</h1>
-    <form name="signupForm" ng-submit='signup()' novalidate>
+
+    <!--FORM SUBMISSION CALL-->
+    <form name="signupForm" ng-submit='signup(user)' novalidate>
 
       <!-- USERNAME INPUT -->
       <div class="form-group" ng-class="{'has-error':signupForm.username.$invalid && !signupForm.username.$pristine}">
@@ -24,6 +24,7 @@
       <div ng-if="error" class="alert alert-danger">{{error}}</div>
 
       <button ng-disabled="signupForm.$invalid" class="btn btn-primary"><span class="glyphicon glyphicon-send"></span> signup</button>
+      <span class="help-block" ng-show="errorName">{{ errorName }}</span> 
 
     </form>
 
