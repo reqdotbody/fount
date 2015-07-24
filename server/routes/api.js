@@ -30,7 +30,7 @@ router.post('/v1/subcategories', function(req, res, next) {
 //{id:[number of the Category ID],name:[string of the name of the category]}
 
 router.get('/v1/categories', function(req, res, next) {
-        knex.select('id', 'name', 'img')
+    knex.select('id', 'name', 'img')
         .from('categories')
         .then(function(items) {
             res.json(items)
@@ -147,54 +147,90 @@ router.get('/v1/*', function(req, res, next) {
 });
 
 router.post('/v1/signup', function(req, res, next) {
-  var username = req.body.username
-  var password = req.body.password
+    var username = req.body.username
+    var password = req.body.password
 
-  bcrypt.hash(password,"FOUNT",null,function(err,hash){
-
-    knex('users')
-    .where({name: username})
-    .select('name')
-    .then(function(err,rows){
-      if(err){
+    bcrypt.hash(password, null, null, function(error, result) {
+        console.error(error)
         knex('users')
-        .insert({name:username,password:hash})
-        .then(function() {
-                res.json({"status":"Success","message":"User Created Successfully"})
+            .where({
+                name: username
             })
-            .catch(function(err) {
-                console.error(err);
-                res.writeHead(401)
-                res.json(err)
+            .select('name')
+            .then(function(err, rows) {
+                if (err) {
+                    knex('users')
+                        .insert({
+                            name: username,
+                            password: result
+                        })
+                        .then(function() {
+                            res.json({
+                                "status": "Success",
+                                "message": "User Created Successfully"
+                            })
+                        })
+                        .catch(function(err) {
+                            console.error(err);
+                            res.writeHead(401)
+                            res.json(err)
+                        })
+                } else {
+                    res.writeHead(401)
+                    res.json({
+                        "message": "user already exists"
+                    })
+                }
             })
-      }else{
-        res.writeHead(401)
-        res.json({"message":"user already exists"})
-      }})
 
 
-  })
+    })
 
 });
 
 router.post('/v1/signin', function(req, res, next) {
-  var username = req.body.username
-  var password = req.body.password
-  var hash = "";
-  knex('users').where({name:username}).select('id','password').then(function(err,rows){
-    hash = rows[0].password
-      bcrypt.compare(password,hash,null,function(err,hash){
-        if(!err){
-          //TODO SAVE req.sessionID and userid to the session table.
-          //TODO? Implement persistant session with connect-pg-simple
+    var username = req.body.username
+    var password = req.body.password
+    var hash = "";
+    knex('users').where({
+            name: username
+        }).select('id', 'password').then(function(rows, err) {
+            hash = rows[0].password
+            bcrypt.compare(password, hash, function(err, hash) {
+                if (!err) {
+                    //To Complicated?
+                    req.session.save(function(err) {
+                        knex('users').where({
+                                name: username
+                            }).select('id')
+                            .then(function(item) {
+                                var userID = item[0].id
+                                knex('session').where({
+                                        sid: req.sessionID
+                                    }).update({
+                                        "userID": userID
+                                    })
+                                    .then(function() {
+                                        //For some reason, adding something to the session causes the cookie to be saved
+                                        //And makes the session persists through page load
+                                        req.session.userID = userID;
+                                        res.json({
+                                            "message": "Successfully Logged In"
+                                        });
+                                    })
+                            })
+                    })
 
-          res.json({"message":"Login Successfull"})
-        }
-      })
-  })
-  .catch(function(err) {
-            res.writeHead(401)
-            res.json({"message":"Invalid username/password"})
+
+                }
+            })
+        })
+        .catch(function(err) {
+            // res.writeHead(401)
+            console.log(err)
+            res.json({
+                "message": "Invalid username/password"
+            })
         })
 
 
