@@ -5,6 +5,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
+var pg = require('pg')
+var pgSession = require('connect-pg-simple')(session)
 
 var routes = require('./server/routes/index');
 var api = require('./server/routes/api');
@@ -35,7 +37,18 @@ app.use(cookieParser());
 app.use('/scripts', express.static(__dirname + '/bower_components'));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(session({ secret: 'FOUNT', cookie: { maxAge: 60000 }, resave:true, saveUninitialized:false,secure: false}));
+app.use(session({ 
+  secret: 'FOUNT', 
+  cookie: { maxAge: 60000 }, 
+  resave:true, 
+  saveUninitialized:false,
+  secure: false,
+  store: new pgSession({
+      pg : pg,                                  // Use global pg-module
+      conString : 'pg://localhost/fount', // Connect using something else than default DATABASE_URL env variable
+      tableName : 'session'               // Use another table-name than the default "session" one
+    })
+  }));
 
 app.use('/', routes);
 app.use('/api', api);
