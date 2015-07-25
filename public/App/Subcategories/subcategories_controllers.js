@@ -26,14 +26,16 @@ angular.module('fount.subcategory', [])
     { name: "Rock Climbing", cat_id: 6 }
   ]
 
+  
+
 //Method for user to add subcategory to a category
-   $scope.addSubcategory = function (subcategory) {
-  	return $http({
-  		method: 'POST',
-  		name: { name: subcategory },
-  		cat_id: { cat_id: cat_id },
-  		url: '/#/' + { categories.name } + '/' + { subcategories.name }
-  	})
-  }
+  //  $scope.addSubcategory = function (subcategory) {
+  // 	return $http({
+  // 		method: 'POST',
+  // 		name: { name: subcategory },
+  // 		cat_id: { cat_id: cat_id },
+  // 		url: '/#/' + { categories.name } + '/' + { subcategories.name }
+  // 	})
+  // }
 
 });

@@ -37,6 +37,9 @@ app.use(cookieParser());
 app.use('/scripts', express.static(__dirname + '/bower_components'));
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use('/', routes);
+app.use('/api', api);
+
 app.use(session({ 
   secret: 'FOUNT', 
   cookie: { maxAge: 60000 }, 
@@ -50,8 +53,6 @@ app.use(session({
     })
   }));
 
-app.use('/', routes);
-app.use('/api', api);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -67,10 +68,18 @@ app.use(function(req, res, next) {
 if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
     res.status(err.status || 500);
-    res.render('error', {
+    //new version
+    res.send({
       message: err.message,
       error: err
     });
+    return;
+
+    //old version
+    // res.render('error', {
+    //   message: err.message,
+    //   error: err
+    // });
   });
 }
 
@@ -78,10 +87,18 @@ if (app.get('env') === 'development') {
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
   res.status(err.status || 500);
-  res.render('error', {
+  //new version
+  res.send({
     message: err.message,
-    error: {}
+    error: err
   });
+  return;
+
+  //old version
+  // res.render('error', {
+  //   message: err.message,
+  //   error: {}
+  // });
 });
 
 
