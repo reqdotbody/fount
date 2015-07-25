@@ -12,7 +12,7 @@ angular.module('fount.auth', [])
     console.log(user);
     $http({
       method: 'POST',
-      url: url + '/v1/signin',
+      url: url + '/api/v1/signin',
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       data: user
     })
@@ -30,7 +30,7 @@ angular.module('fount.auth', [])
     console.log(user);
     $http({
       method: 'POST',
-      url: url + '/v1/signup',
+      url: url + '/api/v1/signup',
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       data: user
     })

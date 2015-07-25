@@ -175,7 +175,8 @@ header{
   color: #9178d0;
 }
 
-.url{
+.url, 
+.url a{
   display: inline-block;
   overflow: hidden;
   white-space: nowrap;

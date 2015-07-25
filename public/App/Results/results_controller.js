@@ -30,7 +30,7 @@ angular.module('fount.results', [])
       id: "test",
     },
     {
-      title: "Applez lmao"
+      title: "Applez lmao",
       url: "http://www.apple.com",
       votes: 2,
       username: "isto",

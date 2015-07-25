@@ -16,7 +16,7 @@ angular.module('fount', [
 
 .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider){
   
-  $urlRouterProvider.otherwise('/categories');
+  $urlRouterProvider.otherwise('/all');
 
   $stateProvider
     //CHANGE URL PATH NAMES
@@ -36,7 +36,7 @@ angular.module('fount', [
       controller: 'CategoryController'
     })
     .state('categories', {
-      url: '/{Category}',
+      url: '/all',
       templateUrl: '/app/categories/categories_view.html',
       controller: 'CategoryController'
     })
@@ -46,12 +46,12 @@ angular.module('fount', [
       controller: 'SearchController'
     })
     .state('categories.subcategories', {
-      url: '/{Category}/{Subcategory}',
+      url: '/{category}',
       templateUrl: '/app/subcategories/subcategories_category_view.html',
       controller: 'SubcategoryController',
     })
-    .state('results', {
-      url: '/results',
+    .state('categories.subcategories.results', {
+      url: '/{subcategory}',
       templateUrl: '/app/results/results_view.html',
       controller: 'ResultsController'
     });
