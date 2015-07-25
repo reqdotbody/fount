@@ -24,6 +24,21 @@ router.post('/v1/subcategories', function(req, res, next) {
         })
 });
 
+/* GET all Subcategories */
+//This returns an array of objects where each object is a category on the site.
+router.post('/v1/subcategories/all', function(req, res, next) {
+    knex.select('subcategories.id AS subcategory_id', 'subcategories.name AS subcategory', 'categories.id AS parentCategory_id', 'categories.name AS parentCategory')
+        .from('subcategories')
+        .join('categories', 'categories.id', 'subcategories.cat_id')
+        .then(function(item) {
+            res.json(item)
+        })
+        .catch(function(err) {
+            console.error(err);
+            res.json(err)
+        })
+});
+
 /* GET all categories */
 //This returns an array of objects, where each object is a catagory on the site.
 //The Objects whill look like this
@@ -38,11 +53,50 @@ router.get('/v1/categories', function(req, res, next) {
 });
 
 /* GET all links within a subcategory. */
-router.get('/v1/*/*', function(req, res, next) {
-    //TODO Return all links within a subcategory
-    res.json({
-        text: 'Look at me Now'
-    });
+/*
+{
+  title: [string of the url title]
+  url: [string with the URL to the submitted URL]
+  votes: [integer of the number of votes for the post]
+  username: [string of the user who submited the URL]
+  date: [string of the date the url was submitted]
+  id: [string of the id for the submited url]
+  hasVoted: [string 'upvote' 'downvote' 'none']
+}*/
+router.get('/v1/:category/:subcategory', function(req, res, next) {
+    //TODO Fix the complexity, include number of votes, include hasVoted.
+    //And fix the timestamp feature on the link creation 
+    knex('categories').select('id').where({
+            name: decodeURIComponent(req.params.category)
+        })
+        .then(function(item) {
+            knex('subcategories').select('id').where({
+                    name: decodeURIComponent(req.params.subcategory),
+                    cat_id: item[0].id
+                })
+                .then(function(subID) {
+                    knex.from('links')
+                        .where({
+                            'subcat_id': subID[0].id
+                        })
+                        .then(function(links) {
+                            console.log(links)
+                            res.json(links)
+                        })
+                        .catch(function(err) {
+                            console.error(err);
+                            res.json(err)
+                        })
+                })
+                .catch(function(err) {
+                    console.error(err);
+                    res.json(err)
+                })
+        })
+        .catch(function(err) {
+            console.error(err);
+            res.json(err)
+        })
 });
 
 /* POST a link. */
@@ -143,6 +197,28 @@ router.get('/v1/*', function(req, res, next) {
                 res.json(err)
             })
     }
+
+});
+
+/* POST vote for link */
+//This will submit a vote to the database, for the provided link.
+//Object should be formated like this:
+// 
+
+router.get('/v1/link/vote', function(req, res, next) {
+    knex('session').select('userID').where({
+        sid: req.sessionID
+    })(function(item) {
+        knex('votes').insert({
+                link_id: req.body.link_id,
+                user_id: item[0].userID,
+                votes: req.body.vote
+            })
+            .from('categories')
+            .then(function(items) {
+                res.json(items)
+            })
+    })
 
 });
 
