@@ -44,6 +44,13 @@ angular.module('fount.subcatSearch', [])
       });
   }
 
+  $scope.emptySearchForm = function(){
+    console.log("clicked");
+    $('#searchbox').val('');
+    $scope.searchForm = "";
+    
+  }
+
   $scope.getAllSubcategories();
 
 //Method for user to add subcategory to a category

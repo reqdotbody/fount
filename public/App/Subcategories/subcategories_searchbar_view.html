@@ -1,11 +1,15 @@
-<h1>Subcat_searchbar_view</h1>
 <div id='container'>
+  <h4>Subcategories matching '{{searchForm}}'</h4>
   <ul>
-    <li ng-model="subcategories" ng-repeat="subcategory in subcategories">
-      <h1>{{subcategory}}</h1>
+    <li ng-repeat="subcat in subcategories | filter: searchForm">
+      <a ui-sref="app.categories.subcategories.results({subcategory: subcat.subcategory, category: subcat.parentCategory})" ng-click="emptySearchForm()">
+        {{subcat.subcategory}}
+        ({{subcat.parentCategory}})
+      </a> 
     </li>
   </ul>
 </div>
+
 
 <!-- 
 <div id="submissions">

@@ -1,11 +1,11 @@
-<nav role="navigation" ng-controller="NavController">
+<nav role="navigation">
 
-  <a class="pull-left" href="/">Fount</a>
+  <a class="pull-left" ui-sref="app.categories" autoscroll='false'>Fount</a>
 
   <span class="auth-panel pull-right">
-    <a ng-hide="isAuth()" ui-sref="submit">Submit</a>
-    <a ng-hide="isAuth()" ui-sref="signup">Signup</a>
-    <a ng-hide="isAuth()" ui-sref="signin">Signin</a>
-    <a ng-show="isAuth()" ng-click="logout()" ui-sref="logout">Logout</a>
+    <a ng-hide="isAuth()" ui-sref="app.submit">Submit</a>
+    <a ng-hide="isAuth()" ui-sref="app.signup" autoscroll='false'>Signup</a>
+    <a ng-hide="isAuth()" ui-sref="app.signin" autoscroll='false'>Signin</a>
+    <a ng-show="isAuth()">Logout</a>
   </span>
 </nav>
