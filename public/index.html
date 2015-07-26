@@ -44,7 +44,7 @@
                 </div>
                 <!--Removed ngController="ResultsController to resolve View Conflicts"-->
                 
-                <div class="impromptu-search-view sub-contents fadeIn animated" ng-show="searchForm.length" ng-hide="!searchForm.length" ng-controller="ResultsController">
+                <div class="impromptu-search-view sub-contents fadeIn animated" ng-show="searchForm.length" ng-hide="!searchForm.length">
                     <div id="submissions">
                         <div ng-repeat="resource in resources = (results | orderBy: '-votes' | filter: searchForm)" class="submission" ng-class-odd="'odd'" ng-class-even="'even'">
                             <span class="rank">
@@ -67,7 +67,7 @@
                             </div>
                         </div>
                         <div ng-if="resources.length === 0">
-                            <h5>Sorry :-/ <br> No resources on {{searchForm}} yet... Add the first one!</h5>
+                            <h5>Sorry :-/ <br> No subcategory called {{searchForm}} yet... <a u-sref="">Create it</a>!</h5>
                         </div>
                     </div>
                 </div>
