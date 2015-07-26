@@ -26,8 +26,8 @@ app.get('/', function(req,res){
   res.sendFile(path.join(process.env.PWD, 'public','index.html'));
 });
 
-app.use('/scripts', express.static(process.env.PWD + '/bower_components'));
-app.use(express.static(process.env.PWD + '/public'));
+app.use('/scripts', express.static(path.join(process.env.PWD, '/bower_components')));
+app.use(express.static(path.join(process.env.PWD , '/public')));
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(process.env.PWD, 'public', 'favicon.ico')));
@@ -35,16 +35,13 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use('/scripts', express.static(process.env.PWD + '/bower_components'));
+app.use('/scripts', express.static(path.join(process.env.PWD , '/bower_components')));
 app.use(express.static(path.join(process.env.PWD, 'public')));
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
-
-app.use('/', routes);
-app.use('/api', api);
 
 app.use(session({ 
   secret: 'FOUNT', 
@@ -58,6 +55,9 @@ app.use(session({
       tableName : 'session'               // Use another table-name than the default "session" one
     })
   }));
+
+app.use('/', routes);
+app.use('/api', api);
 
 
 // catch 404 and forward to error handler
