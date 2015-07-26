@@ -35,7 +35,7 @@ exports.up = function(knex, Promise) {
         table.string('url');
         table.integer('votes');
         table.integer('user_id').references('id').inTable('users');
-        table.timestamps();
+        table.timestamp('created_at');
         console.log("Created Links Table");
     })
 
