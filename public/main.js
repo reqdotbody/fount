@@ -13,8 +13,8 @@ angular.module('fount', [
   ])
 //add other modules as are created for view
 
-.controller("MainController", function($scope){
-    $scope.searchForm = "";
+.controller("MainController", function($scope, $rootScope){
+    $rootScope.searchForm = "";
 })
 
 .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider){

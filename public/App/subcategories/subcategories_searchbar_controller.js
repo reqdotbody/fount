@@ -1,7 +1,7 @@
 //QUERY CONTROLLERS
 angular.module('fount.subcatSearch', [])
 
-.controller('SubcategorySearchController', function($scope, $http, $stateParams){
+.controller('SubcategorySearchController', function($scope, $http, $stateParams, $rootScope){
 
   ////////////////
   // Filler data
@@ -44,14 +44,12 @@ angular.module('fount.subcatSearch', [])
       });
   }
 
+  $scope.getAllSubcategories();
+
   $scope.emptySearchForm = function(){
-    console.log("clicked");
-    $('#searchbox').val('');
-    $scope.searchForm = "";
-    
+    $rootScope.searchForm = "";    
   }
 
-  $scope.getAllSubcategories();
 
 //Method for user to add subcategory to a category
   //  $scope.addSubcategory = function (subcategory) {
