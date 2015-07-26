@@ -1,7 +1,7 @@
 //QUERY CONTROLLERS
 angular.module('fount.subcategory', [])
 
-.controller('SubcategoryController', function($scope, $http, $stateParams){
+.controller('SubcategorySearchController', function($scope, $http, $stateParams){
 
   ////////////////
   // Filler data
