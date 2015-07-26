@@ -171,7 +171,7 @@ router.get('/v1/*', function(req, res, next) {
     //}
 
     var uri = req.path;
-    var category = uri.slice(4)
+    var category = decodeURIComponent(uri.slice(4));
         //category is a number
     if (!isNaN(category)) {
         knex('subcategories')
