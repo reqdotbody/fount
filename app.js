@@ -22,12 +22,12 @@ knex.migrate.latest([config]);
 
 
 // view engine setup
-console.log(process.env.PWD)
+
 app.get('/', function(req,res){
-  res.sendFile(path.join(process.env.PWD, 'public','index.html'));
+  res.sendFile('public/index.html');
 });
-app.use('/scripts', express.static(path.join(process.env.PWD, '/bower_components')));
-app.use(express.static(path.join(process.env.PWD , '/public')));
+app.use('/scripts', express.static('bower_components'));
+app.use(express.static('public'));
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(process.env.PWD, 'public', 'favicon.ico')));
