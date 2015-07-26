@@ -224,8 +224,8 @@ router.get('/v1/link/vote', function(req, res, next) {
 });
 
 router.post('/v1/signup', function(req, res, next) {
-    var username = req.body.username
-    var password = req.body.password
+    var username = req.body.username;
+    var password = req.body.password;
 
     bcrypt.hash(password, null, null, function(error, result) {
         console.error(error)
@@ -276,6 +276,7 @@ router.post('/v1/signin', function(req, res, next) {
             bcrypt.compare(password, hash, function(err, hash) {
                 if (!err) {
                     //To Complicated?
+    
                     req.session.save(function(err) {
                         knex('users').where({
                                 name: username
