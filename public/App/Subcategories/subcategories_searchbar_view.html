@@ -1,12 +1,39 @@
-//QUERY VIEW ONE -- FROM SEARCH BAR
 <div id='container'>
-  //Subcategories in data.subcategories
+  <h4>Subcategories matching '{{searchForm}}'</h4>
   <ul>
-    <li ng-model="data.subcategories" ng-repeat="subcategory in data.subcategories">{{data.subcategories}}<br>
-      <a href="http://localhost:3000/api/categories/#/{{data.subcategories}}">{{data.subcategories}}
-      </a>
-<!--       <a href="http://fount.io/#/categories/{{data.subcategories}}">{{data.subcategories}}
-      </a> -->
+    <li ng-repeat="subcat in subcategories | filter: searchForm">
+      <a ui-sref="app.categories.subcategories.results({subcategory: subcat.subcategory, category: subcat.parentCategory})" ng-click="emptySearchForm()">
+        {{subcat.subcategory}}
+        ({{subcat.parentCategory}})
+      </a> 
     </li>
   </ul>
 </div>
+
+
+<!-- 
+<div id="submissions">
+    <div ng-repeat="resource in resources = (results | orderBy: '-votes' | filter: searchForm)" class="submission" ng-class-odd="'odd'" ng-class-even="'even'">
+        <span class="rank">
+          {{$index + 1}}
+        </span>
+        <div class="vote-info">
+          <div class="upvote glyphicon glyphicon-chevron-up"></div>
+          <div class="vote-count">{{resource.votes}}</div>
+          <div class="downvote glyphicon glyphicon-chevron-down"></div>
+        </div>
+        <div class="entry">
+          <p class="title">
+            <a class="title" href="{{resource.url}}" target="_blank">{{resource.title}}</span></a>
+            <span class="url">(<a class="url" href="{{resource.url}}">{{resource.url}}</a>)</span>
+          </p>
+
+          <p class="tagline">
+            Submitted on {{resource.date}} by {{resource.username}}
+          </p>
+        </div>
+    </div>
+    <div ng-if="resources.length === 0">
+        <h5>Sorry :-/ <br> No subcategory called {{searchForm}} yet... <a u-sref="">Create it</a>!</h5>
+    </div>
+</div> -->

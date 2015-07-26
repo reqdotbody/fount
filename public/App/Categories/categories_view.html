@@ -3,7 +3,7 @@
 <div class="categories container-fluid" ui-view autoscroll='false'>
   <div class="row-fluid">
     <div class="col-md-12" ng-repeat="cat in categories">
-      <a ui-sref="categories.subcategories({ category: cat.name })" >
+      <a ui-sref="app.categories.subcategories({ category: cat.name })" >
         {{cat.name}}
         <!-- <img class="img-responsive" ng-src='{{cat.img}}' /> -->
       </a>

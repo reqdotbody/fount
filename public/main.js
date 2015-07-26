@@ -6,13 +6,15 @@ angular.module('fount', [
   'fount.subcategory', 
   'fount.search',
   'fount.nav',
+  'fount.content',
   'fount.submit',
+  'fount.subcatSearch',
   'ui.router'
   ])
 //add other modules as are created for view
 
-.controller("MainController", function($scope){
-    $scope.searchForm = "";
+.controller("MainController", function($scope, $rootScope){
+    $rootScope.searchForm = "";
 })
 
 .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider){
@@ -21,46 +23,66 @@ angular.module('fount', [
 
   $stateProvider
     //CHANGE URL PATH NAMES
-    .state('signup', {
+    .state('app', {
+      abstract: true,
+      views: {
+        nav: {
+          templateUrl: '/app/nav/nav.html',
+          controller: 'NavController as Nav'
+        },
+
+        '': {
+          templateUrl: '/app/content.html',
+          controller: 'ContentController as Content'
+        },
+
+        subcatSearch: {
+          templateUrl: '/app/subcategories/subcategories_searchbar_view.html',
+          controller: 'SubcategorySearchController as SubCatSearch'
+        }
+      }
+    })
+    .state('app.signup', {
       url: '/signup',
       templateUrl: '/app/auth/sign_up_view.html',
       controller: 'AuthController'
     })
-    .state('signin', {
+    .state('app.signin', {
       url: '/signin',
       templateUrl: '/app/auth/sign_in_view.html',
       controller: 'AuthController'
     })
-    .state('logout', {
+    .state('app.logout', {
       url: '/logout',
       templateUrl: '/app/categories/categories_view.html',
       controller: 'CategoryController'
     })
-    .state('submit', {
+    .state('app.submit', {
       url: '/submit',
       templateUrl: '/app/submit/submit.html',
       controller: 'SubmitController'
     })
-    .state('search', {
+    .state('app.search', {
       url: '/search/{keyword}',
       templateUrl: '/app/search/search.html',
       controller: 'SearchController'
     })
-    .state('categories', {
+    .state('app.categories', {
       url: '/all',
       templateUrl: '/app/categories/categories_view.html',
       controller: 'CategoryController'
     })
-    .state('categories.subcategories', {
+    .state('app.categories.subcategories', {
       url: '/{category}',
       templateUrl: '/app/subcategories/subcategories_category_view.html',
       controller: 'SubcategoryController',
     })
-    .state('categories.subcategories.results', {
+    .state('app.categories.subcategories.results', {
       url: '/{subcategory}',
       templateUrl: '/app/results/results_view.html',
       controller: 'ResultsController'
     });
+
     
 
    // $locationProvider.html5Mode(true);
