@@ -1,5 +1,5 @@
 //QUERY CONTROLLERS
-angular.module('fount.subcategory', [])
+angular.module('fount.subcatSearch', [])
 
 .controller('SubcategorySearchController', function($scope, $http, $stateParams){
 
@@ -32,26 +32,6 @@ angular.module('fount.subcategory', [])
 
   
   $scope.subcategories = [];
-  $scope.category = $stateParams.category;
-
-  $scope.getSomeSubcategories = function(){
-    // Simple GET request :
-    console.log($scope.category);
-    console.log('http://localhost:3000/api/v1/' + $scope.category);
-
-    $http.get('http://localhost:3000/api/v1/' + $scope.category).
-      success(function(data, status, headers, config) {
-        // this callback will be called asynchronously
-        // when the response is available
-        $scope.subcategories = data;
-      }).
-      error(function(data, status, headers, config) {
-        // called asynchronously if an error occurs
-        // or server returns response with an error status.
-        console.log('error');
-        console.log(data);
-      });
-  }
 
   $scope.getAllSubcategories = function(){
     $http.get('api/v1/subcategories/all').
@@ -64,7 +44,7 @@ angular.module('fount.subcategory', [])
       });
   }
 
-  $scope.getSomeSubcategories();
+  $scope.getAllSubcategories();
 
 //Method for user to add subcategory to a category
   //  $scope.addSubcategory = function (subcategory) {

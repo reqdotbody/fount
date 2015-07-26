@@ -7,6 +7,7 @@ angular.module('fount', [
   'fount.search',
   'fount.nav',
   'fount.submit',
+  'fount.subcatSearch',
   'ui.router'
   ])
 //add other modules as are created for view
@@ -46,6 +47,11 @@ angular.module('fount', [
       templateUrl: '/app/search/search.html',
       controller: 'SearchController'
     })
+    .state('subcatSearch', {
+      url: '/subcatsearch',
+      templateUrl: '/app/subcategories/subcategories_searchbar_view.html',
+      controller: 'SubcategorySearchController'
+    })
     .state('categories', {
       url: '/all',
       templateUrl: '/app/categories/categories_view.html',
@@ -61,6 +67,7 @@ angular.module('fount', [
       templateUrl: '/app/results/results_view.html',
       controller: 'ResultsController'
     });
+
     
 
    // $locationProvider.html5Mode(true);

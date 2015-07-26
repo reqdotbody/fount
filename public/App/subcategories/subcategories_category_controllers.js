@@ -53,17 +53,6 @@ angular.module('fount.subcategory', [])
       });
   }
 
-  $scope.getAllSubcategories = function(){
-    $http.get('api/v1/subcategories/all').
-      success(function(data, status, headers, config) {
-        $scope.subcategories = data;
-      }).
-      error(function(data, status, headers, config) {
-        console.log('error');
-        console.log(data);
-      });
-  }
-
   $scope.getSomeSubcategories();
 
 //Method for user to add subcategory to a category

@@ -45,7 +45,10 @@
                 <!--Removed ngController="ResultsController to resolve View Conflicts"-->
                 
                 <div class="impromptu-search-view sub-contents fadeIn animated" ng-show="searchForm.length" ng-hide="!searchForm.length">
-                    <div id="submissions">
+                  <h1>YEehaw</h1>
+                  <div ui-view="subcatSearch" autoscroll='false'></div>
+
+                    <!-- <div id="submissions">
                         <div ng-repeat="resource in resources = (results | orderBy: '-votes' | filter: searchForm)" class="submission" ng-class-odd="'odd'" ng-class-even="'even'">
                             <span class="rank">
                               {{$index + 1}}
@@ -69,7 +72,7 @@
                         <div ng-if="resources.length === 0">
                             <h5>Sorry :-/ <br> No subcategory called {{searchForm}} yet... <a u-sref="">Create it</a>!</h5>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 
             </div>
@@ -93,10 +96,12 @@
     <script src="app/categories/categories_controllers.js"></script>
     <script src="app/results/results_controller.js"></script>
     <script src="app/services/services.js"></script>
-    <script src="app/subcategories/subcategories_controllers.js"></script>
+    <script src="app/subcategories/subcategories_searchbar_controller.js"></script>
+    <script src="app/subcategories/subcategories_category_controllers.js"></script>
     <script src="app/search/search.js"></script>
     <script src="app/nav/nav.js"></script>
     <script src="app/submit/submit.js"></script>
+
    <!--  // <script src="app/helpers/polygon.js"></script> -->
 
     <script src="main.js"></script>
