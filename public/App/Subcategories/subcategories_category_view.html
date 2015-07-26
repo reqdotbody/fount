@@ -1,7 +1,8 @@
 <div id='container' ui-view autoscroll='false'>
+  <!-- <span>{{getSomeSubcategories()}}</span> -->
   <ul>
     <li ng-repeat="subcat in subcategories">
-      <a ui-sref="categories.subcategories.results({subcategory: subcat.subcategory, subcatID: subcat})" >
+      <a ui-sref="app.categories.subcategories.results({subcategory: subcat.subcategory, subcatID: subcat})" >
         {{subcat.subcategory}}
       </a> 
     </li>

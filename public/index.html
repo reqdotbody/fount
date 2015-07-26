@@ -16,60 +16,25 @@
   <body >
 
     <!-- the ui-view directive is where our templates will be loaded into when navigated to -->
-    <div class="wrapper" ng-controller="MainController">
+    <div class="wrapper">
         <header>
-            <nav role="navigation">
-
-              <a class="pull-left" ui-sref="categories" autoscroll='false'>Fount</a>
-
-              <span class="auth-panel pull-right">
-                <a ng-hide="isAuth()" ui-sref="submit">Submit</a>
-                <a ng-hide="isAuth()" ui-sref="signup" autoscroll='false'>Signup</a>
-                <a ng-hide="isAuth()" ui-sref="signin" autoscroll='false'>Signin</a>
-                <a ng-show="isAuth()">Logout</a>
-              </span>
-            </nav>
+          <div ui-view name="nav" autoscroll='false'></div>
         </header>
-
         <div class="page">
             
             <div class="large-search-container">
-              <h1>I want to learn <input class="search" type="text" name="searchInput" placeholder="" ng-model="searchForm" autofocus/> </h1>
+              <h1>I want to learn <input id="searchbox" class="search" type="text" name="searchInput" placeholder="" ng-model="searchForm" autofocus/> </h1>
             </div>
 
-           <!--  ng-repeat="resource in results | orderBy: '-votes' | filter: searchForm" -->
             <div class="contents">
+
                 <div class="original-view sub-contents" ng-show="!searchForm.length" ng-hide="searchForm.length">
                     <div ui-view autoscroll='false'></div>
                 </div>
-                <!--Removed ngController="ResultsController to resolve View Conflicts"-->
-                
-                <div class="impromptu-search-view sub-contents fadeIn animated" ng-show="searchForm.length" ng-hide="!searchForm.length" ng-controller="ResultsController">
-                    <div id="submissions">
-                        <div ng-repeat="resource in resources = (results | orderBy: '-votes' | filter: searchForm)" class="submission" ng-class-odd="'odd'" ng-class-even="'even'">
-                            <span class="rank">
-                              {{$index + 1}}
-                            </span>
-                            <div class="vote-info">
-                              <div class="upvote glyphicon glyphicon-chevron-up"></div>
-                              <div class="vote-count">{{resource.votes}}</div>
-                              <div class="downvote glyphicon glyphicon-chevron-down"></div>
-                            </div>
-                            <div class="entry">
-                              <p class="title">
-                                <a class="title" href="{{resource.url}}" target="_blank">{{resource.title}}</span></a>
-                                <span class="url">(<a class="url" href="{{resource.url}}">{{resource.url}}</a>)</span>
-                              </p>
 
-                              <p class="tagline">
-                                Submitted on {{resource.date}} by {{resource.username}}
-                              </p>
-                            </div>
-                        </div>
-                        <div ng-if="resources.length === 0">
-                            <h5>Sorry :-/ <br> No resources on {{searchForm}} yet... Add the first one!</h5>
-                        </div>
-                    </div>
+                <div class="impromptu-search-view sub-contents fadeIn animated" ng-show="searchForm.length" ng-hide="!searchForm.length">
+                  <div ui-view name="subcatSearch" autoscroll='false'></div>
+
                 </div>
                 
             </div>
@@ -93,10 +58,13 @@
     <script src="app/categories/categories_controllers.js"></script>
     <script src="app/results/results_controller.js"></script>
     <script src="app/services/services.js"></script>
-    <script src="app/subcategories/subcategories_controllers.js"></script>
+    <script src="app/subcategories/subcategories_searchbar_controller.js"></script>
+    <script src="app/subcategories/subcategories_category_controllers.js"></script>
     <script src="app/search/search.js"></script>
     <script src="app/nav/nav.js"></script>
     <script src="app/submit/submit.js"></script>
+    <script src="app/content.js"></script>
+
    <!--  // <script src="app/helpers/polygon.js"></script> -->
 
     <script src="main.js"></script>
