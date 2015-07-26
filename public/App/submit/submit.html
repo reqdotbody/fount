@@ -1,0 +1,27 @@
+<div class="container" id='submitPost'>
+  <div class="col-md-6 col-md-offset-3">
+    <h1>Submit new post</h1>
+    <form name="submitForm" ng-submit='submitPost()' novalidate>
+      <div class="form-group postTitle">
+        <label id="postTitle">Title</label>
+        <textarea class="form-control" name="postTitle" type='text' ng-maxlength="140" ng-model="post.title"></textarea>
+      </div>
+
+      <div class="form-group postUrl">
+        <label id="postUrl">URL</label>
+        <input class="form-control" name="postURL" type='text' ng-model="post.url">
+      </div>
+
+      <div class="form-group postSubcat">
+        <select ng-model='post.subcat' ng-options="subcat.subcategory for subcat in subcategories | orderBy:'subcategory'">
+          <option value="">Select subcategory</option>
+        </select>
+      </div>
+
+      <button ng-disabled="signinForm.$invalid" class="btn btn-primary"><span class="glyphicon glyphicon-send"></span> Submit</button>
+
+    </form>
+
+  </div>
+</div>
+

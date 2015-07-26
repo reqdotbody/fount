@@ -26,7 +26,7 @@ router.post('/v1/subcategories', function(req, res, next) {
 
 /* GET all Subcategories */
 //This returns an array of objects where each object is a category on the site.
-router.post('/v1/subcategories/all', function(req, res, next) {
+router.get('/v1/subcategories/all', function(req, res, next) {
     knex.select('subcategories.id AS subcategory_id', 'subcategories.name AS subcategory', 'categories.id AS parentCategory_id', 'categories.name AS parentCategory')
         .from('subcategories')
         .join('categories', 'categories.id', 'subcategories.cat_id')
@@ -105,6 +105,7 @@ router.post('/v1/submit', function(req, res, next) {
         .insert({
             title: req.body.title,
             url: req.body.url,
+            votes: 1,
             user_id: req.body.user_id,
             subcat_id: req.body.subcat_id
         })
@@ -171,7 +172,7 @@ router.get('/v1/*', function(req, res, next) {
     //}
 
     var uri = req.path;
-    var category = uri.slice(4)
+    var category = decodeURIComponent(uri.slice(4));
         //category is a number
     if (!isNaN(category)) {
         knex('subcategories')
