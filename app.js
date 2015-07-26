@@ -24,7 +24,7 @@ knex.migrate.latest([config]);
 // view engine setup
 
 app.get('/', function(req,res){
-  res.sendFile('public/index.html');
+  res.sendFile(path.join(process.env.PWD, 'public','index.html'))
 });
 app.use('/scripts', express.static('bower_components'));
 app.use(express.static('public'));
