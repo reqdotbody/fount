@@ -23,6 +23,7 @@
               <a class="pull-left" ui-sref="categories" autoscroll='false'>Fount</a>
 
               <span class="auth-panel pull-right">
+                <a ng-hide="isAuth()" ui-sref="submit">Submit</a>
                 <a ng-hide="isAuth()" ui-sref="signup" autoscroll='false'>Signup</a>
                 <a ng-hide="isAuth()" ui-sref="signin" autoscroll='false'>Signin</a>
                 <a ng-show="isAuth()">Logout</a>
@@ -95,6 +96,7 @@
     <script src="app/subcategories/subcategories_controllers.js"></script>
     <script src="app/search/search.js"></script>
     <script src="app/nav/nav.js"></script>
+    <script src="app/submit/submit.js"></script>
    <!--  // <script src="app/helpers/polygon.js"></script> -->
 
     <script src="main.js"></script>

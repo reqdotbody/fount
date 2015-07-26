@@ -6,6 +6,7 @@ angular.module('fount', [
   'fount.subcategory', 
   'fount.search',
   'fount.nav',
+  'fount.submit',
   'ui.router'
   ])
 //add other modules as are created for view
@@ -35,15 +36,20 @@ angular.module('fount', [
       templateUrl: '/app/categories/categories_view.html',
       controller: 'CategoryController'
     })
-    .state('categories', {
-      url: '/all',
-      templateUrl: '/app/categories/categories_view.html',
-      controller: 'CategoryController'
+    .state('submit', {
+      url: '/submit',
+      templateUrl: '/app/submit/submit.html',
+      controller: 'SubmitController'
     })
     .state('search', {
       url: '/search/{keyword}',
       templateUrl: '/app/search/search.html',
       controller: 'SearchController'
+    })
+    .state('categories', {
+      url: '/all',
+      templateUrl: '/app/categories/categories_view.html',
+      controller: 'CategoryController'
     })
     .state('categories.subcategories', {
       url: '/{category}',

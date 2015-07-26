@@ -19,8 +19,8 @@ a {
   background: rgba(252, 252, 252, 0.95);
   margin: 0;
   padding-left: 14%;
-  padding-top: 15%;
-  padding-bottom: 10%;
+  padding-top: 7%;
+  padding-bottom: 2%;
   font-family: 'Ubuntu', sans-serif;
 }
 
@@ -51,7 +51,7 @@ header{
 
 
 .large-search-container h1{
-  font-size: 5.9vw;
+  font-size: 3.9vw;
 }
 
 .search{
