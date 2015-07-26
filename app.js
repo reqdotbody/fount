@@ -22,10 +22,10 @@ knex.migrate.latest([config]);
 
 
 // view engine setup
+console.log(process.env.PWD)
 app.get('/', function(req,res){
   res.sendFile(path.join(process.env.PWD, 'public','index.html'));
 });
-
 app.use('/scripts', express.static(path.join(process.env.PWD, '/bower_components')));
 app.use(express.static(path.join(process.env.PWD , '/public')));
 
@@ -35,8 +35,6 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use('/scripts', express.static(path.join(process.env.PWD , '/bower_components')));
-app.use(express.static(path.join(process.env.PWD, 'public')));
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
