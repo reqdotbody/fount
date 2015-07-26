@@ -51,7 +51,7 @@ app.use(session({
   secure: false,
   store: new pgSession({
       pg : pg,                                  // Use global pg-module
-      conString : 'pg://localhost/fount', // Connect using something else than default DATABASE_URL env variable
+      conString : config[env].connection, // Connect using something else than default DATABASE_URL env variable
       tableName : 'session'               // Use another table-name than the default "session" one
     })
   }));
