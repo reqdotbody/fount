@@ -27,12 +27,16 @@ angular.module('fount.results', [])
   }
 
   $scope.vote = function(link, direction){
-    
+    console.log("link");
+    console.log(link);
+
     var message = {
-      link_id: link.id,
+      link_id: link.link_id,
       userID: $rootScope.currentUser.userID,
       vote: direction,
     }
+
+    console.log(message);
 
     $http.post('api/v1/link/vote', message).
       success(function(data, status, headers, config) {
