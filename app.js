@@ -19,15 +19,26 @@ process.env.PWD = process.cwd()
 
 knex.migrate.latest([config]);
 
+STATICFILES = path.join(process.env.PWD, 'bower_components');
 
-
+/* These are a hot fix for our directories that are mixed case*/
+//TODO Fix these mixed cased directories
+app.use('/app',express.static(path.join(process.env.PWD,'public','App')));
+app.use('/app/auth',express.static(path.join(process.env.PWD,'public','App','Auth')))
+app.use('/app/categories',express.static(path.join(process.env.PWD,'public','App','Categories')))
+app.use('/app/results',express.static(path.join(process.env.PWD,'public','App','Results')))
+app.use('/app/subcategories',express.static(path.join(process.env.PWD,'public','App','Subcategories')))
+/*HOTFIX END*/
 // view engine setup
-
 app.get('/', function(req,res){
   res.sendFile(path.join(process.env.PWD, 'public','index.html'))
 });
-app.use('/scripts', express.static('bower_components'));
-app.use(express.static('public'));
+
+app.use(express.static(path.join(process.env.PWD,'public')));
+app.use('/scripts', express.static(STATICFILES));
+
+
+
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(process.env.PWD, 'public', 'favicon.ico')));
@@ -54,7 +65,7 @@ app.use(session({
     })
   }));
 
-app.use('/', routes);
+// app.use('/', routes);
 app.use('/api', api);
 
 
