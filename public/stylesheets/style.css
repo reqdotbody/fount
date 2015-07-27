@@ -21,13 +21,13 @@ a {
   padding-left: 14%;
   padding-top: 7%;
   padding-bottom: 2%;
-  font-family: 'Ubuntu', sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 
 /*START - Header */
 
 header{
-  height: 42px !important;
+  height: 55px !important;
   width: 100%;
   position: fixed;
   background: rgba(255, 255, 255, 0.8);
@@ -38,27 +38,120 @@ header{
   box-shadow: 0px 10px 14px -1px rgba(0,0,0,0.15);
 }
 
-.navbar-panel{
-  position: fixed;
-  display: inline;
+.icon-panel{
+  display: block;
+  position: absolute;
+  top: 10px;
+  left: 15px;
+  bottom: 0;
 }
+
+.icon{
+  font-size: 24px;
+  background: #fff;
+  color: rgba(0,0,0,0.7);
+  font-family: "Open Sans","Lucida Grande","Lucida Sans Unicode","Lucida Sans",Geneva,Verdana,sans-serif;
+  letter-spacing: -0.02em;
+  font-weight: 900;
+  font-style: normal;
+
+  speak: none;
+  text-decoration: none;
+  text-transform: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+
+.explore{
+  font-weight: 700;
+  border-top: 0;
+  color: rgba(0,0,0,0.7);
+  padding: 10px 0;
+  margin-left: 20px;
+  letter-spacing: .1em;
+  font-style: normal;
+  display: inline-block;
+  font-size: 11px;
+  text-transform: uppercase;
+}
+
+a.icon:hover,
+a.explore:hover{
+  text-decoration: none;
+  color: rgba(0,0,0,0.7);
+}
+
 .auth-panel{
+  top: 5px;
+  right: 25px;
   position: absolute;
   display: inline;
   float: right;
 }
+
+.button{
+  display: inline-block;
+  padding: 0 14px;
+  line-height: 32px;
+  margin-top: 4px;
+  position: relative;
+  color: rgba(0,0,0,0.44);
+  background: rgba(0,0,0,0);
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid rgba(0,0,0,0.15);
+  white-space: nowrap;
+  box-sizing: border-box;
+  border-radius: 999em;
+  font-family: "Open Sans","Lucida Sans Unicode","Lucida Sans",Geneva,Verdana,sans-serif;
+  letter-spacing: -0.02em;
+  font-weight: 400;
+  font-style: normal;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -webkit-transition: border 100ms;
+  -moz-transition: border 100ms;
+  -o-transition: border 100ms;
+  transition: border 100ms;
+}
+
+a.button:hover{
+  text-decoration: none;
+  border: 1px solid rgba(0,0,0,0.35);
+  color: rgba(0,0,0,0.44);
+}
+
+.button:hover{
+  text-decoration: none;
+}
+
+.button.auth{
+  border-color: #a9d8b2;
+  color: #57ad68;
+}
+.button.auth:hover{
+  border-color: #57ad68;
+  color: #468c54;
+}
+
 /* END - Header */
 
 
 .large-search-container h1{
   font-size: 3.9vw;
+  font-weight: 100;
+  font-style: normal;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
 }
 
 .search{
   border: none;
   background: transparent;
   display: inline-block;
-  font-family: 'Ubuntu', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-size: inherit;
   outline: 0;
   width: 50%;
@@ -72,7 +165,7 @@ header{
 }
 
 .categories a{
-  font-family: 'Ubuntu', Helvetica;
+  font-family: 'Open Sans', Helvetica;
   font-size: medium;
   color: rgba(20, 20, 20, 0.8);
 }
