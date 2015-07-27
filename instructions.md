@@ -1,3 +1,47 @@
+## ON STARTUP ##
+change directory into cloned down repository and open three tabs in your CLI
+* - indicates steps that only need to be done the first time.
+
+TAB ONE 
+1. npm install
+2. bower install
+3. brew install postgresql *
+...(follow other steps in other tabs)
+7. npm start (or nodemon start)
+
+TAB TWO
+4. postgres -D /usr/local/var/postgres *
+   (^ for brew installers -- see website if you did not use brew)
+
+TAB THREE
+5. createdb fount *
+6. psql fount
+
+## MODEL ##
+  Files:
+  public/app/Auth/user_model.js
+
+
+## VIEW ##
+  Files: 
+
+  Our view path is as follows:
+
+  1. index.html (From which you can access the following views found within the App folder)
+
+    a. subcategory_searchbar_view (Shows the results of querying the subcategory database based on searchbar input keyword)
+
+    b. subcategory_category_view (Shows all subcategories based on the selected category)
+
+      i. results_view (Upon selection of a subcategory in view (a) or (b) you will see the queried results of links that match the selected subcategory)
+
+## CONTROLLERS ##
+  Files:
+
+
+
+
+
 # MAIN
 
 url: http://fount.io/#/
@@ -111,11 +155,6 @@ method: POST
     user_id: [number user_id]
     subcat_id: [string of the subcategory name or number of the sbucateogry id]
 }
-
-
-____________________________________________
-
-//TODO Upvote link endpoint
 
 
 
