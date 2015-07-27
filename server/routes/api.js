@@ -91,8 +91,7 @@ router.post('/v1/submit', function(req, res, next) {
         .insert({
             title: req.body.title,
             url: req.body.url,
-            votes: 1,
-            user_id: req.body.user_id,
+            user_id: req.session.userID,
             subcat_id: req.body.subcat_id
         })
         .then(function(inserts) {
