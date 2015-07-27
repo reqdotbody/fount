@@ -32,7 +32,6 @@ angular.module('fount.results', [])
 
     var message = {
       link_id: link.link_id,
-      userID: $rootScope.currentUser.userID,
       vote: direction
     }
 
@@ -43,6 +42,7 @@ angular.module('fount.results', [])
         // this callback will be called asynchronously
         // when the response is available
         console.log(data);
+        $scope.getResults();
       }).
       error(function(data, status, headers, config) {
         // called asynchronously if an error occurs
