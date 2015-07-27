@@ -13,31 +13,3 @@
       <h5>Oh snap! <br> There's no {{searchForm}} subcategory yet... <a ui-sref="app.submitSubcat" ng-click="emptySearchForm()">Make it?</a></h5>
   </div>
 </div>
-
-
-<!-- 
-<div id="submissions">
-    <div ng-repeat="resource in resources = (results | orderBy: '-votes' | filter: searchForm)" class="submission" ng-class-odd="'odd'" ng-class-even="'even'">
-        <span class="rank">
-          {{$index + 1}}
-        </span>
-        <div class="vote-info">
-          <div class="upvote glyphicon glyphicon-chevron-up"></div>
-          <div class="vote-count">{{resource.votes}}</div>
-          <div class="downvote glyphicon glyphicon-chevron-down"></div>
-        </div>
-        <div class="entry">
-          <p class="title">
-            <a class="title" href="{{resource.url}}" target="_blank">{{resource.title}}</span></a>
-            <span class="url">(<a class="url" href="{{resource.url}}">{{resource.url}}</a>)</span>
-          </p>
-
-          <p class="tagline">
-            Submitted on {{resource.date}} by {{resource.username}}
-          </p>
-        </div>
-    </div>
-    <div ng-if="resources.length === 0">
-        <h5>Sorry :-/ <br> No subcategory called {{searchForm}} yet... <a u-sref="">Create it</a>!</h5>
-    </div>
-</div> -->

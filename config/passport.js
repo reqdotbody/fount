@@ -1,17 +1,17 @@
-var LocalStrategy   = require('passport-local').Strategy;
+var LocalStrategy = require('passport-local').Strategy;
 
 //REQUIRE USER MODEL?
 
 //REQUIRE DATABASE?
 var database = require();
-//CONNECT TO DATABSE
+//CONNECT TO DATABASE
 var connection = 
     });
 
 //QUERY DATABASE?
 connection.query();  
 
-// expose  function to our app using module.exports
+// expose function to our app using module.exports
 module.exports = function(passport) {
 
     // SERIALIZE USER

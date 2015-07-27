@@ -7,7 +7,7 @@ var env = process.env.NODE_ENV || 'development';
 var knex = require('knex')(config[env]);
 
 
-/* POST search query. */
+/* POST search query */
 router.post('/v1/subcategories', function(req, res, next) {
     knex.select('subcategories.id AS subcategory_id', 'subcategories.name AS subcategory', 'categories.id AS parentCategory_id', 'categories.name AS parentCategory')
         .from('subcategories')
@@ -188,7 +188,7 @@ router.get('/v1/*', function(req, res, next) {
 
 /* POST vote for link */
 //This will submit a vote to the database, for the provided link.
-//Object should be formated like this:
+//Object should be formatted like this:
 // {vote:[number either 1 or -1 ], link_id: [number the link_id of the link]}
 
 router.post('/v1/link/vote', function(req, res, next) {
@@ -309,8 +309,6 @@ router.post('/v1/signin', function(req, res, next) {
             hash = rows[0].password
             bcrypt.compare(password, hash, function(err, hash) {
                 if (!err) {
-                    //To Complicated?
-
                     req.session.save(function(err) {
                         knex('users').where({
                                 name: username
@@ -324,7 +322,7 @@ router.post('/v1/signin', function(req, res, next) {
                                     })
                                     .then(function() {
                                         //For some reason, adding something to the session causes the cookie to be saved
-                                        //And makes the session persists through page load
+                                        //And makes the session persist through page load
                                         req.session.userID = userID;
                                         res.json({
                                             "message": "Successfully Logged In",
@@ -334,8 +332,6 @@ router.post('/v1/signin', function(req, res, next) {
                                     })
                             })
                     })
-
-
                 }
             })
         })
@@ -346,8 +342,6 @@ router.post('/v1/signin', function(req, res, next) {
                 "message": "Invalid username/password"
             })
         })
-
-
 });
 
 module.exports = router;

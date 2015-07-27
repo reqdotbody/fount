@@ -1,48 +1,39 @@
-<!-- MAIN VIEW --> 
 <!DOCTYPE html>
 <html ng-app='fount'>
   <head>
     <meta charset="utf-8" />
     <title>Fount</title>
-    <meta name="description" content="Kade prototype">
+    <meta name="description" content="Fount prototype">
     <meta name="author" content="Isto Barton, Edwin Calte, Esteban Castano, Farhana Maredia, Gregg Moore">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/animate.css/3.3.0/animate.min.css">
     <link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/style.css" />
-
+    <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
   </head>
-  <body >
+  <body>
 
-    <!-- the ui-view directive is where our templates will be loaded into when navigated to -->
     <div class="wrapper">
-        <header>
-          <div ui-view name="nav" autoscroll='false'></div>
-        </header>
-        <div class="page">
-            
-            <div class="large-search-container">
-              <h1>I want to learn <input id="searchbox" class="search" type="text" name="searchInput" placeholder="" ng-model="searchForm" autofocus/> </h1>
+      <header>
+        <div ui-view name="nav" autoscroll='false'></div>
+      </header>
+
+      <div class="page">
+        <div class="large-search-container">
+            <h1>I want to learn <input id="searchbox" class="search" type="text" name="searchInput" placeholder="" ng-model="searchForm" autofocus/> </h1>
+          </div>
+
+          <div class="contents">
+            <div class="original-view sub-contents" ng-show="!searchForm.length" ng-hide="searchForm.length">
+                <div ui-view autoscroll="false"></div>
             </div>
 
-            <div class="contents">
+            <div class="impromptu-search-view sub-contents fadeIn animated" ng-show="searchForm.length" ng-hide="!searchForm.length">
+              <div ui-view name="subcatSearch" autoscroll='false'></div>
 
-                <div class="original-view sub-contents" ng-show="!searchForm.length" ng-hide="searchForm.length">
-                    <div ui-view autoscroll='false'></div>
-                </div>
-
-                <div class="impromptu-search-view sub-contents fadeIn animated" ng-show="searchForm.length" ng-hide="!searchForm.length">
-                  <div ui-view name="subcatSearch" autoscroll='false'></div>
-
-                </div>
-                
             </div>
-
-
-
-
-        </div>
+          </div>
+      </div>
     </div>
 
     <script src="scripts/angular/angular.min.js"></script>

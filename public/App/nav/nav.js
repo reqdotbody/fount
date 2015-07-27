@@ -21,7 +21,4 @@ angular.module('fount.nav', [])
     throw err;
   })
   };
-
-
-
 });

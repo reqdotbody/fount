@@ -37,8 +37,9 @@ app.get('/', function(req,res){
 app.use(express.static(path.join(process.env.PWD,'public')));
 app.use('/scripts', express.static(STATICFILES));
 
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(process.env.PWD, 'public', 'favicon.ico')));
+/* TO DO: uncomment after placing your favicon in /public */
+// app.use(favicon(path.join(process.env.PWD, 'public', 'favicon.ico')));
+
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -57,8 +58,8 @@ app.use(session({
   secure: false,
   store: new pgSession({
       pg : pg,                            // Use global pg-module
-      conString : config[env].connection, // Connect using something else than default DATABASE_URL env variable
-      tableName : 'session'               // Use another table-name than the default "session" one
+      conString : config[env].connection, // Connect using something other than default DATABASE_URL env variable
+      tableName : 'session'               // Use another table-name other than the default "session" one
     })
   }));
 
