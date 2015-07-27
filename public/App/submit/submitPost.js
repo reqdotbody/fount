@@ -1,7 +1,8 @@
 angular.module('fount.submitPost', [])
 
-.controller('SubmitPostController', function($scope, $http){
+.controller('SubmitPostController', function($scope, $http, $state, $rootScope){
   $scope.subcategories = [];
+
   $scope.post = {
     title: '',
     url: '',
@@ -28,7 +29,7 @@ angular.module('fount.submitPost', [])
     var message = {
       title: $scope.post.title,
       url: $scope.post.url,
-      user_id: 1,
+      user_id: $rootScope.currentUser.userID,
       subcat_id: $scope.post.subcat.subcategory_id
     }
 
@@ -43,6 +44,12 @@ angular.module('fount.submitPost', [])
         // or server returns response with an error status.
         console.log("error");
         console.log(data);
+      });
+
+    
+    $state.go("app.categories.subcategories.results", 
+      { category: $scope.post.subcat.parentCategory, 
+        subcategory: $scope.post.subcat.subcategory
       });
   }
 
