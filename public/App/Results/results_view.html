@@ -1,4 +1,5 @@
 <div id="submissions">
+  <h1>{{subcategory}}</h1>
   <div ng-repeat="resource in results | orderBy: '-votes'" class="submission" ng-class-odd="'odd'" ng-class-even="'even'">
     <span class="rank">
       {{$index + 1}}
@@ -18,6 +19,9 @@
         Submitted on {{resource.date}} by {{resource.username}}
       </p>
     </div>
+  </div>
+  <div ng-if="results.length === 0">
+      <h5>Sorry :-/ <br> No posts on {{subcategory}} yet... <a ui-sref="app.submitPost">Submit the first one!</a>!</h5>
   </div>
 </div>
 
