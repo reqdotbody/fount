@@ -1,0 +1,73 @@
+angular.module('fount', [
+  'fount.services',
+  'fount.auth',
+  'fount.category',
+  'fount.subcategory', 
+  'fount.search',
+  'fount.nav',
+<<<<<<< HEAD
+  'ngRoute'
+=======
+  'ui.router'
+>>>>>>> Basic router functionality using ui-router completed
+  ])
+//add other modules as are created for view
+
+.controller("MainController", function($scope){
+    $scope.searchForm = "";
+})
+
+.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider){
+  
+  $urlRouterProvider.otherwise('/categories');
+
+  $stateProvider
+    //CHANGE URL PATH NAMES
+    .state('signup', {
+      url: '/signup',
+      templateUrl: '/app/auth/sign_up_view.html',
+      controller: 'AuthController'
+    })
+    .state('signin', {
+      url: '/signin',
+      templateUrl: '/app/auth/sign_in_view.html',
+      controller: 'AuthController'
+    })
+    .state('logout', {
+      url: '/logout',
+      templateUrl: '/app/categories/categories_view.html',
+      controller: 'CategoryController'
+    })
+    .state('categories', {
+      url: '/{Category}',
+      templateUrl: '/app/categories/categories_view.html',
+      controller: 'CategoryController'
+    })
+    .state('search', {
+      url: '/search/{keyword}',
+      templateUrl: '/app/search/search.html',
+      controller: 'SearchController'
+    })
+    .state('categories.subcategories', {
+      url: '/{Category}/{Subcategory}',
+      templateUrl: '/app/subcategories/subcategories_category_view.html',
+      controller: 'SubcategoryController',
+    })
+<<<<<<< HEAD
+    // .when('/poop', {
+    //   templateUrl: '/app/results/results_view.html',
+    //   controller: 'ResultsController'
+    // })
+    .otherwise({
+      redirectTo: '/categories'
+=======
+    .state('results', {
+      url: '/results',
+      templateUrl: '/app/results/results_view.html',
+      controller: 'ResultsController'
+>>>>>>> Basic router functionality using ui-router completed
+    });
+    
+
+   // $locationProvider.html5Mode(true);
+}]);

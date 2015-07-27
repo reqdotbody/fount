@@ -23,7 +23,7 @@ angular.module('fount', [
   $urlRouterProvider.otherwise('/all');
 
   $stateProvider
-    //CHANGE URL PATH NAMES
+    //CHANGE TEMPLATE URL PATH NAMES DUE TO CASE DISCREPANCY
     .state('app', {
       abstract: true,
       views: {
@@ -88,8 +88,4 @@ angular.module('fount', [
       templateUrl: '/app/results/results_view.html',
       controller: 'ResultsController'
     });
-
-    
-
-   // $locationProvider.html5Mode(true);
 }]);

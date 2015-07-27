@@ -1,5 +1,3 @@
-//AUTH CONTROLLER
-
 angular.module('fount.auth', [])
 
 .controller('AuthController', ['$scope', '$window', '$location', '$http', '$rootScope', '$state', function($scope, $window, $location, $http, $rootScope, $state){
@@ -19,7 +17,7 @@ angular.module('fount.auth', [])
     console.log(data);
     $scope.message = data.message;
     
-    //saves the user information that the server sends back
+    //Saves the user information that the server sends back
     var user = {
       username: data.username,
       userID: data.userID
@@ -40,7 +38,6 @@ angular.module('fount.auth', [])
   })
   };
 
-
   $scope.signup = function (user) { 
     console.log(user);
     $http({
@@ -54,7 +51,6 @@ angular.module('fount.auth', [])
     $scope.message = data.message;
     //Signs the user in automatically
     $scope.signin(user);
-
   })
   .error(function(err){
     throw err;
@@ -65,24 +61,4 @@ angular.module('fount.auth', [])
       $rootScope.currentUser = user;
     }
 
-
 }]);
-
-//req.sessionid
-
-//   .controller('decrCtrl', ['$scope', function($scope){
-//     $scope.decrement = function(){
-//       $scope.count.number--
-//     }
-// }]);
-
-// $http.post('/someUrl', {msg:'hello word!'}).
-  // success(function(data, status, headers, config) {
-  //   // this callback will be called asynchronously
-  //   // when the response is available
-  // }).
-  // error(function(data, status, headers, config) {
-  //   // called asynchronously if an error occurs
-  //   // or server returns response with an error status.
-  // });
-

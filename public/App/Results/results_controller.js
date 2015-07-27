@@ -1,16 +1,14 @@
 angular.module('fount.results', [])
 
 .controller('ResultsController', function($scope, $http, $window, $location, $stateParams, $rootScope){
-
   
   $scope.results = [];
   $scope.category = $stateParams.category;
   $scope.subcategory = $stateParams.subcategory;
 
   $scope.getResults = function(){
-    // Simple GET request :
+    // Simple GET request
     console.log('api/v1/' + $scope.category + '/' + $scope.subcategory);
-
     $http.get('api/v1/' + $scope.category + '/' + $scope.subcategory).
       success(function(data, status, headers, config) {
         // this callback will be called asynchronously
@@ -34,7 +32,6 @@ angular.module('fount.results', [])
       link_id: link.link_id,
       vote: direction
     }
-
     console.log(message);
 
     $http.post('api/v1/link/vote', message).
@@ -53,8 +50,6 @@ angular.module('fount.results', [])
   }
 
   $scope.getResults();
-
-
   
 });
 
