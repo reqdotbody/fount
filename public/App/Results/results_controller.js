@@ -27,18 +27,22 @@ angular.module('fount.results', [])
   }
 
   $scope.vote = function(link, direction){
-    
+    console.log("link");
+    console.log(link);
+
     var message = {
-      link_id: link.id,
-      userID: $rootScope.currentUser.userID,
-      vote: direction,
+      link_id: link.link_id,
+      vote: direction
     }
+
+    console.log(message);
 
     $http.post('api/v1/link/vote', message).
       success(function(data, status, headers, config) {
         // this callback will be called asynchronously
         // when the response is available
         console.log(data);
+        $scope.getResults();
       }).
       error(function(data, status, headers, config) {
         // called asynchronously if an error occurs
