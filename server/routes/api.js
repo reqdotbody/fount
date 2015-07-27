@@ -64,7 +64,7 @@ router.get('/v1/categories', function(req, res, next) {
   hasVoted: [string 'upvote' 'downvote' 'none']
 }*/
 router.get('/v1/:category/:subcategory', function(req, res, next) {
-    //TODO Fix the complexity, include number of votes, include hasVoted.
+    //TODO Fix the complexity, include number of votes, include hasVoted, include username
     //And fix the timestamp feature on the link creation 
     knex.select('categories.id AS cat_ID', 'categories.name AS cat_name', 'subcategories.name AS sub_name', 'subcategories.id AS sub_ID', 'links.title','links.url', 'links.votes AS votes', 'users.name','links.created_at')
         .from('categories')
@@ -193,6 +193,7 @@ router.get('/v1/*', function(req, res, next) {
 // {vote:[number either 1 or -1 ], link_id: [number the link_id of the link]}
 
 router.get('/v1/link/vote', function(req, res, next) {
+    console.log(req.sessionID);
     knex('session').select('userID').where({
         sid: req.sessionID
     })(function(item) {
@@ -293,7 +294,9 @@ router.post('/v1/signin', function(req, res, next) {
                                         //And makes the session persists through page load
                                         req.session.userID = userID;
                                         res.json({
-                                            "message": "Successfully Logged In"
+                                            "message": "Successfully Logged In",
+                                            "username": username,
+                                            "userID": userID
                                         });
                                     })
                             })

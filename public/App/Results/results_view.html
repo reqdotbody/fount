@@ -1,13 +1,14 @@
 <div id="submissions">
-  <h1>{{subcategory}}</h1>
+  <h2>{{subcategory}}</h2>
+  <hr>
   <div ng-repeat="resource in results | orderBy: '-votes'" class="submission" ng-class-odd="'odd'" ng-class-even="'even'">
     <span class="rank">
       {{$index + 1}}
     </span>
     <div class="vote-info">
-      <div class="upvote glyphicon glyphicon-chevron-up"></div>
+      <div class="upvote glyphicon glyphicon-chevron-up" ng-click="vote(resource, 1)"></div>
       <div class="vote-count">{{resource.votes}}</div>
-      <div class="downvote glyphicon glyphicon-chevron-down"></div>
+      <div class="downvote glyphicon glyphicon-chevron-down" ng-click="vote(resource, -1)"></div>
     </div>
     <div class="entry">
       <p class="title">
@@ -16,7 +17,8 @@
       </p>
 
       <p class="tagline">
-        Submitted on {{resource.date}} by {{resource.username}}
+        Submitted on {{resource.created_at}} by {{resource.name}}
+    
       </p>
     </div>
   </div>

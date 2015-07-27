@@ -1,12 +1,14 @@
 <nav role="navigation">
+  <span class="icon-panel navbar-left">
+    <a class="icon" ui-sref="app.categories" autoscroll='false'>Fount</a>
+    <a class="explore" ui-sref="app.categories" autoscroll='false'>Explore</a>
+  </span>
 
-  <a class="pull-left" ui-sref="app.categories" autoscroll='false'>Fount</a>
-
-  <span class="auth-panel pull-right">
-    <a ng-hide="isAuth()" ui-sref="app.submitPost">Submit post</a>
-    <a ng-hide="isAuth()" ui-sref="app.submitSubcat">Submit subcategory </a>
-    <a ng-hide="isAuth()" ui-sref="app.signup" autoscroll='false'>Signup</a>
-    <a ng-hide="isAuth()" ui-sref="app.signin" autoscroll='false'>Signin</a>
-    <a ng-show="isAuth()">Logout</a>
+  <span class="auth-panel navbar-right">
+    <a class="button" ng-hide="isAuth()" ui-sref="app.submitPost">Submit post</a>
+    <a class="button" ng-hide="isAuth()" ui-sref="app.submitSubcat">Submit subcategory </a>
+    <a class="button auth" ng-hide="isAuth()" ui-sref="app.signup" autoscroll='false'>Signup</a>
+    <a class="button auth" ng-hide="isAuth()" ui-sref="app.signin" autoscroll='false'>Signin</a>
+    <a class="button" ng-show="isAuth()">Logout</a>
   </span>
 </nav>
