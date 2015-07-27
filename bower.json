@@ -12,7 +12,6 @@
     "tests"
   ],
   "dependencies": {
-    "angular-route": "~1.4.3",
     "angular": "~1.4.3",
     "bootstrap": "~3.3.5",
     "classie": "~1.0.1",

@@ -7,7 +7,8 @@ angular.module('fount', [
   'fount.search',
   'fount.nav',
   'fount.content',
-  'fount.submit',
+  'fount.submitPost',
+  'fount.submitSubcat',
   'fount.subcatSearch',
   'ui.router'
   ])
@@ -57,10 +58,15 @@ angular.module('fount', [
       templateUrl: '/app/categories/categories_view.html',
       controller: 'CategoryController'
     })
-    .state('app.submit', {
-      url: '/submit',
-      templateUrl: '/app/submit/submit.html',
-      controller: 'SubmitController'
+    .state('app.submitSubcat', {
+      url: '/submit-subcategory',
+      templateUrl: '/app/submit/submitSubcat.html',
+      controller: 'SubmitSubcatController'
+    })
+    .state('app.submitPost', {
+      url: '/submit-post',
+      templateUrl: '/app/submit/submitPost.html',
+      controller: 'SubmitPostController'
     })
     .state('app.search', {
       url: '/search/{keyword}',
