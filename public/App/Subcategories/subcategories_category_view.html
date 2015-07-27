@@ -1,8 +1,9 @@
 <div id='container' ui-view autoscroll='false'>
   <!-- <span>{{getSomeSubcategories()}}</span> -->
-  <h4>{{category}}</h4>
+  <h2 class="categoryTitle">{{category}}</h2>
+  <hr>
   <ul>
-    <li ng-repeat="subcat in subcats = (subcategories | orderBy: 'subcategory'| filter: searchForm)">
+    <li ng-repeat="subcat in subcats = (subcategories | orderBy: 'subcategory'| filter: searchForm)" class="subcategory">
       <a ui-sref="app.categories.subcategories.results({subcategory: subcat.subcategory, subcatID: subcat})" >
         {{subcat.subcategory}}
       </a> 

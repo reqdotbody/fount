@@ -11,7 +11,6 @@ a {
 }
 
 h1, h2, h3, h4{
-  background: #fff;
   color: rgba(0,0,0,0.7);
   font-family: "Open Sans","Lucida Grande","Lucida Sans Unicode","Lucida Sans",Geneva,Verdana,sans-serif;
   letter-spacing: -0.02em;
@@ -23,11 +22,16 @@ h1, h2, h3, h4{
   -webkit-font-smoothing: antialiased;
 }
 
+ul{
+  padding: 0px;
+  margin-top: 30px;
+}
 
 
 .large-search-container{
   display: inline-block;
   position: relative;
+  width: 100%;
   top: 0;
   left: 0;
   background: rgba(252, 252, 252, 0.95);
@@ -174,8 +178,39 @@ a.button:hover{
 
 /*START - Categories View  */
 
-.col-md-12{
-  padding-bottom: 10px;
+.col-md-4{
+  padding-bottom: 15px;
+  padding-top: 15px;
+}
+
+.category-row{
+  height: 20em;
+}
+
+.category{
+  height: 40%;
+  padding: 80px 20px;
+  text-align: center;
+  -webkit-box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.23);
+  -moz-box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.23);
+  box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.23);
+}
+
+.category:hover{
+  -webkit-box-shadow: 0px 2px 6px 0px rgba(0,0,0,0.43);
+  -moz-box-shadow: 0px 2px 6px 0px rgba(0,0,0,0.43);
+  box-shadow: 0px 2px 6px 0px rgba(0,0,0,0.43);
+}
+
+.category > a{
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.category > a:hover{
+  text-decoration: none;
+}
+.categories{
+  padding: 0px;
 }
 
 .categories a{
@@ -191,6 +226,36 @@ a.button:hover{
 
 /*END - Categories View */
 
+
+/*START - Subcategories category View  */
+
+.categoryTitle{
+  margin-bottom: 20px;
+}
+
+.subcategory{
+  padding: 10px;
+  margin-bottom: 10px;
+  list-style-type: none;
+  -webkit-box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.23);
+  -moz-box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.23);
+  box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.23);
+}
+
+.subcategory:hover{
+  -webkit-box-shadow: 0px 2px 6px 0px rgba(0,0,0,0.43);
+  -moz-box-shadow: 0px 2px 6px 0px rgba(0,0,0,0.43);
+  box-shadow: 0px 2px 6px 0px rgba(0,0,0,0.43);
+}
+
+.subcategory > a{
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.subcategory > a:hover{
+  text-decoration: none;
+}
+/*END - Subcategories category View */
 
 .page{
   position: relative;
