@@ -202,7 +202,8 @@ router.post('/v1/link/vote', function(req, res, next) {
             .then(function(exists) {
                 console.log(exists.length)
                 if (exists.length === 0) {
-                    knex('votes').insert({
+                    knex('votes')
+                        .insert({
                             link_id: req.body.link_id,
                             user_id: item[0].userID,
                             votes: req.body.vote
@@ -224,29 +225,32 @@ router.post('/v1/link/vote', function(req, res, next) {
                                 })
                             res.json(items)
                         })
-                }else{
-                    knex('votes').update({
-                                    link_id: req.body.link_id,
-                                    user_id: item[0].userID,
-                                    votes: req.body.vote
+                } else {
+                    knex('votes')
+                        .update({
+                            votes: req.body.vote
+                        })
+                        .where({
+                            link_id: req.body.link_id,
+                            user_id: item[0].userID,
+                        })
+                        .then(function(items) {
+                            knex('votes').sum('votes AS total').where({
+                                    link_id: req.body.link_id
                                 })
-                                .then(function(items) {
-                                    knex('votes').sum('votes AS total').where({
-                                            link_id: req.body.link_id
+                                .then(function(vote_count) {
+                                    knex('links').update({
+                                            votes: vote_count[0].total
+                                        }).where({
+                                            id: req.body.link_id
                                         })
-                                        .then(function(vote_count) {
-                                            knex('links').update({
-                                                    votes: vote_count[0].total
-                                                }).where({
-                                                    id: req.body.link_id
-                                                })
-                                                .catch(function(err) {
-                                                    console.error(err);
-                                                })
+                                        .catch(function(err) {
+                                            console.error(err);
+                                        })
 
-                                        })
-                                    res.json(items)
                                 })
+                            res.json(items)
+                        })
                 }
             })
     })
