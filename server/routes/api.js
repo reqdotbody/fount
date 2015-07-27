@@ -66,37 +66,14 @@ router.get('/v1/categories', function(req, res, next) {
 router.get('/v1/:category/:subcategory', function(req, res, next) {
     //TODO Fix the complexity, include number of votes, include hasVoted.
     //And fix the timestamp feature on the link creation 
-    knex('categories').select('id').where({
+    knex.select('categories.id AS cat_ID, categories.name AS cat_name, subcategories.name AS sub_name, subcategories.id AS sub_ID, links.title,links.url, links.votes AS votes, users.name')
+        .from('categories')
+        .where({
             name: decodeURIComponent(req.params.category)
         })
-        .then(function(item) {
-            knex('subcategories').select('id').where({
-                    name: decodeURIComponent(req.params.subcategory),
-                    cat_id: item[0].id
-                })
-                .then(function(subID) {
-                    knex.from('links')
-                        .where({
-                            'subcat_id': subID[0].id
-                        })
-                        .then(function(links) {
-                            console.log(links)
-                            res.json(links)
-                        })
-                        .catch(function(err) {
-                            console.error(err);
-                            res.json(err)
-                        })
-                })
-                .catch(function(err) {
-                    console.error(err);
-                    res.json(err)
-                })
-        })
-        .catch(function(err) {
-            console.error(err);
-            res.json(err)
-        })
+        .join('subcategories', 'categories.id', 'subcategories.id')
+        .join('links', 'subcategories.id', 'links.subcat_id')
+        .join('users', 'links.user_id', 'users.id')
 });
 
 /* POST a link. */
@@ -173,7 +150,7 @@ router.get('/v1/*', function(req, res, next) {
 
     var uri = req.path;
     var category = decodeURIComponent(uri.slice(4));
-        //category is a number
+    //category is a number
     if (!isNaN(category)) {
         knex('subcategories')
             .where({
@@ -204,7 +181,7 @@ router.get('/v1/*', function(req, res, next) {
 /* POST vote for link */
 //This will submit a vote to the database, for the provided link.
 //Object should be formated like this:
-// 
+// {vote:[number either 1 or -1 ], link_id: [number the link_id of the link]}
 
 router.get('/v1/link/vote', function(req, res, next) {
     knex('session').select('userID').where({
@@ -217,6 +194,20 @@ router.get('/v1/link/vote', function(req, res, next) {
             })
             .from('categories')
             .then(function(items) {
+                knex('votes').sum('votes AS total').where({
+                        link_id: req.body.link_id
+                    })
+                    .then(function(vote_count) {
+                        knex('links').update({
+                                votes: vote_count[0].total
+                            }).where({
+                                link_id: req.body.link_id
+                            })
+                            .catch(function(err) {
+                                console.error(err);
+                            })
+
+                    })
                 res.json(items)
             })
     })
@@ -276,7 +267,7 @@ router.post('/v1/signin', function(req, res, next) {
             bcrypt.compare(password, hash, function(err, hash) {
                 if (!err) {
                     //To Complicated?
-    
+
                     req.session.save(function(err) {
                         knex('users').where({
                                 name: username
