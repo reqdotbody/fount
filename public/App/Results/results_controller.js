@@ -47,7 +47,6 @@ angular.module('fount.results', [])
       });
   }
 
-
   $scope.getResults();
 
 
