@@ -29,7 +29,6 @@ angular.module('fount.submitPost', [])
     var message = {
       title: $scope.post.title,
       url: $scope.post.url,
-      user_id: $rootScope.currentUser.userID,
       subcat_id: $scope.post.subcat.subcategory_id
     }
 
