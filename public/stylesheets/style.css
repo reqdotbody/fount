@@ -87,12 +87,13 @@ header{
 }
 
 
+
+
 .explore{
   font-weight: 700;
   border-top: 0;
   color: rgba(0,0,0,0.7);
   padding: 10px 0;
-  margin-left: 20px;
   letter-spacing: .1em;
   font-style: normal;
   display: inline-block;

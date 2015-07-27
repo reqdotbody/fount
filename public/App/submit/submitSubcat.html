@@ -1,9 +1,9 @@
 <div class="container" id='submitPost'>
   <div class="col-md-6 col-md-offset-3">
-    <h1>Submit new subcategory</h1>
+    <h2>Submit new subcategory</h2>
     <form name="submitForm" ng-submit='createSubcat()' novalidate>
       <div class="form-group postTitle">
-        <label id="subcatName">Subcategory Name</label>
+        <label id="subcatName" class= "explore">Subcategory Name</label>
         <textarea class="form-control" name="newSubcat" type='text' ng-maxlength="20" ng-model="newSubcatName"></textarea>
       </div>
 
@@ -15,7 +15,7 @@
         </select>
       </div>
 
-      <button class="btn btn-primary"><span class="glyphicon glyphicon-send"></span> Create</button>
+      <button class="button auth" class="btn btn-primary"><span class="glyphicon glyphicon-send"></span> Create</button>
 
     </form>
 
