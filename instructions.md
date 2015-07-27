@@ -48,7 +48,7 @@ url: http://fount.io/#/
 
 The main view submits a get request via its controller
 to the api endpoint of the server:
-  endpoint: '/api/v1/categories'
+  endpoint: 'api/v1/categories'
   method: GET
 
 and the server returns an array of objects that look like this:
@@ -73,7 +73,7 @@ The request looks like:
 
 URL(After the post submit): url: http://fount.io/#/search
 
-endpoint: '/api/v1/subcategories'
+endpoint: 'api/v1/subcategories'
 method: POST
 
 {
@@ -99,7 +99,7 @@ url: http://fount.io/#/{Category}
 
 The user clicks on a category on the main page, or visits the URL directly. This would redirect the user to the URL for the category, and render all the subcategories for that category.
 
-endpoint: /api/v1/{Category}/
+endpoint: api/v1/{Category}/
 method: GET
 
 Which will respond with an array of objects that will look like this:
@@ -122,7 +122,7 @@ URL: http://fount.io/#/{Category}/{subCategory}
 
 The user would clikc on a link to this URL from the SUB-CATEGORY view, or visits the URL directly. Here the user would view all the URL's that have been submitted to this Fount.
 
-endpoint: /api/v1/{Category}/{subCategory}
+endpoint: api/v1/{Category}/{subCategory}
 method:GET
 
 This will respond with an array if objects that will look like this.
@@ -146,7 +146,7 @@ URL: http://fount.io/#/{Category}/{subCategory}/{Submit}
 
 THis is how the user would be submiting new links to the site. The user would hit submit with the following information which would send a POST request to the server with the following data:
 
-endpoint: /api/v1/submit
+endpoint: api/v1/submit
 method: POST
 
 {
@@ -163,10 +163,10 @@ Create a Sub Category
 
 This endpoint is used to create new sub categories
 
-endpoint:/api/v1/submit/subcategory
+endpoint: api/v1/submit/subcategory
 method:post
 
-{
+{ 
   name:[Sub-Category Name in string],
   cat_id:[Parent Category as number]
 }

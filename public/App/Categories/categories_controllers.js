@@ -42,7 +42,7 @@ angular.module('fount.category', [])
 
   $scope.getCategories = function(){
     // Simple GET request example :
-    $http.get('/api/v1/categories').
+    $http.get('api/v1/categories').
       success(function(data, status, headers, config) {
         // this callback will be called asynchronously
         // when the response is available

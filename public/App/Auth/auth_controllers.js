@@ -11,7 +11,7 @@ angular.module('fount.auth', [])
     console.log(user);
     $http({
       method: 'POST',
-      url: '/api/v1/signin',
+      url: 'api/v1/signin',
       headers: {'Content-Type': 'application/json'},
       data: user
     })
@@ -45,7 +45,7 @@ angular.module('fount.auth', [])
     console.log(user);
     $http({
       method: 'POST',
-      url:'/api/v1/signup',
+      url:'api/v1/signup',
       headers: {'Content-Type': 'application/json'},
       data: user
     })
