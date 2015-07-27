@@ -37,9 +37,9 @@ angular.module('fount.subcategory', [])
   $scope.getSomeSubcategories = function(){
     // Simple GET request :
     console.log($scope.category);
-    console.log('http://localhost:3000/api/v1/' + $scope.category);
+    console.log('api/v1/' + $scope.category);
 
-    $http.get('http://localhost:3000/api/v1/' + $scope.category).
+    $http.get('api/v1/' + $scope.category).
       success(function(data, status, headers, config) {
         // this callback will be called asynchronously
         // when the response is available
