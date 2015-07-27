@@ -192,7 +192,7 @@ router.get('/v1/*', function(req, res, next) {
 //Object should be formated like this:
 // {vote:[number either 1 or -1 ], link_id: [number the link_id of the link]}
 
-router.get('/v1/link/vote', function(req, res, next) {
+router.post('/v1/link/vote', function(req, res, next) {
     console.log(req.sessionID);
     knex('session').select('userID').where({
         sid: req.sessionID
