@@ -75,7 +75,6 @@ router.get('/v1/:category/:subcategory', function(req, res, next) {
             'categories.name': decodeURIComponent(req.params.category)
         })
         .then(function(items) {
-            console.log(items)
             res.json(items)
         })
         .catch(function(err) {
