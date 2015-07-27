@@ -72,7 +72,7 @@ router.get('/v1/:category/:subcategory', function(req, res, next) {
         .join('links', 'subcategories.id', 'links.subcat_id')
         .join('users', 'links.user_id', 'users.id')
         .where({
-            'categories.name': decodeURIComponent(req.params.category)
+            'categories.name': decodeURIComponent(req.params.category),
             'subcategories.name': decodeURIComponent(req.params.subcategory)
         })
         .then(function(items) {
