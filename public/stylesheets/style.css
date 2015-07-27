@@ -200,6 +200,7 @@ a.button:hover{
   -webkit-box-shadow: 0px 2px 6px 0px rgba(0,0,0,0.43);
   -moz-box-shadow: 0px 2px 6px 0px rgba(0,0,0,0.43);
   box-shadow: 0px 2px 6px 0px rgba(0,0,0,0.43);
+
 }
 
 .category > a{
@@ -213,10 +214,13 @@ a.button:hover{
   padding: 0px;
 }
 
-.categories a{
+.category a{
   font-family: 'Open Sans', Helvetica;
-  font-size: medium;
-  color: rgba(20, 20, 20, 0.8);
+  font-size: large;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.95);
+  word-wrap: break-word;
+  text-transform: uppercase;
 }
 
 .img{
