@@ -10,7 +10,7 @@ angular.module('fount.nav', [])
     $http({
       method: 'POST',
       //wildcard?
-      url: url + '/logout',
+      url: '/logout',
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
     })
   .success(function(data) {

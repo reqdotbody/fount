@@ -9,9 +9,9 @@ angular.module('fount.results', [])
 
   $scope.getResults = function(){
     // Simple GET request :
-    console.log('http://localhost:3000/api/v1/' + $scope.category + '/' + $scope.subcategory);
+    console.log('api/v1/' + $scope.category + '/' + $scope.subcategory);
 
-    $http.get('http://localhost:3000/api/v1/' + $scope.category + '/' + $scope.subcategory).
+    $http.get('api/v1/' + $scope.category + '/' + $scope.subcategory).
       success(function(data, status, headers, config) {
         // this callback will be called asynchronously
         // when the response is available
