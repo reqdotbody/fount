@@ -66,7 +66,7 @@ router.get('/v1/categories', function(req, res, next) {
 router.get('/v1/:category/:subcategory', function(req, res, next) {
     //TODO Fix the complexity, include number of votes, include hasVoted, include username
     //And fix the timestamp feature on the link creation 
-    knex.select('categories.id AS cat_ID', 'categories.name AS cat_name', 'subcategories.name AS sub_name', 'subcategories.id AS sub_ID', 'links.title','links.url', 'links.id AS link_id', 'links.votes AS votes', 'users.name','links.created_at')
+    knex.select('categories.id AS cat_ID', 'categories.name AS cat_name', 'subcategories.name AS sub_name', 'subcategories.id AS sub_ID', 'links.title', 'links.url', 'links.id AS link_id', 'links.votes AS votes', 'users.name', 'links.created_at')
         .from('categories')
         .join('subcategories', 'categories.id', 'subcategories.cat_id')
         .join('links', 'subcategories.id', 'links.subcat_id')
@@ -193,16 +193,14 @@ router.get('/v1/*', function(req, res, next) {
 // {vote:[number either 1 or -1 ], link_id: [number the link_id of the link]}
 
 router.post('/v1/link/vote', function(req, res, next) {
-    console.log(req.sessionID);
     knex('session').select('userID').where({
         sid: req.sessionID
-    })(function(item) {
+    }).then(function(item) {
         knex('votes').insert({
                 link_id: req.body.link_id,
                 user_id: item[0].userID,
                 votes: req.body.vote
             })
-            .from('categories')
             .then(function(items) {
                 knex('votes').sum('votes AS total').where({
                         link_id: req.body.link_id
@@ -211,7 +209,7 @@ router.post('/v1/link/vote', function(req, res, next) {
                         knex('links').update({
                                 votes: vote_count[0].total
                             }).where({
-                                link_id: req.body.link_id
+                                id: req.body.link_id
                             })
                             .catch(function(err) {
                                 console.error(err);
