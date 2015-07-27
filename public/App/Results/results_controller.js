@@ -33,7 +33,7 @@ angular.module('fount.results', [])
     var message = {
       link_id: link.link_id,
       userID: $rootScope.currentUser.userID,
-      vote: direction,
+      vote: direction
     }
 
     console.log(message);
