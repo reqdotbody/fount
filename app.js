@@ -10,7 +10,6 @@ var pgSession = require('connect-pg-simple')(session)
 
 var routes = require('./server/routes/index');
 var api = require('./server/routes/api');
-// var db = require('./server/models/database.js')
 var config = require('./knexfile.js');
 var env = process.env.NODE_ENV || 'development';
 var knex = require('knex')(config[env]);
@@ -21,14 +20,15 @@ knex.migrate.latest([config]);
 
 STATICFILES = path.join(process.env.PWD, 'bower_components');
 
-/* These are a hot fix for our directories that are mixed case*/
-//TODO Fix these mixed cased directories
+/* these are a hot fix for our directories that are mixed case*/
+// to-do: fix these mixed cased directories
 app.use('/app',express.static(path.join(process.env.PWD,'public','App')));
 app.use('/app/auth',express.static(path.join(process.env.PWD,'public','App','Auth')))
 app.use('/app/categories',express.static(path.join(process.env.PWD,'public','App','Categories')))
 app.use('/app/results',express.static(path.join(process.env.PWD,'public','App','Results')))
 app.use('/app/subcategories',express.static(path.join(process.env.PWD,'public','App','Subcategories')))
-/*HOTFIX END*/
+/* end hot fix */
+
 // view engine setup
 app.get('/', function(req,res){
   res.sendFile(path.join(process.env.PWD, 'public','index.html'))
@@ -36,9 +36,6 @@ app.get('/', function(req,res){
 
 app.use(express.static(path.join(process.env.PWD,'public')));
 app.use('/scripts', express.static(STATICFILES));
-
-
-
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(process.env.PWD, 'public', 'favicon.ico')));
@@ -59,15 +56,13 @@ app.use(session({
   saveUninitialized:false,
   secure: false,
   store: new pgSession({
-      pg : pg,                                  // Use global pg-module
+      pg : pg,                            // Use global pg-module
       conString : config[env].connection, // Connect using something else than default DATABASE_URL env variable
       tableName : 'session'               // Use another table-name than the default "session" one
     })
   }));
 
-// app.use('/', routes);
 app.use('/api', api);
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -76,25 +71,18 @@ app.use(function(req, res, next) {
   next(err);
 });
 
-// error handlers
+// error handlers below
 
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
     res.status(err.status || 500);
-    //new version
     res.send({
       message: err.message,
       error: err
     });
     return;
-
-    //old version
-    // res.render('error', {
-    //   message: err.message,
-    //   error: err
-    // });
   });
 }
 
@@ -102,18 +90,11 @@ if (app.get('env') === 'development') {
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
   res.status(err.status || 500);
-  //new version
   res.send({
     message: err.message,
     error: err
   });
   return;
-
-  //old version
-  // res.render('error', {
-  //   message: err.message,
-  //   error: {}
-  // });
 });
 
 
