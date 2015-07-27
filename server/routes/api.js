@@ -74,6 +74,14 @@ router.get('/v1/:category/:subcategory', function(req, res, next) {
         .join('subcategories', 'categories.id', 'subcategories.id')
         .join('links', 'subcategories.id', 'links.subcat_id')
         .join('users', 'links.user_id', 'users.id')
+        .then(function(items) {
+            res.json(items)
+        })
+        .catch(function(err) {
+            console.error(err);
+            res.json(err)
+        })
+
 });
 
 /* POST a link. */
