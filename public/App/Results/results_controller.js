@@ -16,6 +16,7 @@ angular.module('fount.results', [])
         // this callback will be called asynchronously
         // when the response is available
         $scope.results = data;
+        console.log($scope.results);
       }).
       error(function(data, status, headers, config) {
         // called asynchronously if an error occurs
