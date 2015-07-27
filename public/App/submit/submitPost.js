@@ -2,8 +2,6 @@ angular.module('fount.submitPost', [])
 
 .controller('SubmitPostController', function($scope, $http){
   $scope.subcategories = [];
-  $scope.test = "HELLO";
-  debugger;
   $scope.post = {
     title: '',
     url: '',
