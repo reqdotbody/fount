@@ -196,7 +196,6 @@ router.post('/v1/link/vote', function(req, res, next) {
     knex('session').select('userID').where({
         sid: req.sessionID
     }).then(function(item) {
-        console.log(item)
         knex('votes').insert({
                 link_id: req.body.link_id,
                 user_id: item[0].userID,
