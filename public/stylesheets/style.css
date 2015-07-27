@@ -64,6 +64,12 @@ header{
   bottom: 0;
 }
 
+.logo{
+  margin-top:  -10px;
+  margin-right: 4px;
+  width: 30px;
+  height: 30px;
+}
 .icon{
   font-size: 24px;
   background: #fff;
