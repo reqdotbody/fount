@@ -1,5 +1,6 @@
 <div id="submissions">
-  <h3>{{subcategory}}</h3>
+  <h2>{{subcategory}}</h2>
+  <hr>
   <div ng-repeat="resource in results | orderBy: '-votes'" class="submission" ng-class-odd="'odd'" ng-class-even="'even'">
     <span class="rank">
       {{$index + 1}}
