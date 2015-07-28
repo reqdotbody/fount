@@ -8,7 +8,7 @@ angular.module('fount.createCategory', [])
   $scope.createCategory = function(){
     var message = {
       name : $scope.name,
-      image : $scope.url
+      img : $scope.url
     }
 
     $http.post('api/v1/submit/category', message).then(function(results){
