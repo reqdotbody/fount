@@ -86,25 +86,36 @@ router.get('/v1/:category/:subcategory', function(req, res, next) {
 
 router.get('/v2/:category/:subcategory', function (req, res, next) {
   console.log(decodeURIComponent(req.params.subcategory))
-  knex.select('subcategories.id')
-    .from('subcategories')
+  knex.select('categories.id')
+    .from('categories')
     .where({
-      'subcategories.name': decodeURIComponent(req.params.subcategory)
+      'categories.name': decodeURIComponent(req.params.category)
     })
-    .then(function (subcategoryRow) {
-      if (subcategoryRow.length) {
-        var id = subcategoryRow[0].id
-        knex.select('*')
-        .from('links')
-        .where({'subcat_id' : id })
-        .then(function (links) {
-          res.json(links)
-        })
-      } else {
-        console.log("invalid subcategory name")
-        res.end();
+    .then(function (catRow) {
+      if (catRow.length) {
+        var catRowId = catRow[0].id
+        knex.select('subcategories.id')
+          .from('subcategories')
+          .where({
+            'subcategories.name': decodeURIComponent(req.params.subcategory),
+            'subcategories.cat_id' : catRowId
+          })
+          .then(function (subcategoryRow) {
+            if (subcategoryRow.length) {
+              var id = subcategoryRow[0].id
+              knex.select('*')
+              .from('links')
+              .where({'subcat_id' : id })
+              .then(function (links) {
+                res.json(links)
+              })
+            } else {
+              console.log("invalid subcategory name")
+              res.end();
+            }
+          })
       }
-    })
+  })
 
   // knex.select('links.title', 'links.url')
   // .from('links')
