@@ -65,7 +65,6 @@ router.get('/v1/categories', function(req, res, next) {
 }*/
 
 router.get('/v1/:category/:subcategory', function (req, res, next) {
-  console.log(decodeURIComponent(req.params.subcategory))
   knex.select('categories.id')
     .from('categories')
     .where({
