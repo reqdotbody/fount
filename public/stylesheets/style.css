@@ -221,7 +221,7 @@ a.button:hover{
 
 .category a{
   font-family: 'Open Sans', Helvetica;
-  font-size: large;
+  font-size: 2.2em;
   font-weight: 500;
   color: rgba(255, 255, 255, 0.95);
   word-wrap: break-word;
@@ -356,7 +356,7 @@ a.button:hover{
   color: #9178d0;
 }
 
-.url, 
+.url,
 .url a{
   display: inline-block;
   overflow: hidden;
