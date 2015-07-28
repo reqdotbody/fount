@@ -10,6 +10,7 @@ angular.module('fount', [
   'fount.submitPost',
   'fount.submitSubcat',
   'fount.subcatSearch',
+  'fount.createCategory',
   'ui.router'
   ])
 //add other modules as are created for view
@@ -87,5 +88,15 @@ angular.module('fount', [
       url: '/{subcategory}',
       templateUrl: '/app/results/results_view.html',
       controller: 'ResultsController'
-    });
+    })
+    .state('app.createCategory', {
+      url: '/create-category',
+      templateUrl: '/app/submit/createCategory.html',
+      controller: 'CreateCategoryController'
+    })
 }]);
+
+
+// 1. Make it in the router
+// 2. Make it loaded by the big fount module
+// 
