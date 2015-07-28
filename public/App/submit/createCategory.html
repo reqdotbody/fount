@@ -1,0 +1,15 @@
+<div class="container" id='createCategory'>
+  <div class="col-md-6 col-md-offset-3">
+    <h2>Create a category</h2>
+    <form name="submitForm" ng-submit='createCategory()' novalidate>
+      <div class="form-group postTitle">
+        <label class= "explore">Category Name</label>
+        <input class="form-control" name="name" type='text' ng-maxlength="20" ng-model="name" placeholder="Enter category name here."></input>
+        <label class="explore">Image URL</label>
+        <input class="form-control" name="name" type='text' ng-model="url" placeholder="Enter url here."></input>
+      </div>
+      <button class="button auth" class="btn btn-primary"><span class="glyphicon glyphicon-send"></span> Create</button>
+    </form>
+  </div>
+</div>
+

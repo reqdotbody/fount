@@ -105,6 +105,7 @@ router.post('/v1/submit', function(req, res, next) {
 
 /* Create a Category */
 router.post('/v1/submit/category', function(req, res, next) {
+    
     //This POST request should look like this:
     //{'name':[Category Name in string],img:[link to image in string format]}
     knex('categories')
