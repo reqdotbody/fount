@@ -63,27 +63,46 @@ router.get('/v1/categories', function(req, res, next) {
   id: [string of the id for the submited url]
   hasVoted: [string 'upvote' 'downvote' 'none']
 }*/
-router.get('/v1/:category/:subcategory', function(req, res, next) {
-    //TODO Fix the complexity, include number of votes, include hasVoted, include username
-    //And fix the timestamp feature on the link creation 
-    knex.select('categories.id AS cat_ID', 'categories.name AS cat_name', 'subcategories.name AS sub_name', 'subcategories.id AS sub_ID', 'links.title', 'links.url', 'links.id AS link_id', 'links.votes AS votes', 'users.name', 'links.created_at')
-    .from('categories')
-    .join('subcategories', 'categories.id', 'subcategories.cat_id')
-    .join('links', 'subcategories.id', 'links.subcat_id')
-    .join('users', 'links.user_id', 'users.id')
-    .where({
-        'categories.name': decodeURIComponent(req.params.category),
-        'subcategories.name': decodeURIComponent(req.params.subcategory)
-    })
-    .then(function(items) {
-        res.json(items)
-    })
-    .catch(function(err) {
-        console.error(err);
-        res.json(err)
-    })
 
-});
+router.get('/v1/:category/:subcategory', function (req, res, next) {
+  knex.select('categories.id')
+    .from('categories')
+    .where({
+      'categories.name': decodeURIComponent(req.params.category)
+    })
+    .then(function (catRow) {
+      if (catRow.length) {
+        var catRowId = catRow[0].id
+        knex.select('subcategories.id')
+          .from('subcategories')
+          .where({
+            'subcategories.name': decodeURIComponent(req.params.subcategory),
+            'subcategories.cat_id' : catRowId
+          })
+          .then(function (subcategoryRow) {
+            if (subcategoryRow.length) {
+              var id = subcategoryRow[0].id
+              knex.select('*')
+              .from('links')
+              .where({'subcat_id' : id })
+              .then(function (links) {
+                res.json(links)
+              })
+            } else {
+              console.log("invalid subcategory name")
+              res.end();
+            }
+          })
+      }
+  })
+
+  // knex.select('links.title', 'links.url')
+  // .from('links')
+  // .then(function(links) {
+  //   res.json(links)
+  // })
+})
+
 
 /* POST a link. */
 router.post('/v1/submit', function(req, res, next) {
@@ -105,7 +124,7 @@ router.post('/v1/submit', function(req, res, next) {
 
 /* Create a Category */
 router.post('/v1/submit/category', function(req, res, next) {
-    
+
     //This POST request should look like this:
     //{'name':[Category Name in string],img:[link to image in string format]}
     knex('categories')
