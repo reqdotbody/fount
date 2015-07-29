@@ -287,8 +287,8 @@ router.post('/v1/signup', function(req, res, next) {
         name: username
     })
     .select('name')
-    .then(function(err, rows) {
-      if (err) {
+    .then(function(rows) {
+      if (rows.length === 0) {
         knex('users')
         .insert({
           name: username,
@@ -306,7 +306,6 @@ router.post('/v1/signup', function(req, res, next) {
           res.json(err)
         })
       } else {
-        res.writeHead(401)
         res.json({
           "message": "user already exists"
         })
@@ -317,13 +316,12 @@ router.post('/v1/signup', function(req, res, next) {
 
 router.post('/v1/signin',
   function(req, res, next) {
-    console.log(req.body);
-    req.username = req.body.username;
-    req.password = req.body.password;
+    console.log("req.body", req.body);
     next();
   },
   passport.authenticate('local'),
   function(req, res, next) {
+    console.log("req.user", req.user);
     res.end();
   }
 );
