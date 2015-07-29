@@ -5,7 +5,7 @@ angular.module('fount.auth', [])
   $scope.user = {};
   $scope.error = null;
 
-  $scope.signin = function (user) { 
+  $scope.signin = function (user) {
     console.log(user);
     $http({
       method: 'POST',
@@ -13,32 +13,32 @@ angular.module('fount.auth', [])
       headers: {'Content-Type': 'application/json'},
       data: user
     })
-  .success(function(data) {
-    console.log(data);
-    $scope.message = data.message;
-    
-    //Saves the user information that the server sends back
-    var user = {
-      username: data.username,
-      userID: data.userID
-    }
+    .success(function(data) {
+      console.log(data);
+      $scope.message = data.message;
 
-    //Assigns the user to be the current user
-    $scope.assignCurrentUser(user);
+      //Saves the user information that the server sends back
+      var user = {
+        username: data.name,
+        userID: data.id
+      }
 
-    console.log("Current username: " + $rootScope.currentUser.username);
-    console.log("Current userID: " + $rootScope.currentUser.userID);
+      //Assigns the user to be the current user
+      $scope.assignCurrentUser(user);
 
-    //Redirect to home
-    $state.go("app.categories");
+      console.log("Current username: " + $rootScope.currentUser.username);
+      console.log("Current userID: " + $rootScope.currentUser.userID);
 
-  })
-  .error(function(err){
-    throw err;
-  })
+      //Redirect to home
+      $state.go("app.categories");
+
+    })
+    .error(function(err){
+      throw err;
+    })
   };
 
-  $scope.signup = function (user) { 
+  $scope.signup = function (user) {
     console.log(user);
     $http({
       method: 'POST',
@@ -46,15 +46,16 @@ angular.module('fount.auth', [])
       headers: {'Content-Type': 'application/json'},
       data: user
     })
-  .success(function(data) {
-    console.log(data);
-    $scope.message = data.message;
-    //Signs the user in automatically
-    $scope.signin(user);
-  })
-  .error(function(err){
-    throw err;
-  })
+    .success(function(data) {
+      console.log(data);
+      $scope.message = data.message;
+      //Signs the user in automatically
+      $scope.signin(user);
+    })
+    .error(function(err){
+      console.log(err);
+      throw err;
+    })
   };
 
   $scope.assignCurrentUser = function(user) {
