@@ -21,8 +21,9 @@ passportConfig.strategy = function(username, password, done) {
         knex('users').where({
            name: username
         })
-        .select('id')
-        .then(function(user) {
+        .select('id', 'name')
+        .then(function(userRows) {
+          var user = userRows[0];
           return done(null, user)
         })
       }

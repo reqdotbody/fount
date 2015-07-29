@@ -19,8 +19,8 @@ angular.module('fount.auth', [])
 
       //Saves the user information that the server sends back
       var user = {
-        username: data.username,
-        userID: data.userID
+        username: data.name,
+        userID: data.id
       }
 
       //Assigns the user to be the current user

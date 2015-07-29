@@ -322,7 +322,7 @@ router.post('/v1/signin',
   passport.authenticate('local'),
   function(req, res, next) {
     console.log("req.user", req.user);
-    res.end();
+    res.json(req.user);
   }
 );
 
