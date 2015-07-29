@@ -7,13 +7,16 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var pg = require('pg')
 var pgSession = require('connect-pg-simple')(session)
-
+var passportConfig = require('./server/routes/passportConfig.js')
 var routes = require('./server/routes/index');
 var api = require('./server/routes/api');
 var config = require('./knexfile.js');
 var env = process.env.NODE_ENV || 'development';
 var knex = require('knex')(config[env]);
 var app = express();
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+
 process.env.PWD = process.cwd()
 
 knex.migrate.latest([config]);
@@ -49,19 +52,30 @@ app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
+app.use(passport.initialize())
+app.use(passport.session())
 
-app.use(session({ 
-  secret: 'FOUNT', 
-  cookie: { maxAge: 60000 }, 
-  resave:true, 
-  saveUninitialized:false,
-  secure: false,
-  store: new pgSession({
-      pg : pg,                            // Use global pg-module
-      conString : config[env].connection, // Connect using something other than default DATABASE_URL env variable
-      tableName : 'session'               // Use another table-name other than the default "session" one
-    })
-  }));
+passport.use(new LocalStrategy(passportConfig.strategy))
+
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+
+passport.deserializeUser(function(user, done) {
+  done(null, user);
+});
+// app.use(session({
+//   secret: 'FOUNT',
+//   cookie: { maxAge: 60000 },
+//   resave:true,
+//   saveUninitialized:false,
+//   secure: false,
+//   store: new pgSession({
+//       pg : pg,                            // Use global pg-module
+//       conString : config[env].connection, // Connect using something other than default DATABASE_URL env variable
+//       tableName : 'session'               // Use another table-name other than the default "session" one
+//     })
+// }));
 
 app.use('/api', api);
 

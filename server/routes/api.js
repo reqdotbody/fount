@@ -3,6 +3,8 @@ var router = express.Router();
 var bcrypt = require('bcrypt-nodejs');
 var session = require('express-session');
 var config = require('../../knexfile.js');
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
 var env = process.env.NODE_ENV || 'development';
 var knex = require('knex')(config[env]);
 
@@ -313,51 +315,17 @@ router.post('/v1/signup', function(req, res, next) {
   })
 });
 
-router.post('/v1/signin', function(req, res, next) {
-  var username = req.body.username
-  var password = req.body.password
-  var hash = "";
-  knex('users').where({
-    name: username
-  })
-  .select('id', 'password').then(function(rows, err) {
-    hash = rows[0].password
-    bcrypt.compare(password, hash, function(err, hash) {
-      if (!err) {
-        req.session.save(function(err) {
-          knex('users').where({
-              name: username
-          })
-          .select('id')
-          .then(function(item) {
-            var userID = item[0].id
-            knex('session').where({
-                sid: req.sessionID
-            })
-            .update({
-              "userID": userID
-            })
-            .then(function() {
-              //For some reason, adding something to the session causes the cookie to be saved
-              //And makes the session persist through page load
-              req.session.userID = userID;
-              res.json({
-                "message": "Successfully Logged In",
-                "username": username,
-                "userID": userID
-              });
-            })
-          })
-        })
-      }
-    })
-  })
-  .catch(function(err) {
-    console.log(err)
-    res.json({
-        "message": "Invalid username/password"
-    })
-  })
-});
+router.post('/v1/signin',
+  function(req, res, next) {
+    console.log(req.body);
+    req.username = req.body.username;
+    req.password = req.body.password;
+    next();
+  },
+  passport.authenticate('local'),
+  function(req, res, next) {
+    res.end();
+  }
+);
 
 module.exports = router;
