@@ -1,14 +1,14 @@
-/*html, body, .wrapper{
+html, body, .wrapper{
   height: 100%;
-}*/
+}
 
 html {
-  height: 100%;
+  min-height: 100%;
   width: 100%;
   background-image: url('../img/building-lowres.jpg');
-  background-repeat: none;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
   background-position: center;
-  position: fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -22,6 +22,10 @@ body {
 
 a {
   /*color: #00B7FF;*/
+  color: #fff;
+}
+
+label {
   color: #fff;
 }
 
@@ -411,11 +415,11 @@ a.button:hover{
 
 
 .odd{
-  background: rgba(20, 20, 20, 0.03);
+  background: #fff;
 }
 
 .even{
- background: white;
+ background: #fff;
 }
 
 
