@@ -1,17 +1,17 @@
 <nav role="navigation">
   <span class="icon-panel navbar-left">
     <!-- <img src="/app/nav/fount_logo.gif" class="logo"></img> -->
-    <a class="icon" ui-sref="app.categories" autoscroll='false'>Fount</a>
-    <a class="explore" ui-sref="app.categories" style="margin-left: 20px"
+    <a class="icon" ui-sref="index" autoscroll='false'>Fount</a>
+    <a class="explore" ui-sref="index" style="margin-left: 20px"
        autoscroll='false'>Explore</a>
   </span>
 
   <span class="auth-panel navbar-right">
-    <a class="button" ng-hide="isAuth()" ui-sref="app.submitPost">Submit post</a>
-    <a class="button" ng-hide="isAuth()" ui-sref="app.submitSubcat">Submit subcategory </a>
-    <a class="button" ng-hide="isAuth()" ui-sref="app.createCategory">Create Category</a>
-    <a class="button auth" ng-hide="isAuth()" ui-sref="app.signup" autoscroll='false'>Signup</a>
-    <a class="button auth" ng-hide="isAuth()" ui-sref="app.signin" autoscroll='false'>Signin</a>
+    <a class="button" ng-hide="isAuth()" ui-sref="index.submitPost">Submit post</a>
+    <a class="button" ng-hide="isAuth()" ui-sref="index.submitSubcat">Submit subcategory </a>
+    <a class="button" ng-hide="isAuth()" ui-sref="index.submitCategory">Create Category</a>
+    <a class="button auth" ng-hide="isAuth()" ui-sref="index.signup" autoscroll='false'>Signup</a>
+    <a class="button auth" ng-hide="isAuth()" ui-sref="index.signin" autoscroll='false'>Signin</a>
     <a class="button" ng-show="isAuth()">Logout</a>
   </span>
 </nav>
