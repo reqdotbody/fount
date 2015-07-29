@@ -1,6 +1,6 @@
-html, body, .wrapper{
+/*html, body, .wrapper{
   height: 100%;
-}
+}*/
 
 html {
   min-height: 100%;
@@ -241,6 +241,17 @@ a.button:hover{
   color: #4a4a4a;
   font-family: 'Open Sans', Helvetica;
   font-size: 2.2em;
+  font-weight: 500;
+  color: #333;
+  /*color: rgba(255, 255, 255, 0.95);*/
+  word-wrap: break-word;
+  /*text-transform: uppercase;*/
+}
+
+.postTitle {
+  color: #4a4a4a;
+  font-family: 'Open Sans', Helvetica;
+  font-size: 1.1em;
   font-weight: 500;
   color: #333;
   /*color: rgba(255, 255, 255, 0.95);*/
