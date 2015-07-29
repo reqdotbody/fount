@@ -1,6 +1,6 @@
-angular.module('fount.createCategory', [])
+angular.module('fount.submitCategory', [])
 
-.controller('CreateCategoryController', function($scope, $http, $state){
+.controller('SubmitCategoryController', function($scope, $http, $state){
 
   $scope.name = "";
   $scope.url = "";
@@ -15,6 +15,6 @@ angular.module('fount.createCategory', [])
       console.log(results);
     });
 
-    $state.go("app.categories");
+    $state.go("index");
   }
 });

@@ -26,7 +26,7 @@ angular.module('fount.submitSubcat', [])
         console.log(data);
       });
 
-    $state.go("app.categories.subcategories.results", 
+    $state.go("index.subcategories.results", 
       { category: $scope.selectedCategory.name, 
         subcategory: $scope.newSubcatName
       });
