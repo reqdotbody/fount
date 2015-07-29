@@ -20,6 +20,7 @@ angular.module('fount', [
 })
 
 .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider){
+  $urlRouterProvider.otherwise('/');
   $stateProvider
   .state('index', {
     url: '/',
@@ -68,7 +69,16 @@ angular.module('fount', [
     templateUrl: '/app/auth/sign_in_view.html',
     controller: 'AuthController'
   })
-
+  .state('index.subcategories', {
+    url: '/{category}',
+    templateUrl: '/app/subcategories/subcategory_view.html',
+    controller: 'SubcategoryController',
+  })
+  .state('index.subcategories.results', {
+    url: '/{subcategory}',
+    templateUrl: '/app/results/results_view.html',
+    controller: 'ResultsController'
+  })
 
 
   // $urlRouterProvider.otherwise('/all');

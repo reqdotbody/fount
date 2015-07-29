@@ -15,6 +15,6 @@ angular.module('fount.submitCategory', [])
       console.log(results);
     });
 
-    $state.go("app.categories");
+    $state.go("index");
   }
 });

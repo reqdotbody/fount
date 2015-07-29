@@ -3,13 +3,13 @@
   <hr>
   <ul class="searchResults">
     <li ng-repeat="subcat in subcats = (subcategories | orderBy: 'subcategory'| filter: searchForm)" class="subcategory">
-      <a ui-sref="app.categories.subcategories.results({subcategory: subcat.subcategory, category: subcat.parentCategory})" ng-click="emptySearchForm()">
+      <a ui-sref="index.subcategories.results({subcategory: subcat.subcategory, category: subcat.parentCategory})" ng-click="emptySearchForm()">
         {{subcat.subcategory}}
         ({{subcat.parentCategory}})
       </a>
     </li>
   </ul>
   <div ng-if="subcats.length === 0">
-      <h5>Oh snap! <br> There's no {{searchForm}} subcategory yet... <a ui-sref="app.submitSubcat" ng-click="emptySearchForm()">Make it?</a></h5>
+      <h5>Oh snap! <br> There's no {{searchForm}} subcategory yet... <a ui-sref="index.submitSubcat" ng-click="emptySearchForm()">Make it?</a></h5>
   </div>
 </div>
