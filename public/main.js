@@ -80,7 +80,7 @@ angular.module('fount', [
     controller: 'ResultsController'
   })
 
-
+  // Old code from the last project
   // $urlRouterProvider.otherwise('/all');
   // $stateProvider
   //   //CHANGE TEMPLATE URL PATH NAMES DUE TO CASE DISCREPANCY
