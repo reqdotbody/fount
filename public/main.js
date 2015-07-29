@@ -20,7 +20,8 @@ angular.module('fount', [
 })
 
 .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider){
-  $stateProvider.state('index', {
+  $stateProvider
+  .state('index', {
     url: '/',
     views: {
       jumbo: { 
@@ -30,6 +31,15 @@ angular.module('fount', [
       content: {
         templateUrl: 'app/Categories/categories_view.html',
         controller: 'CategoryController'
+      }
+    }
+  })
+  .state('dashboard', {
+    url: '/dashboard',
+    views: {
+      jumbo: {
+        templateUrl: 'app/dashboard/dashboard.html',
+        controller: 'DashboardController'
       }
     }
   })
@@ -138,10 +148,5 @@ angular.module('fount', [
   //     url: '/{subcategory}',
   //     templateUrl: '/app/results/results_view.html',
   //     controller: 'ResultsController'
-  //   })
-  //   .state('app.mainPage.createCategory', {
-  //     url: '/create-category',
-  //     templateUrl: '/app/submit/createCategory.html',
-  //     controller: 'CreateCategoryController'
   //   })
 }]);
