@@ -23,14 +23,7 @@ knex.migrate.latest([config]);
 
 STATICFILES = path.join(process.env.PWD, 'bower_components');
 
-/* these are a hot fix for our directories that are mixed case*/
-// to-do: fix these mixed cased directories
 app.use('/app',express.static(path.join(process.env.PWD,'public','App')));
-app.use('/app/auth',express.static(path.join(process.env.PWD,'public','App','Auth')))
-app.use('/app/categories',express.static(path.join(process.env.PWD,'public','App','Categories')))
-app.use('/app/results',express.static(path.join(process.env.PWD,'public','App','Results')))
-app.use('/app/subcategories',express.static(path.join(process.env.PWD,'public','App','Subcategories')))
-/* end hot fix */
 
 // view engine setup
 app.get('/', function(req,res){
