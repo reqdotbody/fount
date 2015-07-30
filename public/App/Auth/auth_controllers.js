@@ -31,7 +31,6 @@ angular.module('fount.auth', [])
 
       //Redirect to home
       $state.go("index");
-
     })
     .error(function(err){
       throw err;

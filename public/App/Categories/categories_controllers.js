@@ -27,4 +27,23 @@ angular.module('fount.category', [])
 
   $scope.getCategories();
 
+  $scope.animate = function(index){ 
+    var pointer = angular.element('#cat'+index)
+    // console.log(pointer.attr('class'))
+      .removeClass('fadeIn')
+      .addClass('animated pulse infinite');
+  }
+
+  $scope.deanimate = function(index){
+    angular.element('#cat'+index).removeClass('animated pulse');
+  }
+
+  $scope.catId = function(index){
+    return "cat" + index;
+  }
+
+  $scope.initAnimate = function(index){
+    // console.log(index);
+    var pointer = angular.element('#cat'+index).removeClass('animated fadeIn')
+  }
 });
