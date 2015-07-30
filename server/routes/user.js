@@ -46,17 +46,6 @@ user.getMySubcategories = function(req, res, next) {
           .where({
             id : row.subcat_id
           })
-        // .then(function(subcatRow) {
-        //   console.log(subcatRow);
-        //   knex.select('name')
-        //   .from('categories')
-        //   .where({
-        //     id : subcatRow[0].cat_id
-        //   })
-        //   .then(function(catRow) {
-        //     res.json(catRow);
-        //   })
-        // })
       })
 
       Promise.all(fr)
@@ -90,6 +79,21 @@ user.getMySubcategories = function(req, res, next) {
     .catch(function(err) {
       console.log(err);
       res.json(err);
+    })
+  }
+}
+
+user.getMySubcategories = function(req, res, next) {
+  if(!req.isAuthenticated()) {
+    res.json("You are not logged in");
+  } else {
+    knex('follows')
+    .join('subcategories', 'follows.subcat_id', '=', 'subcategories.id')
+    .join('categories', 'subcategories.cat_id', '=', 'categories.id')
+    .select('categories.name as Category', 'subcategories.name as Subcategory')
+    .then(function(results) {
+      console.log(results);
+      res.json(results);
     })
   }
 }
