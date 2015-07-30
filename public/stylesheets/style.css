@@ -302,6 +302,9 @@ a.button:hover{
 
 .categoryTitle{
   margin-bottom: 20px;
+  display: inline;
+  vertical-align: middle;
+  margin-right: 15px;
 }
 
 .subcategory{

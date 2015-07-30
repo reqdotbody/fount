@@ -24,6 +24,12 @@ angular.module('fount.subcategory', [])
       });
   }
 
+  $scope.updateSubCategory = function(subcategoryObj){
+    CurrentCategory.subCategory = subcategoryObj.subcategory;
+    CurrentCategory.subCategoryId = subcategoryObj.subcatId.subcategory_id;
+    console.log(CurrentCategory);
+  }
+
   $scope.getSomeSubcategories();
 
 });

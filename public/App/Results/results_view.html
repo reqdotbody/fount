@@ -1,5 +1,9 @@
 <div id="submissions">
-  <h2>{{subcategory}}</h2>
+  <span>
+    <h2 class="categoryTitle">{{subcategory}}</h2>
+    <a class="button" ng-hide="isAuth()" ui-sref="index.submitPost">Submit post</a>
+  </span>
+
   <hr>
   <div ng-repeat="resource in results | orderBy: '-votes'" class="submission" ng-class-odd="'odd'" ng-class-even="'even'">
     <span class="rank">
