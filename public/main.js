@@ -28,13 +28,14 @@ angular.module('fount', [
     views: {
       jumbo: {
         templateUrl: 'app/search/search.html',
-        controller: 'MainController'
+        // controller: 'MainController'
       },
       content: {
         templateUrl: 'app/Categories/categories_view.html',
         controller: 'CategoryController'
       }
-    }
+    },
+    controller: 'MainController'
   })
   .state('dashboard', {
     url: '/dashboard',
@@ -160,4 +161,4 @@ angular.module('fount', [
   //     templateUrl: '/app/results/results_view.html',
   //     controller: 'ResultsController'
   //   })
-}]);
+}])

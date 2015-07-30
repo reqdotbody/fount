@@ -2,7 +2,6 @@ angular.module('fount.category', [])
 
 .controller('CategoryController', function ($scope, $http, $window, $location, CurrentCategory){
 
-  console.log(CurrentCategory.category);
   $scope.categories = [];
 
   $scope.getCategories = function(){
