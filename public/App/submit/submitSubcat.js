@@ -3,14 +3,26 @@ angular.module('fount.submitSubcat', [])
 .controller('SubmitSubcatController', function($scope, $http, $state, CurrentCategory){
 
   $scope.newSubcatName = "";
+  $scope.category = CurrentCategory.category;
 
   $scope.allCategories = [];
   $scope.selectedCategory = "";
+  console.log("current cateogry in sumbitsubcat : ", CurrentCategory.category);
+
 
   $scope.createSubcat = function(){
+    var categoryId;
+
+    //goes through the array of all categories and finds id of the current category
+    $scope.allCategories.forEach(function (categoryObj){
+      if (categoryObj.name === CurrentCategory.category){
+        categoryId = categoryObj.id;
+      }
+    });
+
     var message = {
       name: $scope.newSubcatName,
-      cat_id: $scope.selectedCategory.id
+      cat_id: categoryId,
     }
 
     $http.post('api/v1/submit/subcategory', message).
@@ -36,6 +48,7 @@ angular.module('fount.submitSubcat', [])
     $http.get('api/v1/categories').
       success(function(data, status, headers, config) {
         $scope.allCategories = data;
+        console.log(data);
       }).
       error(function(data, status, headers, config) {
         console.log('error');

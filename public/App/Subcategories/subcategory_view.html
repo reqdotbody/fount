@@ -1,10 +1,15 @@
 <div id='container' ui-view autoscroll='false'>
-  <h2 class="categoryTitle">{{category}}</h2>
+  <span>
+    <h2 class="categoryTitle">{{category}}</h2>
+    <a class="button" ng-hide="isAuth()" ui-sref="index.submitSubcat">Submit subcategory </a>
+  </span>
+
   <hr>
   <ul>
     <li ng-repeat="subcat in subcats = (subcategories | orderBy: 'subcategory'| filter: searchForm)" class="subcategory">
-      <a ui-sref="index.subcategories.results({subcategory: subcat.subcategory, subcatID: subcat})" >
+      <a ui-sref="index.subcategories.results({subcategory: subcat.subcategory, subcatID: subcat})" ng-click="updateSubCategory({ subcategory: subcat.subcategory, subcatId: subcat })">
         {{subcat.subcategory}}
+        {{subcat.subcategory_id}}
       </a>
     </li>
   </ul>
