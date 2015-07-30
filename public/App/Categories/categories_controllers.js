@@ -1,7 +1,8 @@
 angular.module('fount.category', [])
 
-.controller('CategoryController', function($scope, $http, $window, $location){
+.controller('CategoryController', function ($scope, $http, $window, $location, CurrentCategory){
 
+  console.log(CurrentCategory.category);
   $scope.categories = [];
 
   $scope.getCategories = function(){
@@ -19,7 +20,11 @@ angular.module('fount.category', [])
         console.log(data);
       });
   }
-  
+
+  $scope.updateCategory = function(categoryObj){
+    CurrentCategory.category = categoryObj.category;
+  }
+
   $scope.getCategories();
 
 });

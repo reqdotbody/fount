@@ -3,7 +3,7 @@
     <div class="row-fluid category-row">
       <div class="col-md-4 category-container" ng-repeat="cat in categories">
         <div class="category">
-          <span ui-sref="index.subcategories({ category: cat.name })">
+          <span ui-sref="index.subcategories({ category: cat.name })" ng-click="updateCategory({ category: cat.name })">
             <a class="title">{{cat.name}}</a>
             <div class="stat">
               <i class="fa fa-star fa-fw"></i>129
