@@ -18,6 +18,14 @@ angular.module('fount.submitPost', [])
   }
 
   $scope.getSubcats = function(){
+    $http.get('/myfollows')
+    .success(function(data) {
+      console.log(data);
+    })
+    .error(function(data) {
+      console.log('error', data);
+    })
+
     $http.get('api/v1/subcategories/all').
       success(function(data, status, headers, config) {
         $scope.subCategories = data;

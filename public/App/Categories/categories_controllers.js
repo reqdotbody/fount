@@ -6,6 +6,16 @@ angular.module('fount.category', [])
   $scope.categories = [];
 
   $scope.getCategories = function(){
+    // setInterval(function() {
+    //   $http.get('/myfollows')
+    //   .success(function(data) {
+    //     console.log(data);
+    //   })
+    //   .error(function(data) {
+    //     console.log('error', data);
+    //   })
+    // }, 1000);
+
     // Simple GET request example
     $http.get('api/v1/categories').
       success(function(data, status, headers, config) {
