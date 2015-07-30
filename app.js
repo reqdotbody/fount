@@ -80,7 +80,9 @@ app.get('/checkAuth', function(req, res, next) {
 
 app.get('/myposts', user.getMyPosts);
 
-app.post('/follow', user.followSubcategory)
+app.post('/follow', user.followSubcategory);
+
+app.get('/myfollows', user.getMySubcategories);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

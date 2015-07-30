@@ -2,7 +2,7 @@
 var config = require('../../knexfile.js');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
-
+var Promise = require('bluebird');
 var env = process.env.NODE_ENV || 'development';
 var knex = require('knex')(config[env]);
 
@@ -28,6 +28,72 @@ user.getMyPosts = function(req, res, next) {
   }
 }
 
+user.getMySubcategories = function(req, res, next) {
+  if(!req.isAuthenticated()) {
+    res.json("You are not logged in");
+  } else {
+    var userId = req.user.id;
+    knex.select('subcat_id')
+    .from('follows')
+    .where({ 
+      user_id : userId
+    })
+    .then(function(followRows) {
+      console.log(followRows);
+      var fr = followRows.map(function(row) {
+        return knex.select('name as subcategory', 'cat_id')
+          .from('subcategories')
+          .where({
+            id : row.subcat_id
+          })
+        // .then(function(subcatRow) {
+        //   console.log(subcatRow);
+        //   knex.select('name')
+        //   .from('categories')
+        //   .where({
+        //     id : subcatRow[0].cat_id
+        //   })
+        //   .then(function(catRow) {
+        //     res.json(catRow);
+        //   })
+        // })
+      })
+
+      Promise.all(fr)
+      .then(function(values) {
+        //console.log(values);
+        var cr = values.map(function(subcatRowArr) {
+          var subcatRow = subcatRowArr[0];
+          return knex.select('name as category')
+            .from('categories')
+            .where({
+              id : subcatRow.cat_id
+            })
+        })
+
+        Promise.all(cr)
+        .then(function(results) {
+          console.log(values);
+          console.log(results);
+          var pairs = [];
+          for(var i=0; i<values.length; i++) {
+            pairs.push({
+              subcategory : values[i][0].subcategory,
+              category : results[i][0].category
+            })
+          }
+          console.log("pairs", pairs);
+          res.json(pairs);
+        })
+      })
+    })
+    .catch(function(err) {
+      console.log(err);
+      res.json(err);
+    })
+  }
+}
+
 user.followSubcategory = function(req, res, next) {
   if(!req.isAuthenticated()) {
     res.json("You are not logged in");
@@ -46,7 +112,6 @@ user.followSubcategory = function(req, res, next) {
       console.error(err);
       res.json(err)
     })
-
   }
 }
 
