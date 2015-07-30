@@ -9,6 +9,7 @@
     <li ng-repeat="subcat in subcats = (subcategories | orderBy: 'subcategory'| filter: searchForm)" class="subcategory">
       <a ui-sref="index.subcategories.results({subcategory: subcat.subcategory, subcatID: subcat})" ng-click="updateSubCategory({ subcategory: subcat.subcategory, subcatId: subcat })">
         {{subcat.subcategory}}
+        {{subcat.subcategory_id}}
       </a>
     </li>
   </ul>

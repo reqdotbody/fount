@@ -262,6 +262,7 @@ a.button:hover{
 
 .title:hover{
   color: #4a4a4a;
+  cursor: pointer;
 }
 
 .title:visited{
