@@ -16,6 +16,7 @@ var knex = require('knex')(config[env]);
 var app = express();
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
+var user = require('./server/routes/user.js');
 
 process.env.PWD = process.cwd()
 
@@ -76,6 +77,8 @@ app.use('/api', api);
 app.get('/checkAuth', function(req, res, next) {
   res.json(req.isAuthenticated());
 })
+
+app.get('/myposts', user.getMyPosts);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
