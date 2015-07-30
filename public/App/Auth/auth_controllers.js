@@ -30,7 +30,7 @@ angular.module('fount.auth', [])
       console.log("Current userID: " + $rootScope.currentUser.userID);
 
       //Redirect to home
-      $state.go("app.categories");
+      $state.go("index");
 
     })
     .error(function(err){
