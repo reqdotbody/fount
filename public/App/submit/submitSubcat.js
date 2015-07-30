@@ -26,22 +26,25 @@ angular.module('fount.submitSubcat', [])
     }
 
     $http.post('api/v1/submit/subcategory', message).
-      success(function(data, status, headers, config) {
-        // this callback will be called asynchronously
-        // when the response is available
-        console.log(data);
-      }).
-      error(function(data, status, headers, config) {
-        // called asynchronously if an error occurs
-        // or server returns response with an error status.
-        console.log("error");
-        console.log(data);
-      });
+      then(function(data, status, headers, config){
+        console.log("after the post request");
+        $state.go("index.subcategories",
+          { category: $scope.category,
+            // subcategory: $scope.newSubcatName
+          });
+      })
+      // success(function(data, status, headers, config) {
+      //   // this callback will be called asynchronously
+      //   // when the response is available
+      //   console.log(data);
+      // }).
+      // error(function(data, status, headers, config) {
+      //   // called asynchronously if an error occurs
+      //   // or server returns response with an error status.
+      //   console.log("error");
+      //   console.log(data);
+      // });
 
-    $state.go("index.subcategories.results",
-      { category: $scope.selectedCategory.name,
-        subcategory: $scope.newSubcatName
-      });
   }
 
   $scope.getAllCategories = function(){
