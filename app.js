@@ -73,6 +73,10 @@ passport.deserializeUser(function(user, done) {
 
 app.use('/api', api);
 
+app.get('/checkAuth', function(req, res, next) {
+  res.json(req.isAuthenticated());
+})
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   console.log("entered 404 error handler");
