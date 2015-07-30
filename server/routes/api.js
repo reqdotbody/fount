@@ -102,20 +102,20 @@ router.get('/v1/:category/:subcategory', function (req, res, next) {
 
 
 /* POST a link. */
-router.post('/v1/submit', 
+router.post('/v1/submit',
   function(req,res,next) {
     console.log(req.user);
     console.log(req.session);
 
     next();
   },
-
+// add auth check 
   function(req, res, next) {
     knex('links')
     .insert({
       title: req.body.title,
       url: req.body.url,
-      user_id: 1, /// change!!!
+      user_id: req.user.id,
       subcat_id: req.body.subcat_id
     })
     .then(function(inserts) {
@@ -130,7 +130,7 @@ router.post('/v1/submit',
 
 /* Create a Category */
 router.post('/v1/submit/category', function(req, res, next) {
-
+  console.log("user is " + req.isAuthenticated() + "logged in");
   //This POST request should look like this:
   //{'name':[Category Name in string],img:[link to image in string format]}
   knex('categories')
