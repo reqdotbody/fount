@@ -2,6 +2,7 @@ angular.module('fount.submitPost', [])
 
 .controller('SubmitPostController', function($scope, $http, $state, $rootScope, CurrentCategory){
   $scope.subCategories = [];
+  $scope.subCategory = CurrentCategory.subCategory;
 
   $scope.post = {
     title: '',

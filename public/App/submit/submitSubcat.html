@@ -1,6 +1,6 @@
 <div class="container" id='submitPost'>
-  <div class="col-md-6 col-md-offset-3">
-    <h2>Submit new subcategory</h2>
+  <div class="col-md-6">
+    <h2>Submit A New {{category}} Subcategory</h2>
     <form name="submitForm" ng-submit='createSubcat()' novalidate>
       <div class="form-group postTitle">
         <label id="subcatName" class= "explore">Subcategory Name</label>
@@ -11,7 +11,7 @@
       <div class="form-group postCat">
         <select ng-model='selectedCategory' ng-options="cat.name for cat in allCategories | orderBy:'category'">
           <option value="">Select category</option>
-          
+
         </select>
       </div>
 

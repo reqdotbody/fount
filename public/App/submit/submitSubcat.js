@@ -3,6 +3,7 @@ angular.module('fount.submitSubcat', [])
 .controller('SubmitSubcatController', function($scope, $http, $state, CurrentCategory){
 
   $scope.newSubcatName = "";
+  $scope.category = CurrentCategory.category;
 
   $scope.allCategories = [];
   $scope.selectedCategory = "";
