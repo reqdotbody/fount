@@ -46,7 +46,7 @@ angular.module('fount.submitPost', [])
       });
 
     
-    $state.go("app.categories.subcategories.results", 
+    $state.go("index.subcategories.results", 
       { category: $scope.post.subcat.parentCategory, 
         subcategory: $scope.post.subcat.subcategory
       });
