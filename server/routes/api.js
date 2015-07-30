@@ -108,8 +108,7 @@ router.post('/v1/submit',
     console.log(req.session);
 
     next();
-  },
-// add auth check 
+  }, checkLogin,
   function(req, res, next) {
     knex('links')
     .insert({
@@ -129,8 +128,8 @@ router.post('/v1/submit',
 );
 
 /* Create a Category */
-router.post('/v1/submit/category', function(req, res, next) {
-  console.log("user is " + req.isAuthenticated() + "logged in");
+router.post('/v1/submit/category', checkLogin, function(req, res, next) {
+  // console.log("user is " + req.isAuthenticated() + "logged in");
   //This POST request should look like this:
   //{'name':[Category Name in string],img:[link to image in string format]}
   knex('categories')
@@ -149,7 +148,7 @@ router.post('/v1/submit/category', function(req, res, next) {
 
 
 /* Create a sub-category */
-router.post('/v1/submit/subcategory', function(req, res, next) {
+router.post('/v1/submit/subcategory', checkLogin, function(req, res, next) {
   //This POST request should look like this:
   //{'name':[Sub-Category Name in string],cat_id:[Parent Category as number]}
   var subName = req.body.name
@@ -217,7 +216,7 @@ router.get('/v1/*', function(req, res, next) {
 //Object should be formatted like this:
 // {vote:[number either 1 or -1 ], link_id: [number the link_id of the link]}
 
-router.post('/v1/link/vote', function(req, res, next) {
+router.post('/v1/link/vote', checkLogin, function(req, res, next) {
   knex('session').select('userID').where({
     sid: req.sessionID
   })
@@ -335,5 +334,13 @@ router.post('/v1/signin',
     res.json(req.user);
   }
 );
+
+function checkLogin (req, res, next) {
+  if (req.isAuthenticated()) {
+    next();
+  } else {
+    res.end('Please Login');
+  }
+}
 
 module.exports = router;
