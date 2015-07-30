@@ -5,6 +5,7 @@ var session = require('express-session');
 var config = require('../../knexfile.js');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
+
 var env = process.env.NODE_ENV || 'development';
 var knex = require('knex')(config[env]);
 
@@ -101,22 +102,31 @@ router.get('/v1/:category/:subcategory', function (req, res, next) {
 
 
 /* POST a link. */
-router.post('/v1/submit', function(req, res, next) {
-  knex('links')
-  .insert({
-    title: req.body.title,
-    url: req.body.url,
-    user_id: req.session.userID,
-    subcat_id: req.body.subcat_id
-  })
-  .then(function(inserts) {
-    res.json(inserts)
-  })
-  .catch(function(err) {
-    console.error(err);
-    res.json(err)
-  })
-});
+router.post('/v1/submit', 
+  function(req,res,next) {
+    console.log(req.user);
+    console.log(req.session);
+
+    next();
+  },
+
+  function(req, res, next) {
+    knex('links')
+    .insert({
+      title: req.body.title,
+      url: req.body.url,
+      user_id: 1, /// change!!!
+      subcat_id: req.body.subcat_id
+    })
+    .then(function(inserts) {
+      res.json(inserts)
+    })
+    .catch(function(err) {
+      console.error(err);
+      res.json(err)
+    })
+  }
+);
 
 /* Create a Category */
 router.post('/v1/submit/category', function(req, res, next) {
