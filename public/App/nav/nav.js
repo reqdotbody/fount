@@ -3,7 +3,11 @@ angular.module('fount.nav', [])
 .controller('NavController', function($scope, $window){
 
   $scope.isAuth = function(){
-    //TODO -- build the Auth factory in services
+    // return $http({
+    //   method: 'GET',
+    //   url: '/checkAuth'
+    // }).then(function(isAuthenticated){ return isAuthenticated });
+  
   };
 
   $scope.logout = function(){

@@ -2,7 +2,7 @@
   <div class="categories container-fluid" ui-view autoscroll='false'>
     <div class="row-fluid category-row">
       <div class="col-md-4 category-container" ng-repeat="cat in categories">
-        <div class="category" id="{{'cat'+$index}}" ng-mouseenter="animate($index)" ng-mouseleave="deanimate($index)">
+        <div class="category animated fadeIn" id="{{'cat'+$index}}" ng-mouseenter="animate($index)" ng-mouseleave="deanimate($index)" ng-init="initAnimate($index)">
           <span ui-sref="index.subcategories({ category: cat.name })" ng-click="updateCategory({ category: cat.name })">
             <a class="title">{{cat.name}}</a>
             <div class="stat">
