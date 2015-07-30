@@ -1,6 +1,6 @@
 angular.module('fount.submitSubcat', [])
 
-.controller('SubmitSubcatController', function($scope, $http, $state){
+.controller('SubmitSubcatController', function($scope, $http, $state, CurrentCategory){
 
   $scope.newSubcatName = "";
 
@@ -26,8 +26,8 @@ angular.module('fount.submitSubcat', [])
         console.log(data);
       });
 
-    $state.go("index.subcategories.results", 
-      { category: $scope.selectedCategory.name, 
+    $state.go("index.subcategories.results",
+      { category: $scope.selectedCategory.name,
         subcategory: $scope.newSubcatName
       });
   }
@@ -42,7 +42,7 @@ angular.module('fount.submitSubcat', [])
         console.log(data);
       });
   }
-  
+
   $scope.getAllCategories();
 
 });

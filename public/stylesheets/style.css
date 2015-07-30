@@ -3,12 +3,12 @@
 }*/
 
 html {
-  height: 100%;
+  min-height: 100%;
   width: 100%;
-  background-image: url('../img/building-lowres.jpeg');
-  background-repeat: none;
+  background-image: url('../img/building-lowres.jpg');
+  background-attachment: fixed;
+  background-repeat: no-repeat;
   background-position: center;
-  position: fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -22,6 +22,10 @@ body {
 
 a {
   /*color: #00B7FF;*/
+  color: #fff;
+}
+
+label {
   color: #fff;
 }
 
@@ -46,6 +50,7 @@ ul{
 #searchbox {
   border-bottom: 1px solid #fff;
 }
+
 .large-search-container{
   display: inline-block;
   position: relative;
@@ -244,6 +249,17 @@ a.button:hover{
   /*text-transform: uppercase;*/
 }
 
+.postTitle {
+  color: #4a4a4a;
+  font-family: 'Open Sans', Helvetica;
+  font-size: 1.1em;
+  font-weight: 500;
+  color: #333;
+  /*color: rgba(255, 255, 255, 0.95);*/
+  word-wrap: break-word;
+  /*text-transform: uppercase;*/
+}
+
 .title:hover{
   color: #4a4a4a;
 }
@@ -411,11 +427,11 @@ a.button:hover{
 
 
 .odd{
-  background: rgba(20, 20, 20, 0.03);
+  background: #fff;
 }
 
 .even{
- background: white;
+ background: #fff;
 }
 
 

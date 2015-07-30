@@ -2,7 +2,7 @@ angular.module('fount', [
   'fount.auth',
   'fount.category',
   'fount.results',
-  'fount.subcategory', 
+  'fount.subcategory',
   'fount.search',
   'fount.nav',
   'fount.content',
@@ -11,6 +11,7 @@ angular.module('fount', [
   'fount.subcatSearch',
   'fount.submitCategory',
   'fount.dashboard',
+  'fount.helpers',
   'ui.router'
   ])
 //add other modules as are created for view
@@ -25,7 +26,7 @@ angular.module('fount', [
   .state('index', {
     url: '/',
     views: {
-      jumbo: { 
+      jumbo: {
         templateUrl: 'app/search/search.html',
         controller: 'MainController'
       },
@@ -92,7 +93,7 @@ angular.module('fount', [
   //         controller: 'NavController as Nav'
   //       },
   //       '': {
-  //         templateUrl: 'app/mainPage/mainPage.html'   
+  //         templateUrl: 'app/mainPage/mainPage.html'
   //       }
   //     }
   //   })

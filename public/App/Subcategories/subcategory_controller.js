@@ -1,6 +1,6 @@
 angular.module('fount.subcategory', [])
 
-.controller('SubcategoryController', function($scope, $http, $stateParams){
+.controller('SubcategoryController', function($scope, $http, $stateParams, CurrentCategory){
 
   $scope.subcategories = [];
   $scope.category = $stateParams.category;
@@ -25,5 +25,5 @@ angular.module('fount.subcategory', [])
   }
 
   $scope.getSomeSubcategories();
-  
+
 });
