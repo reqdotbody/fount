@@ -1,9 +1,12 @@
 <nav role="navigation">
   <span class="icon-panel navbar-left">
     <!-- <img src="/app/nav/fount_logo.gif" class="logo"></img> -->
-    <a class="icon" ui-sref="index" autoscroll='false'>Fount</a>
-    <a class="explore" ui-sref="index" style="margin-left: 20px"
-       autoscroll='false'>Explore</a>
+    <a class="icon" ui-sref="index" autoscroll='false' 
+    ng-class="{hovering: lol, animated: lol, swing: lol, infinite: lol}" 
+    ng-mouseover="lol=true"
+    ng-mouseleave="lol=false">Fount</a>
+    <!-- <a class="explore" ui-sref="index" style="margin-left: 20px" -->
+       <!-- autoscroll='false'>Explore</a> -->
   </span>
 
   <span class="auth-panel navbar-right">

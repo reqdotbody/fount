@@ -121,10 +121,10 @@ header{
   text-transform: uppercase;
 }
 
-a.icon:hover,
-a.explore:hover{
+a.icon:hover, a.explore:hover{
   text-decoration: none;
-  color: rgba(0,0,0,0.7);
+  /*color: rgba(0,0,0,0.7);*/
+  color: white;
 }
 
 .auth-panel{
