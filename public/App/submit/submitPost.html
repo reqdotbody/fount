@@ -9,7 +9,8 @@
 
       <div class="form-group postUrl">
         <label id="postUrl" class= "explore">URL</label>
-        <input class="form-control" name="postURL" type='text' ng-model="post.url">
+        <input class="form-control" name="postURL" type='text' ng-model="post.url" ng-change="validateUrl()">
+        <div ng-show="urlWarning">Please enter a valid URL</div>
       </div>
 
 <!--       <div class="form-group postSubcat">
