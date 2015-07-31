@@ -18,7 +18,7 @@ angular.module('fount', [
 
 .controller("MainController", function($scope, $rootScope){
   $rootScope.searchForm = {
-    content: "hi"
+    content: ""
   }
 })
 
@@ -37,8 +37,8 @@ angular.module('fount', [
         controller: 'CategoryController'
       },
       searchResults: {
-        templateUrl: 'app/subcategories/subcategories_searchbar_view.html',
-        controller: 'SubcategorySearchController'
+        templateUrl: 'app/search/search_results_view.html',
+        controller: 'SearchResultsController'
       }
     },
     //controller: 'MainController'
