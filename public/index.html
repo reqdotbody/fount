@@ -19,9 +19,9 @@
         <div ng-include="'app/nav/nav.html'" ng-controller="NavController"></div>
       </header>
       <div class="page">
-        <div ui-view="jumbo"></div>
+        <div ui-view="jumbo" ng-controller="MainController"></div>
         <div ui-view="content" ng-if="!searchForm.content.length"></div>
-        <!-- <div ui-view="searchResults" ng-if="searchForm.content.length"></div> -->
+        <div ui-view="searchResults" ng-if="searchForm.content.length"></div>
       </div>
 
     </div>

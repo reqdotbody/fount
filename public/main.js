@@ -18,7 +18,7 @@ angular.module('fount', [
 
 .controller("MainController", function($scope, $rootScope){
   $rootScope.searchForm = {
-    content: ""
+    content: "hi"
   }
 })
 
@@ -30,14 +30,18 @@ angular.module('fount', [
     views: {
       jumbo: {
         templateUrl: 'app/search/search.html',
-        // controller: 'MainController'
+        controller: 'SearchController'
       },
       content: {
         templateUrl: 'app/Categories/categories_view.html',
         controller: 'CategoryController'
+      },
+      searchResults: {
+        templateUrl: 'app/subcategories/subcategories_searchbar_view.html',
+        controller: 'SubcategorySearchController'
       }
     },
-    controller: 'MainController'
+    //controller: 'MainController'
   })
   .state('dashboard', {
     url: '/dashboard',
