@@ -104,10 +104,7 @@ user.followSubcategory = function(req, res, next) {
   } else {
     var userId = req.user.id;
     var subcatId = req.body.subCategoryId;
-    // check to see if user is following the subcat
 
-
-    // select query with userId and subcatID
     knex.select('user_id', 'subcat_id')
     .from('follows')
     .where({
@@ -115,12 +112,7 @@ user.followSubcategory = function(req, res, next) {
       subcat_id : subcatId
     })
     .then(function (results) {
-      // if length of array is greater 0
-      if (results.length > 0) {
-        // send error
-        console.log('results of follows select query ', results)
-        res.json("already following this category");
-      } else {
+      if (!results.length > 0) {
         knex('follows')
         .insert({
           user_id : userId,
@@ -135,7 +127,6 @@ user.followSubcategory = function(req, res, next) {
         });
       }
     })
-
   }
 }
 
