@@ -19,9 +19,9 @@
         <div ng-include="'app/nav/nav.html'" ng-controller="NavController"></div>
       </header>
       <div class="page">
-        <div ui-view="jumbo"></div>
+        <div ui-view="jumbo" ng-controller="MainController"></div>
         <div ui-view="content" ng-if="!searchForm.content.length"></div>
-        <!-- <div ui-view="searchResults" ng-if="searchForm.content.length"></div> -->
+        <div ui-view="searchResults" ng-if="searchForm.content.length"></div>
       </div>
 
     </div>
@@ -39,6 +39,7 @@
     <script src="app/subcategories/subcategories_searchbar_controller.js"></script>
     <script src="app/subcategories/subcategory_controller.js"></script>
     <script src="app/search/search.js"></script>
+    <script src="app/search/search_results_controller.js"></script>
     <script src="app/nav/nav.js"></script>
     <script src="app/submit/submitPost.js"></script>
     <script src="app/submit/submitSubcat.js"></script>

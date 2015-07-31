@@ -17,7 +17,7 @@ angular.module('fount.subcatSearch', [])
 
   $scope.getAllSubcategories();
 
-  $scope.emptySearchForm = function(){
-    $rootScope.searchForm = "";
-  }
+  // $scope.emptySearchForm = function(){
+  //   $rootScope.searchForm = "";
+  // }
 });
