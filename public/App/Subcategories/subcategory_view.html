@@ -10,12 +10,18 @@
       <div class="row-fluid category-row">
         <div class="col-md-3 category-container" ng-repeat="subcat in subcats = (subcategories | orderBy: 'subcategory'| filter: searchForm)">
           <div class="category">
-            <span ui-sref="index.subcategories.results({subcategory: subcat.subcategory, subcatID: subcat})" ng-click="updateSubCategory({ subcategory: subcat.subcategory, subcatId: subcat })">
-              <a class="title sub">{{subcat.subcategory}}</a>
-              <div class="stat">
-                <i class="fa fa-star fa-fw"></i>129
+            <div>
+              <h3 ui-sref="index.subcategories.results({subcategory: subcat.subcategory, subcatID: subcat})" ng-click="updateSubCategory({ subcategory: subcat.subcategory, subcatId: subcat })" class="title sub">{{ subcat.subcategory }}</h3>
+              <div>
+                <a class="button subcat">follow</a>
               </div>
-            </span>
+              <div class="stat2">
+                <i class="fa fa-star fa-fw" ng-click="follow({subcatID: subcat})"></i>129
+              </div>
+              <div class="stat2">
+                <i class="fa fa-comments fa-fw"></i>129
+              </div>
+            </div>
           </div>
         </div>
       </div>

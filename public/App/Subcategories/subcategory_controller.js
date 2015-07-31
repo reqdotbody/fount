@@ -30,6 +30,16 @@ angular.module('fount.subcategory', [])
     console.log(CurrentCategory);
   }
 
+  $scope.follow = function(subcategoryObj){
+    $http({
+      url : '/follow',
+      method : 'POST',
+      data : subcategoryObj,
+    }).then(function(results){
+      console.log("successful post? : ", results);
+    })
+  }
+
   $scope.getSomeSubcategories();
 
 });

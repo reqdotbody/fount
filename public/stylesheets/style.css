@@ -187,6 +187,13 @@ a.button:hover{
   color: rgba(0,0,0,0.44);
 }
 
+.subcat {
+  float: right;
+  vertical-align: top;
+  color: #4a4a4a;
+  border-color: #4a4a4a;
+}
+
 /* END - Header */
 
 
@@ -235,7 +242,7 @@ a.button:hover{
   word-wrap: break-word;
   box-sizing: border-box;
   border-radius: 5px;
-  border-bottom: 10px solid #F4EEA8;
+  /*border-bottom: 10px solid #F4EEA8;*/
 
   -webkit-box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.23);
   -moz-box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.23);
@@ -250,6 +257,19 @@ a.button:hover{
   vertical-align: middle;
 }
 
+.stat2 {
+  float: left;
+  color: #4a4a4a;
+  margin-right: 10px;
+  vertical-align: middle;
+  cursor: pointer;
+  /*text-align: center;*/
+}
+
+.stat2:hover {
+  color: #7CA3AC;
+}
+
 
 
 .title {
@@ -258,10 +278,14 @@ a.button:hover{
   font-size: 2.2em;
   font-weight: 500;
   color: #333;
+  margin-top: 3px;
+  margin-bottom: 10px;
+  /*text-align: center;*/
   /*color: rgba(255, 255, 255, 0.95);*/
   word-wrap: break-word;
   /*text-transform: uppercase;*/
 }
+
 
 .postTitle {
   color: #4a4a4a;
