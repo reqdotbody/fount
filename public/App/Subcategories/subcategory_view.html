@@ -1,7 +1,7 @@
 <div id='container' ui-view autoscroll='false'>
   <span>
     <h2 class="categoryTitle">{{category}}</h2>
-    <a class="button" ng-if="!isAuth" ui-sref="index.submitSubcat">Submit subcategory </a>
+    <a class="button" ng-if="isAuth" ui-sref="index.submitSubcat">Submit subcategory </a>
   </span>
 
   <hr>
