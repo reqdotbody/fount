@@ -1,7 +1,7 @@
 angular.module('fount.results', [])
 
-.controller('ResultsController', function($scope, $http, $window, $location, $stateParams, $rootScope){
-  
+.controller('ResultsController', function($scope, $http, $window, $location, $stateParams, $rootScope, AuthFactory){
+  $scope.isAuth = AuthFactory.authStatus;
   $scope.results = [];
   $scope.category = $stateParams.category;
   $scope.subcategory = $stateParams.subcategory;
