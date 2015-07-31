@@ -7,7 +7,7 @@
           <div class="col-md-3 category-container" ng-repeat="subcat in mySubCategories">
             <div class="category">
               <div>
-                <h3 ui-sref="index.subcategories.results({subcategory: subcat.subcategory, subcatID: subcat})" ng-click="updateSubCategory({ subcategory: subcat.subcategory, subcatId: subcat })" class="title sub">{{ subcat.Subcategory }}</h3>
+                <h3 ui-sref="index.subcategories.results({subcategory: subcat.Subcategory, category: subcat.Category})" ng-click="updateSubCategory({ subcategory: subcat.subcategory, subcatId: subcat })" class="title sub">{{ subcat.Subcategory }}</h3>
                 <div class="stat2">
                   <i class="fa fa-star fa-fw"></i>129
                 </div>
