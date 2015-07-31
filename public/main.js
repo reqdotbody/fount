@@ -31,7 +31,7 @@ angular.module('fount', [
     views: {
       jumbo: {
         templateUrl: 'app/search/search.html',
-        controller: 'SearchController'
+        // controller: 'SearchController'
       },
       content: {
         templateUrl: 'app/Categories/categories_view.html',
