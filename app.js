@@ -80,6 +80,7 @@ app.get('/checkAuth', function(req, res, next) {
 
 app.get('/logout', function(req, res, next) {
   req.logout();
+  res.end();
 })
 
 app.get('/myposts', user.getMyPosts);
