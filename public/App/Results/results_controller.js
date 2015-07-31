@@ -5,6 +5,7 @@ angular.module('fount.results', [])
   $scope.results = [];
   $scope.category = $stateParams.category;
   $scope.subcategory = $stateParams.subcategory;
+  $scope.isAuth = AuthFactory.authStatus;
 
   $scope.getResults = function(){
     // Simple GET request

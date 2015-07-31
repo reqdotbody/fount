@@ -1,21 +1,19 @@
 angular.module('fount.nav', [])
 
-.controller('NavController', function($scope, $window, AuthFactory){
+.controller('NavController', function($scope, $window, $http, AuthFactory){
   $scope.isAuth = AuthFactory.authStatus;
   AuthFactory.getAuth()
 
   $scope.logout = function(){
-    $http({
-      method: 'POST',
-      url: '/logout',
-      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+    $http.get('/logout')
+    .success(function(data) {
+      AuthFactory.getAuth();
+      console.log(data);
+      $scope.message = data.message;
+      console.log($scope.message);
     })
-  .success(function(data) {
-    console.log(data);
-    $scope.message = data.message;
-  })
-  .error(function(err){
-    throw err;
-  })
+    .error(function(err){
+      throw err;
+    })
   };
 });
