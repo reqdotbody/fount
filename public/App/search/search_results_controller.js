@@ -1,4 +1,4 @@
-angular.module('fount.subcategory', [])
+angular.module('fount.searchResults', [])
 
 .controller('SearchResultsController', function($scope, $http, $stateParams, CurrentCategory, AuthFactory){
   $scope.isAuth = AuthFactory.authStatus;

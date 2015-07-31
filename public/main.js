@@ -12,6 +12,7 @@ angular.module('fount', [
   'fount.submitCategory',
   'fount.dashboard',
   'fount.helpers',
+  'fount.searchResults',
   'ui.router'
   ])
 //add other modules as are created for view

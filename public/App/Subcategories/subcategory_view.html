@@ -8,7 +8,7 @@
 
     <div class="categories container-fluid" ui-view autoscroll='false'>
       <div class="row-fluid category-row">
-        <div class="col-md-3 category-container" ng-repeat="subcat in subcats = (subcategories | orderBy: 'subcategory'| filter: searchForm)">
+        <div class="col-md-3 category-container" ng-repeat="subcat in subcats = (subcategories | orderBy: 'subcategory')">
           <div class="category">
             <div>
               <h3 ui-sref="index.subcategories.results({subcategory: subcat.subcategory, subcatID: subcat})" ng-click="updateSubCategory({ subcategory: subcat.subcategory, subcatId: subcat })" class="title sub">{{ subcat.subcategory }}</h3>
