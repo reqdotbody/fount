@@ -632,7 +632,7 @@ a.button:hover{
 
 }
 
-a:focus, a:visited {
+.navbar-right a:focus, .navbar-right a:visited {
   color: white;
   text-decoration: none;
 }
