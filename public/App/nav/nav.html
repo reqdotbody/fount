@@ -10,8 +10,8 @@
   </span>
 
   <span class="auth-panel navbar-right">
-    <a class="button" ng-hide="isAuth.isLoggedIn" ui-sref="index.submitCategory">Submit Category</a>
-    <a class="button" ng-hide="isAuth.isLoggedIn" ui-sref="dashboard">Dashboard</a>
+    <!-- <a class="button" ng-hide="isAuth" ui-sref="index.submitCategory">Submit Category</a> -->
+    <a class="button" ng-if="isAuth.isLoggedIn" ui-sref="dashboard">Dashboard</a>
     <a class="button auth" ng-hide="isAuth.isLoggedIn" ui-sref="index.signup" autoscroll='false'>Signup</a>
     <a class="button auth" ng-hide="isAuth.isLoggedIn" ui-sref="index.signin" autoscroll='false'>Signin</a>
     <a class="button" ng-show="isAuth.isLoggedIn">Logout</a>
