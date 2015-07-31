@@ -30,7 +30,7 @@ angular.module('fount.results', [])
     console.log(link);
 
     var message = {
-      link_id: link.link_id,
+      link_id: link.id,
       vote: direction
     }
     console.log(message);

@@ -115,7 +115,8 @@ router.post('/v1/submit',
       title: req.body.title,
       url: req.body.url,
       user_id: req.user.id,
-      subcat_id: req.body.subcat_id
+      subcat_id: req.body.subcat_id,
+      votes: 0
     })
     .then(function(inserts) {
       res.json(inserts)
@@ -217,70 +218,65 @@ router.get('/v1/*', function(req, res, next) {
 // {vote:[number either 1 or -1 ], link_id: [number the link_id of the link]}
 
 router.post('/v1/link/vote', checkLogin, function(req, res, next) {
-  knex('session').select('userID').where({
-    sid: req.sessionID
+  knex('votes').select().where({
+    link_id: req.body.link_id,
+    user_id: req.user.id
   })
-  .then(function(item) {
-    knex('votes').select().where({
-      link_id: req.body.link_id,
-      user_id: item[0].userID
-    })
-    .then(function(exists) {
-      console.log(exists.length)
-      if (exists.length === 0) {
-        knex('votes')
-        .insert({
-            link_id: req.body.link_id,
-            user_id: item[0].userID,
-            votes: req.body.vote
-        })
-        .then(function(items) {
-          knex('votes').sum('votes AS total').where({
-            link_id: req.body.link_id
-          })
-          .then(function(vote_count) {
-            knex('links').update({
-              votes: vote_count[0].total
-            })
-            .where({
-              id: req.body.link_id
-            })
-            .catch(function(err) {
-              console.error(err);
-            })
-          })
-
-          res.json(items)
-        })
-      } else {
-        knex('votes')
-        .update({
-          votes: req.body.vote
-        })
-        .where({
+  .then(function(exists) {
+    console.log(exists.length)
+    if (exists.length === 0) {
+      knex('votes')
+      .insert({
           link_id: req.body.link_id,
-          user_id: item[0].userID,
+          user_id: req.user.id,
+          votes: req.body.vote
+      })
+      .then(function(items) {
+        knex('votes').sum('votes AS total').where({
+          link_id: req.body.link_id
         })
-        .then(function(items) {
-          knex('votes').sum('votes AS total')
+        .then(function(vote_count) {
+          knex('links').update({
+            votes: vote_count[0].total
+          })
           .where({
-            link_id: req.body.link_id
+            id: req.body.link_id
           })
-          .then(function(vote_count) {
-            knex('links').update({
-              votes: vote_count[0].total
-            })
-            .where({
-              id: req.body.link_id
-            })
-            .catch(function(err) {
-              console.error(err);
-            })
+          .catch(function(err) {
+            console.error(err);
           })
-          res.json(items)
         })
-      }
-    })
+
+        res.json(items)
+      })
+    } else {
+      knex('votes')
+      .update({
+        votes: req.body.vote
+      })
+      .where({
+        link_id: req.body.link_id,
+        user_id: req.user.id,
+      })
+      .then(function(items) {
+        knex('votes').sum('votes AS total')
+        .where({
+          link_id: req.body.link_id
+        })
+        .then(function(vote_count) {
+          knex('links').update({
+            votes: vote_count[0].total
+          })
+          .where({
+            id: req.body.link_id
+          })
+          .catch(function(err) {
+            console.error(err);
+          })
+        })
+        res.json(items)
+      })
+    }
   })
 
 });
