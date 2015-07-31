@@ -632,6 +632,7 @@ a.button:hover{
 
 }
 
-.votelol {
-
+a:focus, a:visited {
+  color: white;
+  text-decoration: none;
 }
