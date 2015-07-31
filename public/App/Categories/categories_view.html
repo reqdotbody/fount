@@ -1,12 +1,21 @@
-<div class="categories container-fluid" ui-view autoscroll='false'>
-  <div class="row-fluid category-row">
-    <div class="col-md-4 category-container" ng-repeat="cat in categories">
-      <div class="category" ng-style="{'background-image':'linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url({{cat.img}})', 'background-size': 'cover'}">
-        <a ui-sref="app.categories.subcategories({ category: cat.name })">
-          {{cat.name}}
+<div class="original-view sub-contents">
+  <div class="categories container-fluid" ui-view autoscroll='false'>
+    <div class="row-fluid category-row">
+      <div class="col-md-4 category-container" ng-repeat="cat in categories">
+        <div class="category animated fadeIn" id="{{'cat'+$index}}" ng-mouseenter="animate($index)" ng-mouseleave="deanimate($index)" ng-init="initAnimate($index)">
+          <span ui-sref="index.subcategories({ category: cat.name })" ng-click="updateCategory({ category: cat.name })">
+            <a class="title">{{cat.name}}</a>
+            <div class="stat">
+              <i class="fa fa-star fa-fw"></i>129
+            </div>
+            <div class="stat">
+              <i class="fa fa-comments fa-fw"></i>456
+            </div>
+          </span>
+          <!-- Will eventually be a dynamic description -->
+          <p>Skate or Die.</p>
+        </div>
       </div>
-      </a>
     </div>
   </div>
 </div>
-

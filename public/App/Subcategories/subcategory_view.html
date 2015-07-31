@@ -1,0 +1,36 @@
+<div id='container' ui-view autoscroll='false'>
+  <span>
+    <h2 class="categoryTitle">{{category}}</h2>
+    <a class="button" ng-hide="isAuth()" ui-sref="index.submitSubcat">Submit subcategory </a>
+  </span>
+
+  <hr>
+  <!-- <div class="original-view sub-contents"> -->
+    <div class="categories container-fluid" ui-view autoscroll='false'>
+      <div class="row-fluid category-row">
+        <div class="col-md-3 category-container" ng-repeat="subcat in subcats = (subcategories | orderBy: 'subcategory'| filter: searchForm)">
+          <div class="category">
+            <span ui-sref="index.subcategories.results({subcategory: subcat.subcategory, subcatID: subcat})" ng-click="updateSubCategory({ subcategory: subcat.subcategory, subcatId: subcat })">
+              <a class="title sub">{{subcat.subcategory}}</a>
+              <div class="stat">
+                <i class="fa fa-star fa-fw"></i>129
+              </div>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  <!-- </div> -->
+
+<!--   <ul>
+    <li ng-repeat="subcat in subcats = (subcategories | orderBy: 'subcategory'| filter: searchForm)" class="subcategory">
+      <a ui-sref="index.subcategories.results({subcategory: subcat.subcategory, subcatID: subcat})" ng-click="updateSubCategory({ subcategory: subcat.subcategory, subcatId: subcat })">
+        {{subcat.subcategory}}
+        {{subcat.subcategory_id}}
+      </a>
+    </li>
+  </ul> -->
+  <div ng-if="subcats.length === 0">
+      <h5>Holy. Guacamole.<br>  There aren't any subcategories in here... <a ui-sref="index.submitSubcat">Add one... quick!</a></h5>
+  </div>
+</div>

@@ -1,15 +1,12 @@
 angular.module('fount.nav', [])
 
-.controller('NavController', function($scope, $window){
-
-  $scope.isAuth = function(){
-    //TODO -- build the Auth factory in services
-  };
+.controller('NavController', function($scope, $window, AuthFactory){
+  $scope.isAuth = AuthFactory.authStatus;
+  AuthFactory.getAuth()
 
   $scope.logout = function(){
     $http({
       method: 'POST',
-      //wildcard?
       url: '/logout',
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
     })

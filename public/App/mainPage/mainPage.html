@@ -1,0 +1,19 @@
+<div class="large-search-container">
+<!--     <div class="sk-folding-cube">
+         <div class="sk-cube1 sk-cube"></div>
+         <div class="sk-cube2 sk-cube"></div>
+         <div class="sk-cube4 sk-cube"></div>
+         <div class="sk-cube3 sk-cube"></div>
+    </div> -->
+  <h1>I want to learn <input id="searchbox" class="search" type="text" name="searchInput" placeholder="" ng-model="searchForm" autofocus/> </h1>
+</div>
+
+<div class="contents">
+  <div class="original-view sub-contents" ng-if="!searchForm.length">
+      <div ui-view autoscroll="false"></div>
+  </div>
+
+  <div class="impromptu-search-view sub-contents fadeIn animated" ng-if="searchForm.length">
+    <div ui-view name="subcatSearch" autoscroll='false'></div>
+  </div>
+</div>
