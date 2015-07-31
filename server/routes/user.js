@@ -35,7 +35,7 @@ user.getMySubcategories = function(req, res, next) {
     var userId = req.user.id;
     knex.select('subcat_id')
     .from('follows')
-    .where({ 
+    .where({
       user_id : userId
     })
     .then(function(followRows) {
@@ -104,17 +104,30 @@ user.followSubcategory = function(req, res, next) {
   } else {
     var userId = req.user.id;
     var subcatId = req.body.subCategoryId;
-    knex('follows')
-    .insert({
+
+    knex.select('user_id', 'subcat_id')
+    .from('follows')
+    .where({
       user_id : userId,
       subcat_id : subcatId
     })
-    .then(function(inserts) {
-      res.json("successfully followed a subcategory");
-    })
-    .catch(function(err) {
-      console.error(err);
-      res.json(err)
+    .then(function (results) {
+      if (results.length > 0) {
+        res.json("you are already following that subcategory")
+      } else {
+        knex('follows')
+        .insert({
+          user_id : userId,
+          subcat_id : subcatId
+        })
+        .then(function(inserts) {
+          res.json("successfully followed a subcategory");
+        })
+        .catch(function(err) {
+          console.error(err);
+          res.json(err)
+        });
+      }
     })
   }
 }
