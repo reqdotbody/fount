@@ -1,7 +1,7 @@
 angular.module('fount.subcategory', [])
 
-.controller('SubcategoryController', function($scope, $http, $stateParams){
-
+.controller('SubcategoryController', function($scope, $http, $stateParams, CurrentCategory, AuthFactory){
+  $scope.isAuth = AuthFactory.authStatus;
   $scope.subcategories = [];
   $scope.category = $stateParams.category;
 
@@ -24,6 +24,23 @@ angular.module('fount.subcategory', [])
       });
   }
 
+  $scope.updateSubCategory = function(subcategoryObj){
+    CurrentCategory.subCategory = subcategoryObj.subcategory;
+    CurrentCategory.subCategoryId = subcategoryObj.subcatId.subcategory_id;
+    console.log(CurrentCategory);
+  }
+
+  $scope.follow = function(subcategoryObj){
+    // console.log(subcategoryObj);
+    $http({
+      url : '/follow',
+      method : 'POST',
+      data : subcategoryObj,
+    }).then(function(results){
+      console.log("successful post? : ", results);
+    })
+  }
+
   $scope.getSomeSubcategories();
-  
+
 });

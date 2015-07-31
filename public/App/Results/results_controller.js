@@ -1,10 +1,11 @@
 angular.module('fount.results', [])
 
-.controller('ResultsController', function($scope, $http, $window, $location, $stateParams, $rootScope){
-  
+.controller('ResultsController', function($scope, $http, $window, $location, $stateParams, $rootScope, AuthFactory){
+  $scope.isAuth = AuthFactory.authStatus;
   $scope.results = [];
   $scope.category = $stateParams.category;
   $scope.subcategory = $stateParams.subcategory;
+  $scope.isAuth = AuthFactory.authStatus;
 
   $scope.getResults = function(){
     // Simple GET request
@@ -29,7 +30,7 @@ angular.module('fount.results', [])
     console.log(link);
 
     var message = {
-      link_id: link.link_id,
+      link_id: link.id,
       vote: direction
     }
     console.log(message);

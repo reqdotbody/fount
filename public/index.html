@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app='fount'>
+<html>
   <head>
     <meta charset="utf-8" />
     <title>Fount</title>
@@ -8,52 +8,43 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/animate.css/3.3.0/animate.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
     <link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
   </head>
-  <body>
-
+  <body ng-app='fount'>
     <div class="wrapper">
       <header>
-        <div ui-view name="nav" autoscroll='false'></div>
+        <div ng-include="'app/nav/nav.html'" ng-controller="NavController"></div>
       </header>
-
       <div class="page">
-        <div class="large-search-container">
-            <h1>I want to learn <input id="searchbox" class="search" type="text" name="searchInput" placeholder="" ng-model="searchForm" autofocus/> </h1>
-          </div>
-
-          <div class="contents">
-            <div class="original-view sub-contents" ng-show="!searchForm.length" ng-hide="searchForm.length">
-                <div ui-view autoscroll="false"></div>
-            </div>
-
-            <div class="impromptu-search-view sub-contents fadeIn animated" ng-show="searchForm.length" ng-hide="!searchForm.length">
-              <div ui-view name="subcatSearch" autoscroll='false'></div>
-
-            </div>
-          </div>
+        <div ui-view="jumbo" ng-controller="MainController"></div>
+        <div ui-view="content" ng-if="!searchForm.content.length"></div>
+        <div ui-view="searchResults" ng-if="searchForm.content.length"></div>
       </div>
+
     </div>
 
-    <script src="scripts/angular/angular.min.js"></script>
     <script src="scripts/jquery/dist/jquery.min.js"></script>
+    <script src="scripts/angular/angular.min.js"></script>
     <script src="scripts/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="scripts/angular-animate/angular-animate.min.js"></script>
     <script src="scripts/angular-ui-router/release/angular-ui-router.min.js"></script>
-
+    <script src="app/dashboard/dashboard.js"></script>
     <script src="app/auth/auth_controllers.js"></script>
     <script src="app/categories/categories_controllers.js"></script>
     <script src="app/results/results_controller.js"></script>
-    <script src="app/services/services.js"></script>
+    <script src="app/helpers/helpers.js"></script>
     <script src="app/subcategories/subcategories_searchbar_controller.js"></script>
-    <script src="app/subcategories/subcategories_category_controllers.js"></script>
+    <script src="app/subcategories/subcategory_controller.js"></script>
     <script src="app/search/search.js"></script>
+    <script src="app/search/search_results_controller.js"></script>
     <script src="app/nav/nav.js"></script>
     <script src="app/submit/submitPost.js"></script>
     <script src="app/submit/submitSubcat.js"></script>
+    <script src="app/submit/submitCategory.js"></script>
     <script src="app/content.js"></script>
-
     <script src="main.js"></script>
   </body>
 </html>

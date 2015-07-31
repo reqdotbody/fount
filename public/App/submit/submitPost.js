@@ -1,7 +1,11 @@
 angular.module('fount.submitPost', [])
 
-.controller('SubmitPostController', function($scope, $http, $state, $rootScope){
-  $scope.subcategories = [];
+.controller('SubmitPostController', function($scope, $http, $state, $rootScope, CurrentCategory, AuthFactory){
+  $scope.isAuth = AuthFactory.authStatus;
+  $scope.subCategories = [];
+
+  $scope.category = CurrentCategory.category;
+  $scope.subCategory = CurrentCategory.subCategory;
 
   $scope.post = {
     title: '',
@@ -14,10 +18,27 @@ angular.module('fount.submitPost', [])
     }
   }
 
+  $scope.urlWarning = true;
+  $scope.validateUrl = function() {
+    if(!/^http:\/\//.test($scope.post.url)) {
+      $scope.urlWarning = true;
+    } else {
+      $scope.urlWarning = false;
+    }
+  }
+
   $scope.getSubcats = function(){
+    $http.get('/myfollows')
+    .success(function(data) {
+      console.log(data);
+    })
+    .error(function(data) {
+      console.log('error', data);
+    })
+
     $http.get('api/v1/subcategories/all').
       success(function(data, status, headers, config) {
-        $scope.subcategories = data;
+        $scope.subCategories = data;
       }).
       error(function(data, status, headers, config) {
         console.log('error');
@@ -26,30 +47,35 @@ angular.module('fount.submitPost', [])
   }
 
   $scope.submitNewPost = function(){
+    if($scope.urlWarning) return;
+
     var message = {
       title: $scope.post.title,
       url: $scope.post.url,
-      subcat_id: $scope.post.subcat.subcategory_id
+      subcat_id: CurrentCategory.subCategoryId,
     }
 
+    // if(/^http:\/\//.test(message.url))
     $http.post('api/v1/submit', message).
-      success(function(data, status, headers, config) {
-        // this callback will be called asynchronously
-        // when the response is available
-        console.log(data);
-      }).
-      error(function(data, status, headers, config) {
-        // called asynchronously if an error occurs
-        // or server returns response with an error status.
-        console.log("error");
-        console.log(data);
+      then(function(data, status, headers, config){
+        $state.go("index.subcategories.results",
+          { category: $scope.category,
+            subcategory: $scope.subCategory,
+          });
       });
+      // success(function(data, status, headers, config) {
+      //   // this callback will be called asynchronously
+      //   // when the response is available
+      //   console.log(data);
+      // }).
+      // error(function(data, status, headers, config) {
+      //   // called asynchronously if an error occurs
+      //   // or server returns response with an error status.
+      //   console.log("error");
+      //   console.log(data);
+      // });
 
-    
-    $state.go("app.categories.subcategories.results", 
-      { category: $scope.post.subcat.parentCategory, 
-        subcategory: $scope.post.subcat.subcategory
-      });
+
   }
 
   $scope.getSubcats();

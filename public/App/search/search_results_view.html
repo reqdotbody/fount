@@ -1,0 +1,26 @@
+<div id='container' ui-view autoscroll='false'>
+    <div class="categories container" ui-view autoscroll='false'>
+      <div class="row-fluid category-row">
+          <div ng-if="!subcats.length">
+            <h5>Holy. Guacamole.<br>  There aren't any subcategories in here... <a ui-sref="index.submitSubcat">Add one... quick!</a></h5>
+          </div>
+        <div class="col-md-3 category-container" ng-repeat="subcat in subcats = (subcategories | orderBy: 'subcategory'| filter: searchForm.content)">
+          <div class="category">
+            <div>
+              <h3 ui-sref="index.subcategories.results({subcategory: subcat.subcategory, subcatID: subcat})" ng-click="updateSubCategory({ subcategory: subcat.subcategory, subcatId: subcat })" class="title sub">{{ subcat.subcategory }}</h3>
+              <div class="stat2">
+                <i class="fa fa-star fa-fw"></i>129
+              </div>
+              <div class="stat2">
+                <i class="fa fa-comments fa-fw"></i>129
+              </div>
+              <div class="stat2">
+                <i class="fa fa-plus fa-fw fa-lg" ng-click="follow({subCategoryId: subcat.subcategory_id})"></i>follow
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+</div>
