@@ -14,6 +14,6 @@
     <a class="button" ng-hide="isAuth.isLoggedIn" ui-sref="dashboard">Dashboard</a>
     <a class="button auth" ng-hide="isAuth.isLoggedIn" ui-sref="index.signup" autoscroll='false'>Signup</a>
     <a class="button auth" ng-hide="isAuth.isLoggedIn" ui-sref="index.signin" autoscroll='false'>Signin</a>
-    <a class="button" ng-show="isAuth.isLoggedIn">Logout</a>
+    <a class="button" ng-show="isAuth.isLoggedIn" ng-click="logout()">Logout</a>
   </span>
 </nav>

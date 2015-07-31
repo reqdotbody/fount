@@ -78,6 +78,11 @@ app.get('/checkAuth', function(req, res, next) {
   res.json(req.isAuthenticated());
 })
 
+app.get('/logout', function(req, res, next) {
+  req.logout();
+  res.redirect('/');
+})
+
 app.get('/myposts', user.getMyPosts);
 
 app.post('/follow', user.followSubcategory);
