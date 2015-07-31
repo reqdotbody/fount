@@ -1,6 +1,6 @@
 angular.module('fount.auth', [])
 
-.controller('AuthController', ['$scope', '$window', '$location', '$http', '$rootScope', '$state', function($scope, $window, $location, $http, $rootScope, $state){
+.controller('AuthController', ['$scope', '$window', '$location', '$http', '$rootScope', '$state', 'AuthFactory', function($scope, $window, $location, $http, $rootScope, $state, AuthFactory){
 
   $scope.user = {};
   $scope.error = null;
@@ -30,6 +30,7 @@ angular.module('fount.auth', [])
       console.log("Current userID: " + $rootScope.currentUser.userID);
 
       //Redirect to home
+      AuthFactory.getAuth();
       $state.go("index");
     })
     .error(function(err){

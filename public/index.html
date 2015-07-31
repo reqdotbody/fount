@@ -20,7 +20,8 @@
       </header>
       <div class="page">
         <div ui-view="jumbo"></div>
-        <div ui-view="content" ng-if="!searchForm.length"></div>
+        <div ui-view="content" ng-if="!searchForm.content.length"></div>
+        <!-- <div ui-view="searchResults" ng-if="searchForm.content.length"></div> -->
       </div>
 
     </div>

@@ -25,6 +25,12 @@ a {
   color: #fff;
 }
 
+a.icon:focus{
+  color: white;
+  text-decoration: none;
+} 
+
+
 label {
   color: #fff;
 }

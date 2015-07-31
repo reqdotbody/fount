@@ -1,7 +1,7 @@
 angular.module('fount.subcategory', [])
 
-.controller('SubcategoryController', function($scope, $http, $stateParams, CurrentCategory){
-
+.controller('SubcategoryController', function($scope, $http, $stateParams, CurrentCategory, AuthFactory){
+  $scope.isAuth = AuthFactory.authStatus;
   $scope.subcategories = [];
   $scope.category = $stateParams.category;
 

@@ -1,6 +1,7 @@
 angular.module('fount.submitPost', [])
 
-.controller('SubmitPostController', function($scope, $http, $state, $rootScope, CurrentCategory){
+.controller('SubmitPostController', function($scope, $http, $state, $rootScope, CurrentCategory, AuthFactory){
+  $scope.isAuth = AuthFactory.authStatus;
   $scope.subCategories = [];
 
   $scope.category = CurrentCategory.category;
