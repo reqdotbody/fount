@@ -7,27 +7,24 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var pg = require('pg')
 var pgSession = require('connect-pg-simple')(session)
-
+var passportConfig = require('./server/routes/passportConfig.js')
 var routes = require('./server/routes/index');
 var api = require('./server/routes/api');
 var config = require('./knexfile.js');
 var env = process.env.NODE_ENV || 'development';
 var knex = require('knex')(config[env]);
 var app = express();
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+var user = require('./server/routes/user.js');
+
 process.env.PWD = process.cwd()
 
 knex.migrate.latest([config]);
 
 STATICFILES = path.join(process.env.PWD, 'bower_components');
 
-/* these are a hot fix for our directories that are mixed case*/
-// to-do: fix these mixed cased directories
 app.use('/app',express.static(path.join(process.env.PWD,'public','App')));
-app.use('/app/auth',express.static(path.join(process.env.PWD,'public','App','Auth')))
-app.use('/app/categories',express.static(path.join(process.env.PWD,'public','App','Categories')))
-app.use('/app/results',express.static(path.join(process.env.PWD,'public','App','Results')))
-app.use('/app/subcategories',express.static(path.join(process.env.PWD,'public','App','Subcategories')))
-/* end hot fix */
 
 // view engine setup
 app.get('/', function(req,res){
@@ -49,24 +46,52 @@ app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
+app.use(session({secret:"hi", resave:true, saveUninitialized:true}));
+app.use(passport.initialize())
+app.use(passport.session())
 
-app.use(session({ 
-  secret: 'FOUNT', 
-  cookie: { maxAge: 60000 }, 
-  resave:true, 
-  saveUninitialized:false,
-  secure: false,
-  store: new pgSession({
-      pg : pg,                            // Use global pg-module
-      conString : config[env].connection, // Connect using something other than default DATABASE_URL env variable
-      tableName : 'session'               // Use another table-name other than the default "session" one
-    })
-  }));
+passport.use(new LocalStrategy(passportConfig.strategy))
+
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+
+passport.deserializeUser(function(user, done) {
+  done(null, user);
+});
+// app.use(session({
+//   secret: 'FOUNT',
+//   cookie: { maxAge: 60000 },
+//   resave:true,
+//   saveUninitialized:false,
+//   secure: false,
+//   store: new pgSession({
+//       pg : pg,                            // Use global pg-module
+//       conString : config[env].connection, // Connect using something other than default DATABASE_URL env variable
+//       tableName : 'session'               // Use another table-name other than the default "session" one
+//     })
+// }));
 
 app.use('/api', api);
 
+app.get('/checkAuth', function(req, res, next) {
+  res.json(req.isAuthenticated());
+})
+
+app.get('/logout', function(req, res, next) {
+  req.logout();
+  res.end();
+})
+
+app.get('/myposts', user.getMyPosts);
+
+app.post('/follow', user.followSubcategory);
+
+app.get('/myfollows', user.getMySubcategories);
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
+  console.log("entered 404 error handler");
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
@@ -78,6 +103,7 @@ app.use(function(req, res, next) {
 // will print stacktrace
 if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
+    console.log("entered 500 error handler");
     res.status(err.status || 500);
     res.send({
       message: err.message,

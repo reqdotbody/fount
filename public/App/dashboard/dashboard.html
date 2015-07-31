@@ -1,0 +1,97 @@
+<div class="dashboard">
+  <div class="container">
+
+    <div class="row">
+      <div class="categories container-fluid" ui-view autoscroll='false'>
+        <div class="row-fluid category-row">
+          <div class="col-md-3 category-container" ng-repeat="subcat in mySubCategories">
+            <div class="category">
+              <div>
+                <h3 ui-sref="index.subcategories.results({subcategory: subcat.Subcategory, category: subcat.Category})" ng-click="updateSubCategory({ subcategory: subcat.subcategory, subcatId: subcat })" class="title sub">{{ subcat.Subcategory }}</h3>
+                <div class="stat2">
+                  <i class="fa fa-star fa-fw"></i>129
+                </div>
+                <div class="stat2">
+                  <i class="fa fa-comments fa-fw"></i>129
+                </div>
+                <div class="stat2">
+                  <i class="fa fa-plus fa-fw fa-lg" ng-click="follow({subCategoryId: subcat.subcategory_id})"></i>follow
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="row">
+          <ul class="nav nav-pills" role="tablist">
+            <li role="presentation" class="active"><a href="#">My Subcategories <span class="badge">42</span></a></li>
+          </ul>
+        </div>
+
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <h3 class="panel-title">
+              <!-- <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span> -->
+              <!-- <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> -->
+              Wowhead
+            </h3>
+          </div>
+          <div class="panel-body">
+            http://wowhead.com
+          </div>
+        </div>
+
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <h3 class="panel-title">
+              <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
+              <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+              Wowhead2
+            </h3>
+          </div>
+          <div class="panel-body">
+            http://wowhead.com
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="row">
+          <ul class="nav nav-pills" role="tablist">
+            <li role="presentation" class="active"><a href="#">My Posts <span class="badge">42</span></a></li>
+          </ul>
+        </div>
+
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <h3 class="panel-title">
+              <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
+              <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+              Calculus
+            </h3>
+          </div>
+          <div class="panel-body">
+            http://www.calculus.org
+          </div>
+        </div>
+
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <h3 class="panel-title">
+              <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
+              <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+              Javascript Design Patterns
+            </h3>
+          </div>
+          <div class="panel-body">
+            http://lol.com
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

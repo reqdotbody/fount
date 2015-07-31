@@ -1,5 +1,9 @@
-<div id="submissions">
-  <h2>{{subcategory}}</h2>
+<div id="submissions" class="animated fadeIn">
+  <span>
+    <h2 class="categoryTitle">{{subcategory}}</h2>
+    <a class="button" ng-if="isAuth.isLoggedIn" ui-sref="index.submitPost">Submit post</a>
+  </span>
+
   <hr>
   <div ng-repeat="resource in results | orderBy: '-votes'" class="submission" ng-class-odd="'odd'" ng-class-even="'even'">
     <span class="rank">
@@ -11,8 +15,8 @@
       <div class="downvote glyphicon glyphicon-chevron-down" ng-click="vote(resource, -1)"></div>
     </div>
     <div class="entry">
-      <p class="title">
-        <a class="title" href="{{resource.url}}" target="_blank">{{resource.title}}</span></a>
+      <p class="postTitle">
+        <a class="postTitle" href="{{resource.url}}" target="_blank">{{resource.title}}</span></a>
         <span class="url">(<a class="url" href="{{resource.url}}" target="_blank">{{resource.url}}</a>)</span>
       </p>
       <p class="tagline">
@@ -21,7 +25,7 @@
     </div>
   </div>
   <div ng-if="results.length === 0">
-      <h5>Sorry :-/ <br> No posts on {{subcategory}} yet... <a ui-sref="app.submitPost">Submit the first one!</a>!</h5>
+      <h5>Sorry :-/ <br> No posts on {{subcategory}} yet... <a ui-sref="index.submitPost">Submit the first one!</a>!</h5>
   </div>
 </div>
 
