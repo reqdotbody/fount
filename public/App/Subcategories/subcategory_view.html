@@ -12,14 +12,14 @@
           <div class="category">
             <div>
               <h3 ui-sref="index.subcategories.results({subcategory: subcat.subcategory, subcatID: subcat})" ng-click="updateSubCategory({ subcategory: subcat.subcategory, subcatId: subcat })" class="title sub">{{ subcat.subcategory }}</h3>
-              <div>
-                <a class="button subcat">follow</a>
-              </div>
               <div class="stat2">
-                <i class="fa fa-star fa-fw" ng-click="follow({subcatID: subcat})"></i>129
+                <i class="fa fa-star fa-fw"></i>129
               </div>
               <div class="stat2">
                 <i class="fa fa-comments fa-fw"></i>129
+              </div>
+              <div class="stat2">
+                <i class="fa fa-plus fa-fw fa-lg" ng-click="follow({subcatID: subcat})"></i>follow
               </div>
             </div>
           </div>
