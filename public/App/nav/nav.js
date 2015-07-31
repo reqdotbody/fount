@@ -7,6 +7,7 @@ angular.module('fount.nav', [])
   $scope.logout = function(){
     $http.get('/logout')
     .success(function(data) {
+      AuthFactory.getAuth();
       console.log(data);
       $scope.message = data.message;
       console.log($scope.message);
