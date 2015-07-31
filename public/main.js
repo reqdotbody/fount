@@ -12,6 +12,7 @@ angular.module('fount', [
   'fount.submitCategory',
   'fount.dashboard',
   'fount.helpers',
+  'fount.searchResults',
   'ui.router'
   ])
 //add other modules as are created for view
@@ -30,7 +31,7 @@ angular.module('fount', [
     views: {
       jumbo: {
         templateUrl: 'app/search/search.html',
-        controller: 'SearchController'
+        // controller: 'SearchController'
       },
       content: {
         templateUrl: 'app/Categories/categories_view.html',
