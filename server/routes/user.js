@@ -112,7 +112,9 @@ user.followSubcategory = function(req, res, next) {
       subcat_id : subcatId
     })
     .then(function (results) {
-      if (!results.length > 0) {
+      if (results.length > 0) {
+        res.json("you are already following that subcategory")
+      } else {
         knex('follows')
         .insert({
           user_id : userId,
