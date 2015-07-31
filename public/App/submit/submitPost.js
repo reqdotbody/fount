@@ -18,6 +18,15 @@ angular.module('fount.submitPost', [])
     }
   }
 
+  $scope.urlWarning = true;
+  $scope.validateUrl = function() {
+    if(!/^http:\/\//.test($scope.post.url)) {
+      $scope.urlWarning = true;
+    } else {
+      $scope.urlWarning = false;
+    }
+  }
+
   $scope.getSubcats = function(){
     $http.get('/myfollows')
     .success(function(data) {
@@ -38,12 +47,15 @@ angular.module('fount.submitPost', [])
   }
 
   $scope.submitNewPost = function(){
+    if($scope.urlWarning) return;
+
     var message = {
       title: $scope.post.title,
       url: $scope.post.url,
       subcat_id: CurrentCategory.subCategoryId,
     }
 
+    // if(/^http:\/\//.test(message.url))
     $http.post('api/v1/submit', message).
       then(function(data, status, headers, config){
         $state.go("index.subcategories.results",
