@@ -1,25 +1,24 @@
 <div class="dashboard">
   <div class="container">
+
     <div class="row">
-      <div class="col-md-12">
-        <div class="btn-group">
-          <button type="button" class="btn btn-info btn-lg animated pulse infinite">World of Warcraft</button>
-          <button type="button" class="btn btn-danger btn-lg animated bounce infinite">Calculus</button>
-          <button type="button" class="btn btn-success btn-lg animated shake infinite">Machine Learning</button>
-          <button type="button" class="btn btn-warning btn-lg animated rubberBand infinite">Asian History</button>
-          <button type="button" class="btn btn-primary btn-lg animated wobble infinite">Javascript</button>
-          <div class="sk-folding-cube">
-            <div class="sk-cube1 sk-cube"></div>
-            <div class="sk-cube2 sk-cube"></div>
-            <div class="sk-cube4 sk-cube"></div>
-            <div class="sk-cube3 sk-cube"></div>
-          </div>
-          <div class="spinner">
-            <div class="rect1"></div>
-            <div class="rect2"></div>
-            <div class="rect3"></div>
-            <div class="rect4"></div>
-            <div class="rect5"></div>
+      <div class="categories container-fluid" ui-view autoscroll='false'>
+        <div class="row-fluid category-row">
+          <div class="col-md-3 category-container" ng-repeat="subcat in mySubCategories">
+            <div class="category">
+              <div>
+                <h3 ui-sref="index.subcategories.results({subcategory: subcat.subcategory, subcatID: subcat})" ng-click="updateSubCategory({ subcategory: subcat.subcategory, subcatId: subcat })" class="title sub">{{ subcat.Subcategory }}</h3>
+                <div class="stat2">
+                  <i class="fa fa-star fa-fw"></i>129
+                </div>
+                <div class="stat2">
+                  <i class="fa fa-comments fa-fw"></i>129
+                </div>
+                <div class="stat2">
+                  <i class="fa fa-plus fa-fw fa-lg" ng-click="follow({subCategoryId: subcat.subcategory_id})"></i>follow
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -38,7 +37,7 @@
             <h3 class="panel-title">
               <!-- <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span> -->
               <!-- <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> -->
-              Wowhead 
+              Wowhead
             </h3>
           </div>
           <div class="panel-body">
